@@ -96,6 +96,7 @@
   .h2{font-size:clamp(28px,3.3vw,42px);font-weight:800;line-height:1.08;letter-spacing:-.028em;max-width:30ch}
   .lead{font-size:clamp(15.5px,1.35vw,17.5px);color:var(--mut);line-height:1.6;max-width:760px;margin:14px 0 0}
   .lead b{color:var(--ink);font-weight:650}
+  .lead.wide{max-width:1120px}
   .bridge{font-size:12.5px;color:var(--mut2);margin-top:auto;padding-top:16px}
   .bridge .ar{color:var(--green-ink);font-weight:700;margin-right:4px}
   .bridge b{color:var(--mut);font-weight:600}
@@ -308,7 +309,7 @@
   .card.strip li{font-size:12.5px;line-height:1.45}
   .card.strip .foot{margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--mut2)}
   @media(max-height:830px){
-    .arch.tight img{max-height:252px}
+    .arch.tight img{max-height:222px}
     .arch.tight{padding:6px 14px 5px}
     .card.strip{margin-top:8px;padding:8px 14px 7px}
     .card.strip .hd{margin-bottom:5px;gap:10px}
@@ -832,7 +833,7 @@
   <div class="slide-in">
     <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 1</span></div>
     <h2 class="h2 rv d1">ИИ кодовый агент.</h2>
-    <p class="lead rv d2">Плагин в среде разработки → агент собирает контекст из инструментов компании → сервер Veai (лицензии, квоты, аудит) → фильтр данных → <b>модель внутри компании</b>; облачная — только с разрешения службы безопасности.</p>
+    <p class="lead wide rv d2">Разработчик работает в привычной среде — агент Veai встроен в неё как плагин. Получив задачу, агент сам собирает контекст из систем компании: задачи, репозитории, тесты. Каждый запрос идёт через сервер Veai — лицензии, квоты, журнал аудита — и фильтр, проверяющий данные на чувствительность. <b>Модель работает внутри компании</b>; облачные — только там, где это разрешает служба безопасности.</p>
     <div class="arch tight rv d2">
       <div class="cap">Архитектура агента Veai</div>
       <img src="img/veai-architecture.png" alt="Схема: среда разработки и плагин Veai → агент Veai строит контекст из реестра инструментов, агентов и навыков (Jira, GitLab, Telegram, Allure, TestIT) → сервер Veai с лицензиями и квотами, журналами аудита и статистикой → фильтр → корпоративная модель внутри компании или облачные модели" />
