@@ -253,6 +253,49 @@
   .tl .ev .t{color:var(--body);line-height:1.45}
   .tl .ev .t b{color:var(--ink);font-weight:650}
 
+  /* ============ правки по прогону A (2026-09-08) ============ */
+  .off{display:none!important}                       /* слайд снят с показа, но остаётся в исходнике */
+  .big{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  @media(max-width:960px){.big{grid-template-columns:1fr 1fr}}
+  .bigv{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;box-shadow:var(--sh-sm)}
+  .bigv .v{font-size:clamp(32px,3.8vw,50px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink);white-space:nowrap}
+  .bigv .v .u{font-size:.42em;font-weight:700;color:var(--mut2);margin-left:6px;letter-spacing:-.01em}
+  .bigv .k{font-size:13px;color:var(--body);margin-top:10px;line-height:1.45}
+  .bigv .s{font-size:10.5px;color:var(--mut2);margin-top:6px;font-family:var(--mono);letter-spacing:.04em}
+  .bigv.hero{background:linear-gradient(180deg,#fff,var(--green-tint) 170%);border-color:rgba(53,193,112,.4);box-shadow:0 0 0 1px rgba(53,193,112,.18),var(--sh-md)}
+  .bigv.hero .v{color:var(--green-ink)}
+  .cols2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:14px;margin-top:14px;align-items:stretch}
+  @media(max-width:960px){.cols2{grid-template-columns:1fr}}
+  .cols2 .col{display:flex;flex-direction:column;gap:8px}
+  .cols2 .bigv .v{font-size:clamp(26px,2.8vw,36px)}
+  .bars{display:grid;gap:6px;margin-top:8px}
+  .bar{display:grid;grid-template-columns:92px 1fr 52px;gap:10px;align-items:center;font-size:12px;color:var(--body)}
+  .bar .t{height:9px;border-radius:5px;background:var(--bg-alt);overflow:hidden}
+  .bar .t i{display:block;height:100%;border-radius:5px;background:var(--blue)}
+  .bar.ru .t i{background:var(--green2)}
+  .bar .p{font-family:var(--mono);font-size:11px;text-align:right;color:var(--ink);font-weight:600}
+  .repl{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-d);background:var(--blue-tint);border:1px solid #cfe0f7;border-radius:999px;padding:3px 9px;vertical-align:middle;white-space:nowrap}
+  .steps{display:grid;gap:7px;margin-top:8px}
+  .step{display:flex;gap:9px;align-items:flex-start;font-size:12.8px;color:var(--body);line-height:1.45}
+  .step .d{width:8px;height:8px;flex:none;border-radius:2.5px;margin-top:6px;background:var(--blue)}
+  .step.g .d{background:var(--green2)}
+  .step b{color:var(--ink);font-weight:650}
+  @media(max-height:830px){
+    .big{gap:10px;margin-top:12px}
+    .bigv{padding:12px 14px}
+    .bigv .v{font-size:36px}
+    .bigv .k{font-size:11.5px;margin-top:6px}
+    .bigv .s{font-size:9.5px;margin-top:4px}
+    .cols2{gap:10px;margin-top:8px}
+    .cols2 .bigv .v{font-size:26px}
+    .bars{gap:4px}
+    .bar{font-size:11px}
+    .bar .t{height:7px}
+    .steps{gap:4px}
+    .step{font-size:11.5px}
+    .repl{font-size:9px;padding:2px 7px}
+  }
+
   /* фоны слайдов */
   .bg-a{background:radial-gradient(900px 480px at 82% -10%,rgba(23,212,171,.10),transparent 62%),radial-gradient(700px 420px at 8% -6%,rgba(124,92,252,.07),transparent 58%),linear-gradient(180deg,#fff 0%,#fbfcfd 60%,#f6f8fa 100%)}
   .bg-b{background:var(--bg-soft)}
@@ -320,7 +363,7 @@
     .slide-in{padding:28px 56px 42px}
     .js .rv{opacity:1!important;transform:none!important;transition:none!important}
     .slide::before{content:"Veai × Ростелеком · версия с цифрами и источниками · сентябрь 2026 · для обсуждения";position:absolute;left:56px;bottom:15px;z-index:5;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2)}
-    .slide::after{content:counter(slide,decimal-leading-zero) " / 16";position:absolute;right:56px;bottom:15px;z-index:5;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--mut2)}
+    .slide::after{content:counter(slide,decimal-leading-zero) " / 12";position:absolute;right:56px;bottom:15px;z-index:5;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--mut2)}
     .h2{font-size:27px} .lead{margin-top:8px;font-size:14px} .kick{margin-bottom:10px}
     .stmt{margin-top:10px;padding:13px 24px;gap:20px} .stmt .q{font-size:18px} .stmt .side{font-size:12px}
     .cards{margin-top:12px;gap:12px} .cards.c2{grid-template-columns:1fr 1fr} .cards.c3{grid-template-columns:1fr 1fr 1fr} .cards.c3h{grid-template-columns:1fr 1.15fr 1fr}
@@ -345,7 +388,7 @@
   <span class="sp"></span>
   <span class="modebadge">с цифрами</span>
   <span class="hint-keys">← → или свайп</span>
-  <span class="count" aria-live="polite"><b id="cur">01</b>&thinsp;/&thinsp;<span id="tot">16</span></span>
+  <span class="count" aria-live="polite"><b id="cur">01</b>&thinsp;/&thinsp;<span id="tot">12</span></span>
   <span class="navbtns">
     <button class="navbtn" id="prev" aria-label="Предыдущий слайд"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
     <button class="navbtn" id="next" aria-label="Следующий слайд"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -354,31 +397,27 @@
 
 <main class="deck" id="deck">
 <!-- ================= 01 · Суть ================= -->
-<section class="slide bg-a" data-title="Суть предложения" aria-label="Суть предложения в одном абзаце">
+<section class="slide bg-a" data-title="Суть предложения" aria-label="Суть предложения: суверенный ИИ-агент для разработки">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">01</span><span class="tx">Суть</span></div>
-    <h2 class="h2 rv d1">Суверенный агент для разработки: среда, мощности и канал в государство — у Ростелекома, агент и контур управления — у Veai.</h2>
-    <p class="lead rv d2">Ростелекому по закону и по стратегии нужен собственный инструмент искусственного интеллекта для разработчиков — и как <b>потребителю</b> (тысячи своих программистов, которым западные инструменты запрещены), и как <b>поставщику для государства</b>. На рынке такого инструмента без чужой зависимости нет. Veai — независимая российская команда с собственным агентом в реестре Минцифры и контуром управления для внедрения на организацию.</p>
-    <div class="stmt rv d3">
-      <p class="q">Предлагаем сделать этот агент <span class="em">продуктом Ростелекома</span> для суверенного сегмента.</p>
-      <p class="side"><span class="cap">Кто что даёт</span><b>Ростелеком —</b> среда исполнения, вычислительные мощности, канал продаж государству, доверие регуляторов.<br/><b>Veai —</b> агент собственной разработки, контур управления парком агентов, команда с многолетним опытом инструментов для разработчиков.</p>
+    <h2 class="h2 rv d1">Суверенный ИИ-агент для разработки: экосистема, инфраструктура и каналы дистрибуции — у&nbsp;Ростелекома, ИИ-агент и платформа AI&nbsp;SDLC — у&nbsp;Veai.</h2>
+    <p class="lead rv d2">Ростелекому и компаниям, подпадающим под 152-ФЗ, стратегически нужен собственный инструмент искусственного интеллекта для разработчиков — как <b>потребителю</b> (тысячи своих программистов, которым западные инструменты запрещены), так и <b>поставщику</b> для компаний с чувствительным регулированием. Veai — независимая российская команда с собственным кодинговым ИИ-агентом в реестре Минцифры и платформой управления AI&nbsp;SDLC для внедрения в крупный бизнес. <b>Партнёрство Ростелекома и Veai может быть обоюдно выгодным.</b></p>
+    <div class="big num">
+      <div class="bigv rv d1"><div class="v">≈1<span class="u">млн</span></div><div class="k">разработчиков и аналитиков ПО в России</div><div class="s">ИСИЭЗ ВШЭ · 2024 · 953 тыс.</div></div>
+      <div class="bigv hero rv d2"><div class="v">≈300<span class="u">тыс.</span></div><div class="k">из них — в контуре, где западные инструменты недоступны</div><div class="s">базовая оценка · диапазон 180–400 тыс.</div></div>
+      <div class="bigv rv d3"><div class="v">№&nbsp;33199</div><div class="k">Veai в Едином реестре российского ПО</div><div class="s">Минцифры · 17.04.2026</div></div>
+      <div class="bigv rv d4"><div class="v">&gt;15<span class="u">тыс.</span></div><div class="k">ИТ-специалистов в группе Ростелеком</div><div class="s">годовой отчёт · 2025</div></div>
     </div>
-    <div class="proofbar num rv d4">
-      <span class="pf"><b>≈953 тыс.</b>разработчиков и аналитиков ПО в России (ИСИЭЗ ВШЭ, 2024)</span>
-      <span class="pf"><b>180–400 тыс.</b>из них — в контуре, где западные инструменты недоступны (расчёт R2)</span>
-      <span class="pf"><b>№ 33199</b>Veai в Едином реестре российского ПО, 17.04.2026</span>
-      <span class="pf"><b>&gt;15 тыс.</b>ИТ-специалистов в группе Ростелеком (годовой отчёт-2025)</span>
-    </div>
-    <p class="bridge rv d4"><span class="ar">→</span>Дальше — почему «агент» и «контур управления» это не то же самое, что «нейросеть», и <b>почему решать нужно в 2026–2027</b>.</p>
+    <p class="bridge rv d4"><span class="ar">→</span>Дальше — почему «ИИ-агент» и «платформа управления» это не то же самое, что «нейросеть».</p>
   </div>
 </section>
 
 <!-- ================= 02 · Три слоя ================= -->
-<section class="slide bg-b" data-title="Три слоя" aria-label="Искусственный интеллект в разработке — это три разных слоя">
+<section class="slide bg-b" data-title="Три слоя" aria-label="Искусственный интеллект в разработке — это три ключевых слоя">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">02</span><span class="tx">Ликбез</span></div>
-    <h2 class="h2 rv d1">Искусственный интеллект в разработке — это три разных слоя, а не один продукт.</h2>
-    <p class="lead rv d2">Ценность и риски для компании — во втором и третьем слоях. <b>Двигатель заменяем; автомобиль и правила остаются.</b></p>
+    <h2 class="h2 rv d1">Искусственный интеллект в разработке — это три ключевых слоя, а не один продукт.</h2>
+    <p class="lead rv d2">Ценность и риски для компании — во втором и третьем слоях.</p>
     <div class="cards c3">
       <article class="card rv d1">
         <span class="tag a">Слой 1 · двигатель</span>
@@ -389,7 +428,7 @@
           <li>В мире — около десятка производителей; часть выпускает модели, которые можно скачать и <b>запустить на собственных серверах</b>.</li>
           <li>В России свои модели строят <b>Яндекс и Сбер</b>.</li>
         </ul>
-        <div class="verdict">Двигатель — <b>заменяемая деталь</b>.</div>
+        <div class="verdict">Модель — <b>заменяемая деталь</b>.</div>
       </article>
       <article class="card core rv d2">
         <span class="tag b">Слой 2 · автомобиль с автопилотом</span>
@@ -404,12 +443,12 @@
       </article>
       <article class="card rv d3">
         <span class="tag g">Слой 3 · правила и диспетчерская</span>
-        <h3>Контур управления</h3>
+        <h3>Платформа управления</h3>
         <div class="who">В отрасли — harness, control plane</div>
         <ul>
           <li>Кто допущен к агенту, какие у него <b>инструменты и доступы</b>, что запрещено.</li>
           <li>Как проверяется результат, <b>сколько он может потратить</b>, что попадает в журнал.</li>
-          <li>Без контура управления агентов <b>нельзя выпустить на тысячи сотрудников</b>.</li>
+          <li>Без платформы управления агентов <b>нельзя выпустить на тысячи сотрудников</b>.</li>
         </ul>
         <div class="verdict">Слой, который компания <b>покупает отдельно</b> — или строит сама годами.</div>
       </article>
@@ -425,74 +464,90 @@
 </section>
 
 <!-- ================= 03 · Рынок 2026 → 2028 ================= -->
-<section class="slide bg-c" data-title="Куда движется рынок" aria-label="Рынок за два года переходит от помощников к управляемым агентам">
+<section class="slide bg-c" data-title="Куда движется рынок" aria-label="Рынок за два года переходит от помощников к управляемым ИИ-агентам">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">03</span><span class="tx">Тренд</span></div>
-    <h2 class="h2 rv d1">Рынок за два года переходит от помощников к управляемым агентам — решать нужно в 2026–2027.</h2>
-    <p class="lead rv d2">Через два года вопрос будет не «нужен ли агент», а <b>«чей контур управления стоит в компании и кто может отключить ему модели»</b>.</p>
+    <h2 class="h2 rv d1">Рынок за два года переходит от помощников к управляемым ИИ-агентам.</h2>
+    <p class="lead rv d2">Через два года вопрос будет не «нужен ли агент», а <b>«чья платформа управления агентами стоит в компании и кто может отключить ей модели»</b>.</p>
     <div class="cards c3">
       <article class="card rv d1">
         <div class="num">2026 · <span class="fc fact">факты</span></div>
-        <h3>Агент стал корпоративным ресурсом</h3>
-        <p>У ведущих поставщиков агент работает в отдельных средах компании, под политиками безопасности, со своей учётной записью, журналом действий и счётом за потребление.<span class="num"> Расходы растут кратно быстрее штата: у Uber годовой бюджет закончился за четыре месяца, у JetBrains расход вырос в десять раз за полгода <span class="fc fore">вторичные данные</span>.</span></p>
-        <p>Российские регуляторы уже ответили: <b>ФСТЭК</b> описала меры защиты для систем ИИ — квоты на запросы, регистрацию событий, целостность весов, агентов как объект защиты; <b>Банк России</b> выпустил первые рекомендации по безопасности систем ИИ для финансовых организаций.</p>
+        <h3>ИИ-агент стал корпоративным ресурсом</h3>
+        <div class="steps">
+          <div class="step"><span class="d"></span><span>Работает в <b>отдельных средах</b> компании, не на ноутбуке разработчика</span></div>
+          <div class="step"><span class="d"></span><span>Под <b>политиками безопасности</b>, со своей учётной записью и журналом действий</span></div>
+          <div class="step"><span class="d"></span><span>Оплата <b>по потреблению</b>: расходы растут кратно быстрее штата<span class="num"> (Uber, JetBrains — <span class="fc fore">вторичные данные</span>)</span></span></div>
+          <div class="step g"><span class="d"></span><span>Регуляторы ответили: <b>ФСТЭК</b> — меры защиты для систем ИИ, <b>Банк России</b> — первые рекомендации</span></div>
+        </div>
       </article>
       <article class="card core rv d2">
         <div class="num">2027 · <span class="fc fore">прогноз · уверенность высокая</span></div>
         <h3>Фабрика агентов и стандарты</h3>
-        <p>«Задача → изолированная среда → тесты → запрос на слияние (pull request) → человек» — массовый сценарий: <b>задачи выполняют агенты, люди проверяют результат</b>.</p>
-        <p><b>Контур управления агентами — отдельная строка закупки.</b> Развёртывание внутри компании и запись в реестре — обязательное условие для банков, компаний с госучастием и критической инфраструктуры. План непрерывности на случай отзыва модели — пункт договора.</p>
+        <div class="steps">
+          <div class="step"><span class="d"></span><span><b>Задача → изолированная среда → тесты → запрос на слияние → человек</b>: задачи выполняют агенты, люди проверяют</span></div>
+          <div class="step"><span class="d"></span><span><b>Платформа управления агентами</b> — отдельная строка закупки</span></div>
+          <div class="step"><span class="d"></span><span>Развёртывание внутри компании и реестр — <b>условие</b> для банков, госкомпаний, критической инфраструктуры</span></div>
+          <div class="step g"><span class="d"></span><span>План непрерывности при <b>отзыве модели</b> — пункт договора</span></div>
+        </div>
       </article>
       <article class="card rv d3">
         <div class="num">2028 · <span class="fc fore">прогноз · уверенность средняя</span></div>
         <h3>Агент как учтённый сотрудник</h3>
-        <p>Затраты на ИИ-инструменты в расчёте на одного разработчика превысят его среднюю зарплату — из-за роста потребления токенов и оплаты по потреблению<span class="num"> (Gartner, 24.06.2026, по пересказам; уже сейчас около четверти технических руководителей тратят $200–500 на разработчика в месяц)</span>.</p>
-        <p>У агента появляются <b>учётная запись, бюджет и ответственный владелец</b>. Западные решения для развёртывания внутри компании в Россию не продаются — ниша остаётся локальным вендорам.</p>
+        <div class="steps">
+          <div class="step"><span class="d"></span><span>У агента — <b>учётная запись, бюджет, журнал и владелец</b></span></div>
+          <div class="step"><span class="d"></span><span>Решение о слиянии — по <b>машиночитаемым доказательствам</b>, а не по чтению кода</span></div>
+          <div class="step"><span class="d"></span><span>Регуляторы требуют журналов, маркировки и <b>локализации</b> по умолчанию</span></div>
+          <div class="step g"><span class="d"></span><span class="num">Затраты на ИИ-кодирование на одного разработчика превысят его зарплату (Gartner, 06.2026, <span class="fc fore">по пересказам</span>). </span><span>Западные решения в контуре в Россию не продаются</span></div>
+        </div>
       </article>
     </div>
-    <p class="src num rv d4"><b>Источник:</b> срез рынка агентов для разработки от 04.09.2026 (~600 ссылок по семи файлам-источникам); тезис Gartner — про западные облачные цены на токены, при модели на собственных GPU это капитальные затраты и считаются отдельно.</p>
-    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>кто в России уже стоит на каждом из трёх слоёв</b>, и где пусто.</p>
+    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>кто в России уже занял эти слои</b>.</p>
   </div>
 </section>
 
 <!-- ================= 04 · Россия ================= -->
-<section class="slide bg-b" data-title="Россия: кто где" aria-label="Россия: модели есть, агентов с контуром управления почти нет">
+<section class="slide bg-b" data-title="Россия: кто где" aria-label="Россия: модели есть, ИИ-агентов с платформой управления почти нет">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">04</span><span class="tx">Россия</span></div>
-    <h2 class="h2 rv d1">Модели есть. Агентов с контуром управления — почти нет.</h2>
-    <p class="lead rv d2">Настоящих многошаговых агентов в стране считанные единицы<span class="num"> — семь, внешним заказчикам продаются четыре</span>. Полный набор — свой агент, свои модели, работа внутри компании заказчика — <b>только у одной экосистемы, Сбера</b>. Большинство остальных собраны на коде западных открытых проектов и работают на китайских открытых моделях.</p>
+    <h2 class="h2 rv d1">Модели есть. ИИ-агентов с платформой управления — почти нет.</h2>
+    <p class="lead rv d2">Настоящих многошаговых агентов в стране считанные единицы<span class="num"> — семь, продаются четыре</span>; большинство собраны на коде западных открытых проектов и работают на китайских открытых моделях. Полный набор — только у одной экосистемы.</p>
     <div class="matrix rv d2">
-      <div class="ax">модель ↓ · код агента →</div>
-      <div class="ax">Собственный код агента</div>
-      <div class="ax">Производный от западного открытого проекта</div>
-      <div class="ax">Своя или российская модель</div>
-      <div class="cell">
-        <h4>Полный набор — одна экосистема</h4>
-        <div class="chips"><span class="chip k">Сбер · GigaCode 3.0</span><span class="chip">«Астра ИИ Код» — анонс, IV кв. 2026</span></div>
-        <div class="why">Консоль управляет только своими агентами. Независимых поставщиков в этой клетке нет<span class="num"> (оболочка «с нуля» — со слов вендора, независимых тестов нет)</span>.</div>
+      <div class="ax"></div>
+      <div class="ax">Модель — своя или российская</div>
+      <div class="ax">Модель — чужая</div>
+      <div class="ax">Код агента — собственный</div>
+      <div class="cell"><h4>Полный набор — одна экосистема</h4><div class="chips"><span class="chip g">Сбер GigaCode 3.0</span><span class="chip">«Астра ИИ Код» — анонс, IV кв. 2026</span></div></div>
+      <div class="cell"><h4>Свой агент, модель по выбору заказчика</h4><div class="chips"><span class="chip v">Veai — в реестре</span><span class="chip">Т-Банк — внутренний</span></div></div>
+      <div class="ax">Код — производный от западного открытого проекта</div>
+      <div class="cell"><h4>Форки на дообученных китайских моделях</h4><div class="chips"><span class="chip">Яндекс SourceCraft — Roo Code + OpenCode</span><span class="chip">Koda — Continue</span><span class="chip">Kodify (МТС) — Continue, помощник</span></div></div>
+      <div class="cell"><h4>Сборки из чужих компонентов</h4><div class="chips"><span class="chip">Cloud.ru AI Coder</span><span class="chip">помощники с ключом заказчика</span></div></div>
+    </div>
+    <div class="cols2 rv d3">
+      <div class="col">
+        <div class="bigv"><div class="v">40<span class="u">%</span><span class="u"> · 9 %</span></div><div class="k">разработчиков сталкиваются с ограничениями на сторонние ИИ-сервисы; у 9 % они запрещены полностью — спрос на легальную альтернативу есть</div><div class="s num">MTS AI · опрос 556 разработчиков · 04.2025</div></div>
+        <p class="src">Только помощники (подсказка, чат, ревью): Т1 «Сфера», Jmix, Postgres Pro. Ростелеком — внутренний помощник «Василиса» (реестр, 2024).</p>
       </div>
-      <div class="cell">
-        <h4>Форк + дообученная китайская модель</h4>
-        <div class="chips"><span class="chip">Яндекс · SourceCraft — форк Roo Code, только облако</span><span class="chip">Koda — форк Continue</span><span class="chip">Kodify (МТС) — помощник на Continue</span></div>
-      </div>
-      <div class="ax">Чужая модель</div>
-      <div class="cell empty">
-        <h4>Собственный агент, модель по выбору заказчика</h4>
-        <div class="chips"><span class="chip v">Veai — в реестре, в контуре заказчика</span><span class="chip">Т-Банк — внутренний, не продаётся</span></div>
-        <div class="why">Отсюда один шаг в целевую клетку — <b>российская или размещённая у заказчика модель</b>. <span class="tbd">уточняется у команды</span></div>
-      </div>
-      <div class="cell">
-        <h4>Сборки из чужих частей</h4>
-        <div class="chips"><span class="chip">Cloud.ru AI Coder — открытые агенты + хостинг моделей</span><span class="chip">Помощники и чаты: Т1 «Сфера», Jmix, Postgres Pro</span></div>
+      <div class="col num">
+        <div class="mapcard"><div class="cap">Чем пользуются разработчики России</div>
+          <div class="bars">
+            <div class="bar"><span>ChatGPT</span><span class="t"><i style="width:56.5%"></i></span><span class="p">56,5 %</span></div>
+            <div class="bar"><span>DeepSeek</span><span class="t"><i style="width:43.5%"></i></span><span class="p">43,5 %</span></div>
+            <div class="bar"><span>Claude</span><span class="t"><i style="width:26.1%"></i></span><span class="p">26,1 %</span></div>
+            <div class="bar"><span>Gemini</span><span class="t"><i style="width:24.3%"></i></span><span class="p">24,3 %</span></div>
+            <div class="bar"><span>Cursor</span><span class="t"><i style="width:18%"></i></span><span class="p">18 %</span></div>
+            <div class="bar"><span>Copilot</span><span class="t"><i style="width:15.1%"></i></span><span class="p">15,1 %</span></div>
+            <div class="bar ru"><span>GigaChat</span><span class="t"><i style="width:9.1%"></i></span><span class="p">9,1 %</span></div>
+          </div>
+          <p class="src">Опрос 872 разработчиков, 03.2026 (K2 Cloud, Хабр). Разрыв между разрешённым и привычным — и есть неудовлетворённый спрос.</p>
+        </div>
       </div>
     </div>
-    <div class="note rv d3"><div class="ic">!</div><p><b>Целевая клетка пуста:</b> независимый поставщик · собственный агент · российская или размещённая у заказчика модель · внутри компании заказчика. Veai — единственный независимый поставщик с собственным агентом в реестре; против экосистемы выигрываем не словом «суверенный», а качеством многошагового агента и независимым контуром управления — и доказывать это нужно сравнением на репозиториях заказчика.<span class="num"> Чем реально пользуются разработчики России (K2 Cloud и Хабр, 872 анкеты, 03.2026): ChatGPT 56,5 %, DeepSeek 43,5 %, Claude 26,1 %, <b>GigaChat 9,1 %</b> — разрыв между разрешённым и привычным и есть спрос на легальную альтернативу в контуре.</span></p></div>
-    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>почему «суверенный» здесь требование регулятора</b>, а не лозунг.</p>
+    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>почему «суверенный» — требование регулятора</b>, а не лозунг.</p>
   </div>
 </section>
 
 <!-- ================= 04а (только с цифрами) · Россия в цифрах ================= -->
-<section class="slide num bg-c" data-title="Россия: игроки в цифрах" aria-label="Российские агенты и помощники: тип, модель, код, контур, реестр, цена">
+<section class="slide off num bg-c" data-title="Россия: игроки в цифрах" aria-label="Российские агенты и помощники: тип, модель, код, контур, реестр, цена">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Россия · цифры</span></div>
     <h2 class="h2 rv d1">Кто продаётся, на чём построен и сколько стоит — сентябрь 2026.</h2>
@@ -556,7 +611,7 @@
 </section>
 
 <!-- ================= 05а (только с цифрами) · Календарь ================= -->
-<section class="slide num bg-b" data-title="Календарь обязательств" aria-label="Календарь нормативных обязательств 2016–2030">
+<section class="slide off num bg-b" data-title="Календарь обязательств" aria-label="Календарь нормативных обязательств 2016–2030">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Регулятор · календарь</span></div>
     <h2 class="h2 rv d1">Календарь обязательств: что уже действует, что наступит, что пока проект.</h2>
@@ -610,6 +665,7 @@
       </article>
     </div>
     <div class="note rv d3"><div class="ic">≡</div><p><b>Наша собственная зависимость — честно.</b> Агент Veai построен на открытой платформе IntelliJ (Apache 2.0) и работает не только в JetBrains, но и в российских средах разработки <b>GigaIDE и OpenIDE</b>, созданных на той же платформе. Канал поставки без JetBrains Marketplace, работа на ALT Linux и Astra Linux, режим без среды разработки — <span class="tbd">уточняется у команды</span></p></div>
+    <div class="note rv d3"><p><b>Открытые модели — тоже чужое решение о лицензии:</b> Kimi K2 — модифицированный MIT с условиями для крупных пользователей, часть моделей Qwen — собственная лицензия; условия меняются от релиза к релизу <span class="tbd">динамика 2025–2026 проверяется</span>. Надёжный поставщик агента и платформы управления всё равно нужен.</p></div>
     <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>сколько разработчиков работают там, где западное нельзя</b>.</p>
   </div>
 </section>
@@ -642,7 +698,7 @@
 </section>
 
 <!-- ================= 06б (только с цифрами) · Сделки ================= -->
-<section class="slide num bg-b" data-title="Сделки 2024–2026" aria-label="Крупные сделки в сегменте ИИ-инструментов для кода">
+<section class="slide off num bg-b" data-title="Сделки 2024–2026" aria-label="Крупные сделки в сегменте ИИ-инструментов для кода">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Риски · консолидация</span></div>
     <h2 class="h2 rv d1">Рынок консолидируется вокруг владельцев моделей: крупные сделки 2024–2026.</h2>
@@ -672,10 +728,10 @@
 </section>
 
 <!-- ================= 07 · Рынок ================= -->
-<section class="slide bg-d" data-title="Рынок: кому западное нельзя" aria-label="Рынок: те, кому западные инструменты недоступны">
+<section class="slide bg-d" data-title="Рынок суверенного агента" aria-label="Рынок: те, кому западные инструменты недоступны">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">07</span><span class="tx">Рынок</span></div>
-    <h2 class="h2 rv d1">Рынок: те, кому западное нельзя<span class="num"> — от каждого пятого до каждого третьего разработчика России</span>.</h2>
+    <h2 class="h2 rv d1">Рынок суверенного агента<span class="num">: от каждого пятого до каждого третьего разработчика России</span>.</h2>
     <p class="lead rv d2">Для этой части рынка западные инструменты не «хуже» — они недопустимы: на значимых объектах инфраструктуры — по закону, на остальном периметре — по политикам безопасности, запрещающим выносить код за контур. И к тому же для России попросту <b>недоступны</b>: сервисы проверяют страну пользователя.</p>
     <div class="funnel rv d2">
       <div class="frow"><div><div class="lbl">Все разработчики и аналитики ПО России</div><div class="sub num">ИСИЭЗ ВШЭ, «Индикаторы цифровой экономики: 2026» — расчёт из двух прямых чисел с кросс-проверкой; «ИТ-специалистов» — 1,64 млн, «ИКТ» — 2,2 млн</div><div class="bar" style="width:100%"></div></div><div class="val num">≈953 тыс.<small>2024</small></div></div>
@@ -683,12 +739,12 @@
       <div class="frow"><div><div class="lbl">Именованные организации</div><div class="sub">ФНС · Социальный фонд · Почта России · Газпром · РЖД · Росатом · банки с госучастием · ВТБ · Транснефть · Россети · РусГидро · Аэрофлот — и сам Ростелеком как потребитель<span class="num">. Ядро снизу: 14 госорганизаций ≈107 тыс. ИТ-штата; без Сбера, который строит своё, ≈67 тыс. → 23–39 тыс. разработчиков (расчёт)</span></div><div class="bar" style="width:11%"></div></div><div class="val num">≥50 тыс.<small>ядро, расчёт</small></div></div>
     </div>
     <div class="stats num rv d3">
-      <div class="stat"><div class="v">62 %</div><div class="k">ИТ-специалистов России используют ИИ — вдвое больше, чем годом раньше (IT_ONE / Сколково, 11.2025)</div></div>
-      <div class="stat"><div class="v">40 % · 9 %</div><div class="k">разработчиков сталкиваются с ограничениями на сторонние ИИ-сервисы · полный запрет (MTS AI, 04.2025, 556 чел.)</div></div>
-      <div class="stat"><div class="v">55 %</div><div class="k">главный барьер — безопасность (Совкомбанк Технологии, 08.2026); в компаниях 500+ сквозное внедрение 9 % против 22 % у малых</div></div>
-      <div class="stat"><div class="v">22 %</div><div class="k">базовая оценка «запрещено законом» (жёсткий контур); гипотеза «30 %» подтверждается только как «запрещено или ограничено политикой»</div></div>
+      <div class="stat"><div class="v">17,4 млрд ₽</div><div class="k">российский рынок ИИ-ассистентов для разработчиков, 2025 — 13,9 в контуре / 3,5 облако (прогноз MTS AI, 04.2025; факта по итогам года нет)</div></div>
+      <div class="stat"><div class="v">~30 млрд ₽</div><div class="k">корпоративные ИИ-помощники в России по итогам 2026; сторонние решения — до 10 млрд (MWS AI, 04.2026)</div></div>
+      <div class="stat"><div class="v">316 млрд ₽</div><div class="k">весь ИИ-рынок России в 2025 году, +30 % за год (AIANA, 08.2026)</div></div>
+      <div class="stat"><div class="v">62 % в контуре</div><div class="k">доля решений в контуре заказчика на рынке ПО для ИИ; 25 → 95 млрд ₽ к 2030 (Apple Hills Digital + VK Tech, 06.2026)</div></div>
     </div>
-    <div class="note rv d4"><div class="ic">!</div><p><b>Рынок без западных конкурентов — но не без конкурентов:</b> одна российская экосистема с полным набором и собственная сборка из открытых компонентов, которую крупная компания может собрать сама, если готова годами её сопровождать. Выигрывать нужно качеством агента, контуром управления и ценой, а не словом «суверенный». На остальной рынок не претендуем.</p></div>
+    <div class="note rv d4"><div class="ic">!</div><p><b>Рынок без западных конкурентов — но не без конкурентов:</b> одна российская экосистема с полным набором и собственная сборка из открытых компонентов, которую крупная компания может собрать сама, если готова годами её сопровождать. Выигрывать нужно качеством агента, платформой управления и ценой, а не словом «суверенный». На остальной рынок не претендуем.</p></div>
     <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>кто мы и что у нас есть</b>.</p>
   </div>
 </section>
@@ -697,14 +753,14 @@
 <section class="slide bg-b" data-title="Veai: кто мы и кто у нас" aria-label="Veai — кто мы и кто у нас">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">08</span><span class="tx">Кто мы</span></div>
-    <h2 class="h2 rv d1">Veai — кто мы и кто у нас.</h2>
-    <p class="lead rv d2">Российская компания, разрабатывающая <b>агент для программистов и контур управления им</b>. Агент включён в Единый реестр российского программного обеспечения<span class="num"> (№ 33199 от 17.04.2026, правообладатель ООО «ИИТЕХ»)</span>.</p>
+    <h2 class="h2 rv d1">Veai — кто мы и кто у нас. <span class="repl">наполнить из продуктовой презентации</span></h2>
+    <p class="lead rv d2">Российская компания, разрабатывающая <b>агент для программистов и платформа управления им</b>. Агент включён в Единый реестр российского программного обеспечения<span class="num"> (№ 33199 от 17.04.2026, правообладатель ООО «ИИТЕХ»)</span>.</p>
     <div class="cards c3">
       <article class="card rv d1">
         <div class="num">01 · Продукт</div>
-        <h3>Агент и контур управления</h3>
+        <h3>Агент и платформа управления</h3>
         <div class="who">Встроен в среду разработки; работает в JetBrains, GigaIDE, OpenIDE</div>
-        <p>Собственный код агента, модель по выбору заказчика, развёртывание внутри компании. Контур управления — роли, лимиты, учёт, журнал.<span class="num"> Публично: агент в среде разработки с 14.08.2025, релизы 5.8–5.17 за апрель–август 2026.</span></p>
+        <p>Собственный код агента, модель по выбору заказчика, развёртывание внутри компании. Платформа управления — роли, лимиты, учёт, журнал.<span class="num"> Публично: агент в среде разработки с 14.08.2025, релизы 5.8–5.17 за апрель–август 2026.</span></p>
       </article>
       <article class="card rv d2">
         <div class="num">02 · Команда</div>
@@ -719,8 +775,8 @@
         <p><span class="tbd">уточняется у команды</span><span class="num"> Публично: «20+ компаний, 1 500+ инженеров ежедневно» (12.2025); инвестиции 400 млн ₽ (30.12.2025) — это инвестиции, не выручка; клиенты по публикациям — со слов инвестора, компанией не подтверждены.</span></p>
       </article>
     </div>
-    <div class="note rv d4"><div class="ic">⇄</div><p><b>Сравнение — с российскими решениями</b> (Сбер, Яндекс, Koda, Kodify), не с западными: по признакам «агент или помощник · собственный код или производный · работа внутри компании заказчика · запись в реестре · российские модели · контур управления · независимость от экосистемы». Против западных агентов по «суверенности» мы выигрываем по определению — это не аргумент.</p></div>
-    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>два продукта</b>: агент и контур управления.</p>
+    <div class="note rv d4"><div class="ic">⇄</div><p><b>Сравнение — с российскими решениями</b> (Сбер, Яндекс, Koda, Kodify), не с западными: по признакам «агент или помощник · собственный код или производный · работа внутри компании заказчика · запись в реестре · российские модели · платформа управления · независимость от экосистемы». Против западных агентов по «суверенности» мы выигрываем по определению — это не аргумент.</p></div>
+    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>два продукта</b>: агент и платформа управления.</p>
   </div>
 </section>
 
@@ -728,7 +784,7 @@
 <section class="slide bg-c" data-title="Продукт 1: агент" aria-label="Агент — наш; модель — заменяемая и внутри компании заказчика">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">09</span><span class="tx">Продукт 1</span></div>
-    <h2 class="h2 rv d1">Агент — наш. Модель — заменяемая и внутри компании заказчика.</h2>
+    <h2 class="h2 rv d1">ИИ-агент — наш. Модель — заменяемая и внутри компании заказчика. <span class="repl">заменить готовым слайдом «Агент»</span></h2>
     <div class="cards c2">
       <article class="card core rv d1">
         <span class="tag b">Агент</span>
@@ -761,15 +817,15 @@
         <div class="step"><span class="d k"></span><b>Модель внутри контура заказчика</b> — российская или открытая на его серверах; наружу не уходит ничего</div>
       </div>
     </div>
-    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>контур управления</b>: то, без чего агентов нельзя выпустить на тысячи сотрудников.</p>
+    <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>платформа управления</b>: то, без чего агентов нельзя выпустить на тысячи сотрудников.</p>
   </div>
 </section>
 
-<!-- ================= 10 · Контур управления ================= -->
-<section class="slide bg-b" data-title="Продукт 2: контур управления" aria-label="Контур управления — то, без чего агентов нельзя выпустить на тысячи сотрудников">
+<!-- ================= 10 · Платформа управления ================= -->
+<section class="slide bg-b" data-title="Продукт 2: платформа AI SDLC" aria-label="Платформа управления AI SDLC — то, без чего ИИ-агентов нельзя выпустить на тысячи сотрудников">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 2</span></div>
-    <h2 class="h2 rv d1">Контур управления — то, без чего агентов нельзя выпустить на тысячи сотрудников.</h2>
+    <h2 class="h2 rv d1">Платформа управления AI&nbsp;SDLC — то, без чего ИИ-агентов нельзя выпустить на тысячи сотрудников. <span class="repl">заменить готовым слайдом «Платформа»</span></h2>
     <p class="lead rv d2">Внедрить агентов на организацию — это не раздать лицензии. Российский регулятор описал те же требования своими словами: <b>квоты на запросы, регистрация событий, учёт агентов</b><span class="num"> (ФСТЭК, п. 3.18; Банк России, 3-МР)</span>.</p>
     <div class="grid6 rv d2">
       <div class="g6"><h4>Роли и права доступа</h4><p>Кто и каким агентом пользуется, с какими инструментами и доступами.</p></div>
@@ -787,11 +843,25 @@
   </div>
 </section>
 
+<!-- ================= Команда ================= -->
+<section class="slide bg-d" data-title="Команда" aria-label="Команда Veai">
+  <div class="slide-in">
+    <div class="kick rv"><span class="ix">15</span><span class="tx">Команда</span></div>
+    <h2 class="h2 rv d1">Команда, которая много лет делала инструменты для разработчиков. <span class="repl">взять готовый слайд из инвест-презентации Explyt</span></h2>
+    <p class="lead rv d2">Состав и роли — по решению A: те же лица, что в инвест-презентации; замена одного участника обсуждается. <span class="tbd">состав уточняется</span></p>
+    <div class="cards c3">
+      <article class="card rv d1"><span class="tag b">Основатели</span><h3>Руководство</h3><div class="who">опыт · продукты · роли</div><p><span class="tbd">фото и биографии — из готового слайда</span></p></article>
+      <article class="card rv d2"><span class="tag a">Инженеры</span><h3>Численность и опыт</h3><div class="who">среды разработки · инструменты разработчика · машинное обучение</div><p><span class="tbd">точные цифры — анкета, блок 6</span></p></article>
+      <article class="card rv d3"><span class="tag g">Внедрения</span><h3>Кто уже с нами</h3><div class="who">пилоты и промышленные внедрения</div><p><span class="tbd">какие имена можно называть — анкета, блок 5</span></p></article>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 11 · Вместе ================= -->
-<section class="slide bg-d" data-title="Почему вместе" aria-label="Ростелеком даёт среду, мощности и канал в государство; Veai — агент и контур управления">
+<section class="slide off bg-d" data-title="Почему вместе" aria-label="Ростелеком даёт среду, мощности и канал в государство; Veai — агент и платформа управления">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">11</span><span class="tx">Вместе</span></div>
-    <h2 class="h2 rv d1">Ростелеком даёт среду, мощности и канал в государство. Veai — агент и контур управления.</h2>
+    <h2 class="h2 rv d1">Ростелеком даёт среду, мощности и канал в государство. Veai — агент и платформа управления.</h2>
     <p class="lead rv d2"><b>Две роли Ростелекома — два разговора:</b> потребитель (тысячи своих ИТ-специалистов, которым западное запрещено) и поставщик для государства под стратегию-2030 — «вертикальный интегратор искусственного интеллекта на собственном кластере GPU». Агент для разработчиков в стратегии не назван — предлагаем закрыть этот слой вместе, как компонент их платформы.</p>
     <div class="cards c2">
       <article class="card rv d1">
@@ -802,14 +872,14 @@
           <li>Первое место среди поставщиков ИТ для государства<span class="num"> — 122 млрд ₽ за 2024 год</span>; единственный исполнитель по инфраструктуре электронного правительства, ЕГИСЗ и «ГосТех».</li>
           <li>Сотни собственных продуктов в реестре<span class="num"> (364)</span>; облако и вычислительные мощности; доверие регуляторов.</li>
         </ul>
-        <div class="verdict num">Спрос внутри есть: GigaIDE и GigaCode в РТК ИТ с 04.2025, помощник «Василиса» в реестре с 12.2024, план-2026 — «второй пилот» ИИ. Разрыв, который закрываем, — многошаговые задачи и контур управления.</div>
+        <div class="verdict num">Спрос внутри есть: GigaIDE и GigaCode в РТК ИТ с 04.2025, помощник «Василиса» в реестре с 12.2024, план-2026 — «второй пилот» ИИ. Разрыв, который закрываем, — многошаговые задачи и платформа управления.</div>
       </article>
       <article class="card core rv d2">
         <span class="tag b">У Veai</span>
-        <h3>Агент, контур управления, команда</h3>
+        <h3>Агент, платформа управления, команда</h3>
         <ul>
           <li>Собственный агент в реестре, работает в российских средах разработки.</li>
-          <li>Контур управления парком агентов — то, чего нет ни у помощника, ни у среды разработки.</li>
+          <li>Платформа управления парком агентов — то, чего нет ни у помощника, ни у среды разработки.</li>
           <li>Команда с многолетним опытом инструментов для разработчиков; подтверждённые внедрения — <span class="tbd">уточняется у команды</span></li>
         </ul>
         <div class="verdict">Готовы к сравнению не менее трёх предложений на репозиториях Ростелекома — <b>вслепую, по одним метрикам</b>.</div>
@@ -817,14 +887,14 @@
     </div>
     <div class="stmt rv d3">
       <p class="q">«Последовательное движение к технологическому суверенитету — <span class="em">стратегический выбор „Ростелекома“</span>».</p>
-      <p class="side"><span class="cap">Первое лицо · ЦИПР, 19.05.2026</span>«Все основные государственные IT-системы развиваются, поддерживаются нами» («Коммерсантъ», 19.05.2026). Мы предлагаем не заменить их выбор инструментов, а добавить то, чего у них нет: многошаговый агент и независимый контур управления.</p>
+      <p class="side"><span class="cap">Первое лицо · ЦИПР, 19.05.2026</span>«Все основные государственные IT-системы развиваются, поддерживаются нами» («Коммерсантъ», 19.05.2026). Мы предлагаем не заменить их выбор инструментов, а добавить то, чего у них нет: многошаговый агент и независимый платформа управления.</p>
     </div>
     <p class="bridge num rv d4"><span class="ar">→</span>Дальше — <b>ориентиры цены</b>.</p>
   </div>
 </section>
 
 <!-- ================= 12а (только с цифрами) · Цены ================= -->
-<section class="slide num bg-c" data-title="Ориентиры цены" aria-label="Ценовые ориентиры за место: мир и Россия">
+<section class="slide off num bg-c" data-title="Ориентиры цены" aria-label="Ценовые ориентиры за место: мир и Россия">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Цена · ориентиры</span></div>
     <h2 class="h2 rv d1">Сколько это стоит на рынке — чтобы разговор шёл от рынка, а не от калькуляции.</h2>
