@@ -280,6 +280,9 @@
   .step .d{width:8px;height:8px;flex:none;border-radius:2.5px;margin-top:6px;background:var(--blue)}
   .step.g .d{background:var(--green2)}
   .step b{color:var(--ink);font-weight:650}
+  .ava{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:2px 0 12px;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--line)}
+  @media(max-height:830px){.ava{width:76px;height:76px;margin-bottom:8px}}
+  @media print{.ava{width:80px;height:80px}}
   @media(max-height:830px){
     .big{gap:10px;margin-top:12px}
     .bigv{padding:12px 14px}
@@ -856,19 +859,19 @@
     <div class="cards c3">
       <article class="card rv d1">
         <span class="tag b">Основатель · генеральный директор</span>
-        <h3>Михаил Кудинов</h3>
+        <img class="ava" src="img/mikhail-kudinov.png" alt="Михаил Кудинов" /><h3>Михаил Кудинов</h3>
         <div class="who">CEO</div>
         <p>Серийный предприниматель, 18 лет в ИТ. Основатель Veeroute и Workme.</p>
       </article>
       <article class="card rv d2">
         <span class="tag a">Основатель · руководитель исследований</span>
-        <h3>Дмитрий Мордвинов</h3>
+        <img class="ava" src="img/dmitry-mordvinov.png" alt="Дмитрий Мордвинов" /><h3>Дмитрий Мордвинов</h3>
         <div class="who">Head of Science</div>
         <p>8 лет строит движки анализа программ. Ранее — JetBrains Research, Huawei.</p>
       </article>
       <article class="card rv d3">
         <span class="tag g">Основатель · технический директор</span>
-        <h3>Владислав Кудинов</h3>
+        <img class="ava" src="img/vladislav-kudinov.png" alt="Владислав Кудинов" /><h3>Владислав Кудинов</h3>
         <div class="who">CTO</div>
         <p>Бывший генеральный директор Veeroute. Более 15 лет разработки и внедрения продуктов.</p>
       </article>
