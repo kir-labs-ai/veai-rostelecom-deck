@@ -286,6 +286,15 @@
   .arch .legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--mut2)}
   .arch .legend b{color:var(--ink);font-weight:650}
   @media(max-height:830px){.arch{margin-top:8px;padding:8px 16px 6px}.arch img{max-height:338px;margin-top:4px}.arch .legend{font-size:10.5px;margin-top:5px;padding-top:5px}}
+  /* метрики пилота в тёмной вставке */
+  .stmt .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+  @media(max-width:880px){.stmt .kpis{grid-template-columns:1fr 1fr}}
+  .stmt .kpi{background:rgba(255,255,255,.05);border:1px solid var(--dark-line);border-radius:10px;padding:8px 10px;min-width:0}
+  .stmt .kpi .v{font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--green3);line-height:1.1;white-space:nowrap}
+  .stmt .kpi .k{font-size:10.8px;color:var(--dark-mut);line-height:1.35;margin-top:3px}
+  .stmt .kpi .k b{color:var(--dark-txt);font-weight:600}
+  .stmt.metrics{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+  @media(max-height:830px){.stmt .kpis{gap:6px}.stmt .kpi{padding:6px 8px}.stmt .kpi .v{font-size:15px}.stmt .kpi .k{font-size:10px;line-height:1.3}}
   /* горизонтальная карточка под схемой */
   .arch.tight{padding-bottom:8px}
   .arch.tight img{max-height:330px}
@@ -842,10 +851,10 @@
 </section>
 
 <!-- ================= 10 · Платформа управления ================= -->
-<section class="slide bg-b" data-title="Продукт 2: платформа AI SDLC" aria-label="Платформа управления AI SDLC — то, без чего ИИ-агентов нельзя выпустить на тысячи сотрудников">
+<section class="slide bg-b" data-title="Продукт 2: платформа AI SDLC" aria-label="Платформа управления жизненным циклом разработки с использованием ИИ (AI SDLC)">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 2</span></div>
-    <h2 class="h2 rv d1">Платформа управления AI&nbsp;SDLC — то, без чего ИИ-агентов нельзя выпустить на тысячи сотрудников. <span class="repl">заменить готовым слайдом «Платформа»</span></h2>
+    <h2 class="h2 rv d1">Платформа управления жизненным циклом разработки с использованием ИИ (AI&nbsp;SDLC).</h2>
     <p class="lead rv d2">Внедрить агентов на организацию — это не раздать лицензии. Российский регулятор описал те же требования своими словами: <b>квоты на запросы, регистрация событий, учёт агентов</b><span class="num"> (ФСТЭК, п. 3.18; Банк России, 3-МР)</span>.</p>
     <div class="grid6 rv d2">
       <div class="g6"><h4>Роли и права доступа</h4><p>Кто и каким агентом пользуется, с какими инструментами и доступами.</p></div>
@@ -855,9 +864,18 @@
       <div class="g6"><h4>Журнал действий агента</h4><p>Что видел, решал и делал; выгрузка в системы безопасности.</p></div>
       <div class="g6"><h4>Встраивание в цикл разработки</h4><p>Репозитории, конвейер сборки и поставки (CI/CD), задачи.</p></div>
     </div>
-    <div class="stmt rv d3">
-      <p class="q">В России такой контур есть только внутри экосистем — и управляет он <span class="em">только собственными агентами</span> экосистемы. Независимого контура пока нет.</p>
-      <p class="side"><span class="cap">Что есть на рынке</span>Западные лидеры оформили категорию «панель управления агентами»<span class="num"> — JetBrains Central (03.2026), GitHub AI Controls (02.2026), Google Antigravity Enterprise (08.2026); прогноз 2027 — отдельная строка закупки</span>. В России консоль GigaCode управляет GigaCode, платформа MWS AI — своими агентами, собственная ИИ-платформа Ростелекома — в плане на 2026.<span class="cap cap2">Контур Veai</span>Стоит самостоятельно и встраивается в ИИ-платформу заказчика. Версия, внедрения, карта требований регулятора «реализовано / в планах» — <span class="tbd">уточняется у команды</span></p>
+    <div class="stmt metrics rv d3">
+      <p class="q">Эффект пилота платформа измеряет <span class="em">девятью метриками</span> — от активности команды до экономии в рублях. Решение о масштабировании принимается на данных, а не на впечатлениях.</p>
+      <div class="side"><span class="cap">Метрики успешности пилотного проекта · Veai 2026</span>
+        <div class="kpis">
+          <div class="kpi"><div class="v">80 %</div><div class="k"><b>активность</b> — участников пилота пользуются агентом не реже 3 раз в неделю</div></div>
+          <div class="kpi"><div class="v">30 %</div><div class="k"><b>качество</b> — сгенерированного кода проходит ревью и попадает в production</div></div>
+          <div class="kpi"><div class="v">≥10 % × 5</div><div class="k"><b>экономия времени</b> — тестирование, кодирование, ревью, исследования и онбординг, документирование</div></div>
+          <div class="kpi"><div class="v">₽ / час</div><div class="k"><b>экономика</b> — логи запросов группируются в задачи, ИИ оценивает трудоёмкость, сравнение с классическим подходом по ставке</div></div>
+          <div class="kpi"><div class="v">80 %</div><div class="k"><b>удовлетворённость</b> — общая оценка, готовность рекомендовать, желание продолжать после пилота</div></div>
+          <div class="kpi"><div class="v">топ-20 %</div><div class="k"><b>чемпионы и динамика</b> — структура запросов по категориям, настроение по неделям, амбассадоры для масштабирования</div></div>
+        </div>
+      </div>
     </div>
     <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>почему вместе с Ростелекомом</b>.</p>
   </div>
