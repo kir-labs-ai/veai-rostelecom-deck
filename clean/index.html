@@ -280,6 +280,13 @@
   .step .d{width:8px;height:8px;flex:none;border-radius:2.5px;margin-top:6px;background:var(--blue)}
   .step.g .d{background:var(--green2)}
   .step b{color:var(--ink);font-weight:650}
+  .arch{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:14px 22px 10px}
+  .arch .cap{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-d)}
+  .arch img{display:block;width:100%;max-height:430px;object-fit:contain;margin:8px auto 0}
+  .arch .legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--mut2)}
+  .arch .legend b{color:var(--ink);font-weight:650}
+  @media(max-height:830px){.arch{margin-top:8px;padding:8px 16px 6px}.arch img{max-height:338px;margin-top:4px}.arch .legend{font-size:10.5px;margin-top:5px;padding-top:5px}}
+  @media print{.arch img{max-height:400px}}
   .ava{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:2px 0 12px;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--line)}
   @media(max-height:830px){.ava{width:76px;height:76px;margin-bottom:8px}}
   @media print{.ava{width:80px;height:80px}}
@@ -787,42 +794,16 @@
   </div>
 </section>
 
-<!-- ================= 09 · Агент ================= -->
-<section class="slide bg-c" data-title="Продукт 1: агент" aria-label="Агент — наш; модель — заменяемая и внутри компании заказчика">
+<!-- ================= Продукт 1 · ИИ кодовый агент ================= -->
+<section class="slide bg-c" data-title="Продукт 1: ИИ кодовый агент" aria-label="ИИ кодовый агент — архитектура">
   <div class="slide-in">
-    <div class="kick rv"><span class="ix">09</span><span class="tx">Продукт 1</span></div>
-    <h2 class="h2 rv d1">ИИ-агент — наш. Модель — заменяемая и внутри компании заказчика. <span class="repl">заменить готовым слайдом «Агент»</span></h2>
-    <div class="cards c2">
-      <article class="card core rv d1">
-        <span class="tag b">Агент</span>
-        <h3>Собственный код, встроенный в среду разработки</h3>
-        <div class="who">IDE-native: JetBrains, GigaIDE, OpenIDE · включён в реестр Минцифры</div>
-        <ul>
-          <li>Берёт задачу, <b>изучает кодовую базу, планирует, вносит изменения в нескольких файлах, запускает тесты</b> и готовит изменение к проверке человеком.</li>
-          <li>Работает в среде разработки и в конвейере сборки<span class="num">; семь специализированных агентов с оркестратором, инструменты среды (сборка, тесты, отладчик, рефакторинги), статический анализ безопасности, MCP-сервер для внешних агентов — по публичному описанию 2026</span>.</li>
-          <li>Ценность — не объём оболочки, а <b>глубокая интеграция с инструментами разработчика</b>, контур заказчика и управление парком.</li>
-        </ul>
-        <div class="verdict">Совместимость — первый вопрос технической проверки: ALT Linux и Astra Linux, форки VS Code, режим без среды разработки — <span class="tbd">уточняется у команды</span></div>
-      </article>
-      <article class="card rv d2">
-        <span class="tag g">Модель</span>
-        <h3>Российская или открытая — на серверах заказчика</h3>
-        <div class="who">Код заказчика не покидает его контур; разработчику модели не передаётся ничего</div>
-        <ul>
-          <li>Ответ на вопрос <b>«а ваш двигатель чей и что будет, если его отключат»</b>: двигатель стоит внутри компании заказчика, и отключить его извне нельзя.</li>
-          <li>Открытая модель, дообученная российской компанией и размещённая в России, — по закону 2026 года <b>«национальная модель»</b><span class="num">; статус конкретной модели — предмет правового заключения, подзаконных критериев ещё нет</span>.</li>
-          <li>Для ГИС и систем госорганов запрет передавать данные разработчику модели — норма<span class="num"> (ФСТЭК 117)</span>; для остальных контуров — требование политик безопасности.</li>
-        </ul>
-        <div class="verdict">Перечень поддерживаемых российских моделей и режим работы без внешних сервисов — <span class="tbd">уточняется у команды</span></div>
-      </article>
-    </div>
-    <div class="cycle rv d3">
-      <div class="cap">Схема</div>
-      <div class="flow">
-        <div class="step"><span class="d b"></span><b>Разработчик</b> ставит задачу в среде разработки или из трекера</div>
-        <div class="step"><span class="d g"></span><b>Агент Veai</b> — понимание кода · план · правки в нескольких файлах · тесты · оформление изменения</div>
-        <div class="step"><span class="d k"></span><b>Модель внутри контура заказчика</b> — российская или открытая на его серверах; наружу не уходит ничего</div>
-      </div>
+    <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 1</span></div>
+    <h2 class="h2 rv d1">ИИ кодовый агент.</h2>
+    <p class="lead rv d2">Плагин в среде разработки → агент выбирает сценарий и собирает контекст из инструментов компании → сервер Veai с лицензиями и квотами → фильтр чувствительности данных → модель: <b>корпоративная внутри компании</b> или облачная, если служба безопасности это допускает.</p>
+    <div class="arch rv d3">
+      <div class="cap">Архитектура агента Veai</div>
+      <img src="img/veai-architecture.png" alt="Схема: среда разработки и плагин Veai → агент Veai строит контекст из реестра инструментов, агентов и навыков (Jira, GitLab, Telegram, Allure, TestIT) → сервер Veai с лицензиями и квотами, журналами аудита и статистикой → фильтр → корпоративная модель внутри компании или облачные модели" />
+      <div class="legend"><span><b>Рабочее пространство</b> — JetBrains, GigaIDE, OpenIDE</span><span><b>Контекст</b> — Jira, GitLab, Telegram, Allure, TestIT; свои агенты и навыки под нужды компании</span><span><b>Сервер</b> — лицензии, квоты, журналы аудита, статистика и показатели производительности</span><span><b>Модель</b> — корпоративная внутри компании; облачная только с разрешения службы безопасности</span></div>
     </div>
     <p class="bridge rv d4"><span class="ar">→</span>Дальше — <b>платформа управления</b>: то, без чего агентов нельзя выпустить на тысячи сотрудников.</p>
   </div>
