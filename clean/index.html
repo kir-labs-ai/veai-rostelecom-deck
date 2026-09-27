@@ -6,24 +6,12 @@
 <meta name="robots" content="noindex, nofollow, noarchive" />
 <title>Veai × Ростелеком — суверенный агент для разработки · объяснительная записка</title>
 <meta name="description" content="Объяснительная записка Veai для Ростелекома: три слоя ИИ в разработке, куда движется рынок, российская карта агентов, требования регулятора, риски открытого кода, рынок суверенного сегмента, агент и контур управления Veai, предложение партнёрства." />
-<!--
-  Шаг 0 навыка designing-screens (аудитория и вопрос экрана):
-  Основная аудитория — вице-президент по коммерции и первое лицо компании с госучастием; не ИТ.
-  Вторичная (только версия с цифрами) — руководитель ИИ-направления ИТ-блока, технократ.
-  Вопрос читателя — «что нам предлагают, зачем это нам и почему сейчас».
-  Действие после — мандат на переговоры и пилот в контуре компании.
-  Время — 7 минут; 3 секунды на заголовок слайда.
-  Устройство — ноутбук на встрече, пересылка ссылкой, печать в PDF (Ctrl+P → 1280×720).
-  Нельзя скрывать — суть предложения (слайд 1), «что уточняется у команды» (жёлтые метки), оговорки к прогнозам.
-  Не его вопрос — структура сделки, экономика (v2), M&A (документ для корпоративного развития).
-  Дизайн-система — слайды `slides/veai-yandex/index.html` (v4), взята как утверждённая форма.
--->
 <link rel="icon" href="data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='512' height='512' rx='80' fill='%238151FC'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M256.243 384.127C203.137 384.127 157.577 351.818 138.147 305.784L92.2362 325.936C119.427 389.618 182.623 434.249 256.243 434.249C329.431 434.249 392.316 390.141 419.767 327.058L373.862 306.902C354.17 352.34 308.919 384.127 256.243 384.127Z' fill='%23FAFAFF'/%3E%3Cpath d='M219.7 161.199L246.356 84.1818C249.348 75.5376 261.707 75.6235 264.576 84.3085L289.947 161.102C290.834 163.787 292.876 165.943 295.523 166.988L358.318 191.787C366.249 194.92 366.43 205.989 358.604 209.374L295.245 236.779C292.762 237.853 290.852 239.916 289.984 242.461L264.548 317.083C261.627 325.654 249.433 325.741 246.388 317.213L219.66 242.364C218.772 239.877 216.883 237.866 214.444 236.811L151.01 209.374C143.184 205.989 143.364 194.92 151.296 191.787L214.167 166.958C216.77 165.93 218.791 163.827 219.7 161.199Z' fill='%23FAFAFF'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-  /* ============ tokens (дизайн-система v4 — из slides/veai-yandex) ============ */
+  /* ============ tokens (дизайн-система v4) ============ */
   :root{
     --bg:#ffffff; --bg-soft:#f7f9fa; --bg-alt:#f2f4f6;
     --line:#e6e9ec; --line-soft:#eef1f3;
@@ -443,7 +431,6 @@
 </div>
 
 <main class="deck" id="deck">
-<!-- ================= 01 · Суть ================= -->
 <section class="slide bg-a" data-title="Суть предложения" aria-label="Суть предложения: суверенный ИИ-агент для разработки">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">01</span><span class="tx">Суть</span></div>
@@ -459,7 +446,6 @@
   </div>
 </section>
 
-<!-- ================= 02 · Три слоя ================= -->
 <section class="slide bg-b" data-title="Три слоя" aria-label="Искусственный интеллект в разработке — это три ключевых слоя">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">02</span><span class="tx">Ликбез</span></div>
@@ -510,7 +496,6 @@
   </div>
 </section>
 
-<!-- ================= 03 · Рынок 2026 → 2028 ================= -->
 <section class="slide bg-c" data-title="Куда движется рынок" aria-label="Рынок за два года переходит от помощников к управляемым ИИ-агентам">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">03</span><span class="tx">Тренд</span></div>
@@ -552,7 +537,6 @@
   </div>
 </section>
 
-<!-- ================= 04 · Россия ================= -->
 <section class="slide bg-b" data-title="Россия: кто где" aria-label="Россия: модели есть, ИИ-агентов с платформой управления почти нет">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">04</span><span class="tx">Россия</span></div>
@@ -593,7 +577,6 @@
   </div>
 </section>
 
-<!-- ================= 04а (только с цифрами) · Россия в цифрах ================= -->
 <section class="slide off num bg-c" data-title="Россия: игроки в цифрах" aria-label="Российские агенты и помощники: тип, модель, код, контур, реестр, цена">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Россия · цифры</span></div>
@@ -623,7 +606,6 @@
   </div>
 </section>
 
-<!-- ================= 05 · Регулятор ================= -->
 <section class="slide bg-c" data-title="Требование регулятора" aria-label="Суверенный — не лозунг, а требование регулятора">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">05</span><span class="tx">Регулятор</span></div>
@@ -657,7 +639,6 @@
   </div>
 </section>
 
-<!-- ================= 05а (только с цифрами) · Календарь ================= -->
 <section class="slide off num bg-b" data-title="Календарь обязательств" aria-label="Календарь нормативных обязательств 2016–2030">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Регулятор · календарь</span></div>
@@ -682,7 +663,6 @@
   </div>
 </section>
 
-<!-- ================= 06 · Open source ================= -->
 <section class="slide bg-b" data-title="Открытый код — не суверенитет" aria-label="Взять открытый код и доработать — не суверенитет">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">06</span><span class="tx">Риски</span></div>
@@ -717,7 +697,6 @@
   </div>
 </section>
 
-<!-- ================= 06а (только с цифрами) · Открытые агенты за год ================= -->
 <section class="slide num bg-c" data-title="Открытые агенты: год закрытий" aria-label="Что случилось с открытыми агентами для кода за год">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Риски · закрытия</span></div>
@@ -744,7 +723,6 @@
   </div>
 </section>
 
-<!-- ================= 06б (только с цифрами) · Сделки ================= -->
 <section class="slide off num bg-b" data-title="Сделки 2024–2026" aria-label="Крупные сделки в сегменте ИИ-инструментов для кода">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Риски · консолидация</span></div>
@@ -774,7 +752,6 @@
   </div>
 </section>
 
-<!-- ================= 07 · Рынок ================= -->
 <section class="slide bg-d" data-title="Рынок суверенного агента" aria-label="Рынок: те, кому западные инструменты недоступны">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">07</span><span class="tx">Рынок</span></div>
@@ -797,7 +774,6 @@
   </div>
 </section>
 
-<!-- ================= Veai · кто мы ================= -->
 <section class="slide bg-b" data-title="Veai: кто мы" aria-label="Veai — кто мы">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">08</span><span class="tx">Кто мы</span></div>
@@ -828,7 +804,6 @@
   </div>
 </section>
 
-<!-- ================= Продукт 1 · ИИ кодовый агент ================= -->
 <section class="slide bg-c" data-title="Продукт 1: ИИ кодовый агент" aria-label="ИИ кодовый агент — архитектура и возможности">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 1</span></div>
@@ -851,7 +826,6 @@
   </div>
 </section>
 
-<!-- ================= 10 · Платформа управления ================= -->
 <section class="slide bg-b" data-title="Продукт 2: платформа AI SDLC" aria-label="Платформа управления жизненным циклом разработки с использованием ИИ (AI SDLC)">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">10</span><span class="tx">Продукт 2</span></div>
@@ -882,7 +856,6 @@
   </div>
 </section>
 
-<!-- ================= Команда ================= -->
 <section class="slide bg-d" data-title="Команда" aria-label="Команда Veai: основатели и инженеры">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">15</span><span class="tx">Команда</span></div>
@@ -911,7 +884,6 @@
   </div>
 </section>
 
-<!-- ================= 11 · Вместе ================= -->
 <section class="slide off bg-d" data-title="Почему вместе" aria-label="Ростелеком даёт среду, мощности и канал в государство; Veai — агент и платформа управления">
   <div class="slide-in">
     <div class="kick rv"><span class="ix">11</span><span class="tx">Вместе</span></div>
@@ -947,7 +919,6 @@
   </div>
 </section>
 
-<!-- ================= 12а (только с цифрами) · Цены ================= -->
 <section class="slide off num bg-c" data-title="Ориентиры цены" aria-label="Ценовые ориентиры за место: мир и Россия">
   <div class="slide-in">
     <div class="kick rv"><span class="ix"></span><span class="tx">Цена · ориентиры</span></div>
