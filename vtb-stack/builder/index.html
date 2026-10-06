@@ -1,0 +1,987 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#f3f4f6">
+<link rel="icon" href="data:,">
+<title>Конструктор стека · прототип · The 2026 On-Prem AI Landscape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+ :root{--bg:#f3f4f6;--ink:#0f172a;--mut:#5b6678;--card:#fff;--bd:#e2e5ea;--soft:#f7f8fa;--sans:"Inter","Helvetica Neue",Arial,system-ui,"Noto Sans",sans-serif;--max:1400px;
+  --ok-bg:#dcfce7;--ok-fg:#166534;--part-bg:#fef3c7;--part-fg:#92400e;--gap-bg:#fee2e2;--gap-fg:#991b1b;--chk-bg:#e0e7ff;--chk-fg:#3730a3}
+ *{box-sizing:border-box;margin:0;padding:0}
+ html{scroll-padding-top:110px}
+ body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.4}
+ a{color:#1d4ed8}a:hover{color:#1e40af}
+ a,button,select,label,summary{touch-action:manipulation}
+ button,select,input{font-family:inherit;font-size:inherit}
+ h1,h2,h3{text-wrap:balance}
+ :focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+ .skip{position:absolute;left:12px;top:-60px;background:#1f2430;color:#fff;padding:8px 14px;border-radius:8px;z-index:100;font-weight:600;text-decoration:none}
+ .skip:focus{top:12px}
+ .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+ header.top{background:#fff;border-bottom:1px solid var(--bd);padding:12px 0 10px;position:sticky;top:0;z-index:20}
+ header .row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+ .tabs{display:flex;gap:6px;flex-wrap:wrap}
+ .tab{font-size:14px;font-weight:600;color:var(--mut);padding:8px 15px;border-radius:8px;background:#eef0f3;border:0;cursor:pointer}
+ .tab:hover{color:var(--ink);background:#e4e7eb}
+ .tab.on{background:#1f2430;color:#fff}
+ header h1{font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.02em;margin-left:auto;text-align:right}
+ header h1 .h1-sub{display:block;font-size:12px;font-weight:600;color:var(--mut);letter-spacing:0;margin-top:3px}
+ header h1 .h1-sub a{color:var(--mut)}
+ .intro{padding:14px 0 0}
+ .draft-banner{display:inline-block;font-size:11px;font-weight:700;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:7px;padding:4px 10px}
+ .bar{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;padding:12px 0 0}
+ .fld{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--mut)}
+ select{background:#fff;color:var(--ink);border:1px solid #cbd2dc;border-radius:8px;padding:7px 10px;font-size:13.5px;font-weight:600;max-width:100%;cursor:pointer}
+ select:hover{border-color:#94a3b8}
+ .chk{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#374151;cursor:pointer;padding:6px 10px;border:1px solid var(--bd);border-radius:8px;background:#fff}
+ .chk:hover{border-color:#94a3b8}
+ .chk input{width:15px;height:15px;accent-color:#1f2430;cursor:pointer}
+ .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid #cbd2dc;background:#fff;color:var(--ink);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap}
+ .btn:hover{background:#f1f3f6;border-color:#94a3b8}
+ .btn.pri{background:#1f2430;color:#fff;border-color:#1f2430}.btn.pri:hover{background:#334155}
+ .btn.sm{padding:4px 9px;font-size:12px;border-radius:7px}
+ .btn.on{background:#1f2430;color:#fff;border-color:#1f2430}
+ .edited{font-size:11px;font-weight:700;color:var(--part-fg);background:var(--part-bg);border-radius:10px;padding:2px 8px;white-space:nowrap}
+ .bar .sp{flex:1 1 20px}
+ .bar-acts{display:inline-flex;flex-wrap:wrap;gap:8px}
+ .grp{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+ .view{display:none;padding-bottom:10px}.view.on{display:block}
+ .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .vh{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-top:18px}
+ .vsub{font-size:13.5px;color:var(--mut);margin-top:4px;line-height:1.55}
+ .pending{background:#fff;border:1px dashed #cbd2dc;border-radius:14px;padding:22px 24px;margin:18px 0;font-size:14px;color:#374151;line-height:1.6}
+ .pending.err{border-color:#fca5a5;background:#fff7f7}
+ .pending b{color:var(--ink)}
+ /* status */
+ .st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;border-radius:12px;padding:2px 9px;white-space:nowrap}
+ .st.ok{background:var(--ok-bg);color:var(--ok-fg)}.st.part{background:var(--part-bg);color:var(--part-fg)}.st.gap{background:var(--gap-bg);color:var(--gap-fg)}
+ .st.chk{background:var(--chk-bg);color:var(--chk-fg)}.st.info{background:#f1f5f9;color:#334155}
+ .legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:12px;color:var(--mut);margin-top:12px}
+ .legend span.i{display:inline-flex;align-items:center;gap:6px}
+ /* verdict */
+ .verdict{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:20px 22px;margin:16px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px}
+ @media(max-width:900px){.verdict{grid-template-columns:1fr}}
+ .v-kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+ .big{font-size:clamp(30px,4.2vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+ .big small{font-size:.42em;font-weight:700;letter-spacing:-.01em;color:#374151}
+ .counts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+ .counts .st{font-size:12.5px;padding:3px 10px;font-variant-numeric:tabular-nums}
+ .v-sub{font-size:14px;color:#374151;margin-top:12px;line-height:1.55}.v-sub b{color:var(--ink)}
+ .v-note{font-size:12.5px;color:var(--mut);margin-top:10px;line-height:1.5;border-left:3px solid var(--bd);padding-left:10px}
+ .v-note b{color:#374151}
+ .todo{list-style:none;display:flex;flex-direction:column;gap:11px}
+ .todo li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;font-size:13.5px;line-height:1.45;color:#374151}
+ .todo .who{display:block;font-size:12px;color:var(--mut);margin-top:2px}
+ .lnk{font-weight:700;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:#cbd2dc;text-underline-offset:3px;font-size:inherit}
+ .lnk:hover{text-decoration-color:var(--ink)}
+ .more-n{font-size:12.5px;color:var(--mut);margin-top:10px}
+ .stress-pick{margin-top:14px;padding-top:12px;border-top:1px dashed var(--bd);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+ /* work area */
+ .work{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;margin:14px 0 0;align-items:start}
+ @media(max-width:980px){.work{grid-template-columns:1fr}}
+ .box{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:14px}
+ .box>h2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+ .box>p.sub{font-size:12.5px;color:var(--mut);margin:3px 0 10px;line-height:1.5}
+ .floors{display:flex;flex-direction:column;gap:5px}
+ .gsep{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:8px 2px 1px}
+ .gsep:first-child{margin-top:0}
+ .floor{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,1.25fr) auto;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--bd);border-left:5px solid var(--gc);border-radius:9px;padding:8px 10px;cursor:pointer;color:var(--ink)}
+ .floor:hover{border-color:#94a3b8;border-left-color:var(--gc);background:#fafbfc}
+ .floor[aria-pressed="true"],.xc[aria-pressed="true"]{box-shadow:0 0 0 2px var(--gc);background:#f8fafc}
+ .floor .fc{font-weight:800;font-size:14px;color:var(--gc);font-variant-numeric:tabular-nums;text-align:center}
+ .fn{font-weight:700;font-size:13.5px;min-width:0}
+ .chips{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
+ .chip{font-size:11.5px;font-weight:600;background:#f1f3f6;color:#1f2937;border-radius:6px;padding:2px 7px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .chip.bank{background:#e0f2fe;color:#075985}
+ .chip.claim{background:#fff;border:1px dashed #94a3b8;color:#374151}
+ .chip.none{background:none;color:var(--gap-fg);padding-left:0}
+ .chip.more{background:none;color:var(--mut);padding-left:2px}
+ @media(max-width:620px){.floor{grid-template-columns:24px minmax(0,1fr) auto}.floor .chips{grid-column:2/-1;grid-row:2}}
+ .cross{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:10px}
+ @media(max-width:760px){.cross{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ .xc{display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;background:#fff;border:1px solid var(--bd);border-top:5px solid var(--gc);border-radius:9px;padding:8px 9px;cursor:pointer;color:var(--ink);min-width:0}
+ .xc:hover{border-color:#94a3b8;border-top-color:var(--gc)}
+ .xc .fn{font-size:12.5px}.xc .fc{font-size:11px;font-weight:800;color:var(--gc)}
+ .cap{font-size:11px;color:var(--mut);text-align:center;margin-top:6px}
+ /* panel */
+ .panel{position:sticky;top:96px;max-height:calc(100vh - 110px);overflow:auto;overscroll-behavior:contain;padding:16px 18px}
+ @media(max-width:980px){.panel{position:static;max-height:none}}
+ .p-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+ .p-head h2{font-size:18px;font-weight:800;letter-spacing:-.01em}
+ .code{font-size:11px;font-weight:800;color:#fff;border-radius:6px;padding:2px 7px;white-space:nowrap}
+ .p-one{font-size:13px;color:#374151;margin-top:6px;line-height:1.5}
+ .need{font-size:12.5px;color:#374151;line-height:1.5;background:var(--soft);border-radius:8px;padding:8px 10px;margin-top:10px}
+ .need b{color:var(--ink)}
+ .p-sec{margin-top:16px}
+ .p-sec>h3{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+ .finds{list-style:none;display:flex;flex-direction:column;gap:9px}
+ .finds li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:start;font-size:13px;line-height:1.45;color:#374151}
+ .finds .who{display:block;font-size:11.5px;color:var(--mut);margin-top:2px}
+ .finds .btn{margin-top:5px}
+ .opt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;padding:8px 0;border-top:1px dashed var(--bd)}
+ .opt:first-of-type{border-top:0}
+ .opt .on{font-weight:700;font-size:13px;overflow-wrap:anywhere}
+ .opt .on a{color:var(--ink);text-decoration:underline;text-decoration-color:#cbd2dc;text-underline-offset:3px}
+ .opt .on a:hover{text-decoration-color:var(--ink)}
+ .opt .meta{font-size:11.5px;color:var(--mut);margin-top:2px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+ .opt .role{font-size:12px;color:#374151;margin-top:3px;line-height:1.45;overflow-wrap:anywhere}
+ .opt .acts{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+ .opt.na{background:#f8fafc;border-radius:8px;padding-left:8px;padding-right:8px}
+ .seg-row{margin:0 0 6px}
+ .warn{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:10px;padding:10px 14px;font-size:13px;line-height:1.5;margin-top:12px}
+ .warn b{color:#7c2d12}
+ .btn:disabled{opacity:.55;cursor:not-allowed;background:#fff}
+ .conf{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+ .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+ .pill{display:inline-block;font-size:9.5px;font-weight:700;border-radius:10px;padding:1px 7px;white-space:nowrap}
+ .seg{display:inline-flex;border:1px solid #cbd2dc;border-radius:8px;overflow:hidden;text-transform:none;letter-spacing:0}
+ .seg button{border:0;border-left:1px solid #cbd2dc;background:#fff;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;color:#374151}
+ .seg button:first-child{border-left:0}
+ .seg button[aria-pressed="true"]{background:#1f2430;color:#fff}
+ .p-note{font-size:12px;color:#374151;background:#f7f8fa;border-radius:8px;padding:8px 10px;line-height:1.5;margin-top:8px}
+ .p-note b{color:var(--ink)}
+ details.comp{margin-top:14px;border-top:1px solid var(--bd);padding-top:10px}
+ details.comp summary{cursor:pointer;font-size:13px;font-weight:700}
+ details.comp ul{margin:8px 0 0 18px;font-size:12.5px;color:#374151;line-height:1.5}
+ .empty{font-size:12.5px;color:var(--mut);padding:4px 0}
+ /* compare */
+ .heads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+ @media(max-width:900px){.heads{grid-template-columns:1fr}}
+ .head{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+ .head.cur{border:2px solid #1f2430}
+ .head .hn{font-weight:800;font-size:14.5px;line-height:1.3}
+ .head .hs{font-size:12.5px;color:#374151;line-height:1.45}
+ .head .hs b{color:var(--ink)}
+ .head .row2{display:flex;flex-wrap:wrap;gap:6px}
+ .head .act{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+ .cmp-tools{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+ .cmp-wrap{background:#fff;border:1px solid var(--bd);border-radius:14px;margin-top:10px;overflow:hidden}
+ table.cmp{border-collapse:collapse;width:100%;table-layout:fixed}
+ table.cmp th,table.cmp td{padding:9px 12px;border-bottom:1px solid var(--bd);vertical-align:top;text-align:left;font-size:12.5px;color:#374151}
+ table.cmp thead th{background:var(--soft);font-weight:700;color:var(--ink)}
+ table.cmp th.ln{width:24%}
+ table.cmp tbody th{font-weight:700;color:var(--ink);background:#fff}
+ table.cmp tbody th .code{margin-right:6px}
+ table.cmp tbody tr:last-child>*{border-bottom:0}
+ table.cmp tr.diff>*{background:#fffdf5}
+ .cell{display:flex;flex-direction:column;gap:5px;align-items:flex-start;min-width:0}
+ @media(max-width:760px){
+  table.cmp,table.cmp tbody,table.cmp tr,table.cmp td,table.cmp th{display:block;width:100%}
+  table.cmp thead{display:none}
+  table.cmp tr{border-bottom:1px solid var(--bd);padding:8px 0}
+  table.cmp tbody th,table.cmp td{border:0;padding:4px 12px}
+  table.cmp td::before{content:attr(data-col);display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:2px}
+ }
+ /* scenario */
+ .scen{border:0;display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+ .scen legend{font-size:17px;font-weight:800;margin-bottom:10px;padding:0}
+ .sc{display:flex;gap:10px;align-items:flex-start;background:#fff;border:2px solid var(--bd);border-radius:12px;padding:12px 14px;cursor:pointer;max-width:440px}
+ .sc:hover{border-color:#94a3b8}
+ .sc:has(input:checked){border-color:#1f2430}
+ .sc input{width:17px;height:17px;margin-top:2px;accent-color:#1f2430;cursor:pointer;flex-shrink:0}
+ .sc b{display:block;font-size:14px;color:var(--ink)}.sc span{font-size:12.5px;color:#374151}
+ .step{background:#fff;border:1px solid var(--bd);border-left:4px solid var(--rc);border-radius:12px;padding:14px 16px;margin-top:12px}
+ .step h3{font-size:15px;font-weight:800}
+ .step .sd{font-size:12.5px;color:#374151;line-height:1.55;margin:4px 0 6px}
+ .step .sd b{color:var(--ink)}
+ .srow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) auto;gap:6px 10px;align-items:center;padding:8px 0;border-top:1px dashed var(--bd)}
+ .srow .sf{font-size:12px;color:#374151;line-height:1.45;grid-column:1/-1}
+ @media(max-width:620px){.srow{grid-template-columns:minmax(0,1fr) auto}.srow .chips{grid-column:1/-1}}
+ details.more{background:#fff;border:1px solid var(--bd);border-radius:12px;margin:14px 0}
+ details.more>summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:14.5px;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+ details.more>summary::-webkit-details-marker{display:none}
+ details.more>summary::before{content:"▸";color:var(--mut)}details.more[open]>summary::before{content:"▾"}
+ details.more>summary .sm{font-weight:500;font-size:12.5px;color:var(--mut)}
+ details.more .body{padding:0 18px 16px;font-size:13.5px;color:#374151;line-height:1.6}
+ details.more .body ul{padding-left:18px}details.more .body li{margin:4px 0}
+ details.more .body b{color:var(--ink)}
+ /* dialogs */
+ dialog{border:0;border-radius:14px;padding:0;margin:auto;max-width:min(980px,calc(100vw - 24px));width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);color:var(--ink);background:#fff}
+ dialog::backdrop{background:rgba(15,23,42,.45)}
+ .dlg-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+ .dlg-h h2{font-size:16px;font-weight:800;margin-right:auto}
+ .dlg-b{padding:16px 18px 20px;max-height:calc(100vh - 150px);overflow:auto;overscroll-behavior:contain}
+ .dcounts{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:13px;margin:4px 0 12px}
+ .dl{border-top:1px solid var(--bd);padding:10px 0}
+ .dl h3{font-size:14px;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+ .alt{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;margin-top:6px}
+ /* passport */
+ .pp h1{font-size:22px;font-weight:800;letter-spacing:-.01em}
+ .pp .meta{font-size:12.5px;color:var(--mut);margin-top:4px;line-height:1.5}
+ .pp h2{font-size:15px;font-weight:800;margin-top:18px}
+ .pp p{font-size:13px;line-height:1.55;margin-top:6px}
+ .pp table{border-collapse:collapse;width:100%;margin-top:10px}
+ .pp th,.pp td{border-bottom:1px solid var(--bd);padding:7px 8px;text-align:left;vertical-align:top;font-size:12px;line-height:1.45}
+ .pp th{background:var(--soft);font-weight:700}
+ .pp ol,.pp ul{margin:8px 0 0 20px;font-size:12.5px;line-height:1.55}
+ .pp li{margin:3px 0}
+ #print-pp{display:none}
+ #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1f2430;color:#fff;border-radius:10px;padding:10px 14px;font-size:13px;display:none;gap:12px;align-items:center;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.3);max-width:calc(100vw - 24px)}
+ #toast.show{display:flex}
+ #toast button{background:#fff;color:#1f2430;border:0;border-radius:7px;padding:4px 10px;font-weight:700;cursor:pointer}
+ #toast input{min-width:0;width:280px;max-width:60vw;border:0;border-radius:6px;padding:4px 6px;font-size:12px}
+ footer{padding:26px 0 46px;font-size:11.5px;color:var(--mut);text-align:center;line-height:1.6}
+ @media(max-width:700px){header .row{flex-wrap:wrap}header h1{margin-left:0;width:100%;order:-1;margin-bottom:8px;text-align:left}header.top{position:static}html{scroll-padding-top:0}.panel{top:0}}
+ @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+ @media print{
+  body{background:#fff}
+  body>*:not(#print-pp){display:none!important}
+  #print-pp{display:block!important}
+  .pp th{background:#f3f4f6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .st{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pp tr{break-inside:avoid}
+ }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="top"><div class="wrap">
+ <div class="row">
+  <div class="tabs" role="tablist" aria-label="Режим конструктора">
+   <button type="button" class="tab on" role="tab" id="tab-build" data-v="build" aria-controls="view-build" aria-selected="true">Собрать</button>
+   <button type="button" class="tab" role="tab" id="tab-compare" data-v="compare" aria-controls="view-compare" aria-selected="false" tabindex="-1">Сравнить</button>
+   <button type="button" class="tab" role="tab" id="tab-scenario" data-v="scenario" aria-controls="view-scenario" aria-selected="false" tabindex="-1">Под сценарий</button>
+  </div>
+  <h1>Конструктор стека <span class="h1-sub">прототип на данных карты <a href="../" translate="no">The 2026 On-Prem AI Landscape</a> · снимок <span id="snap">…</span></span></h1>
+ </div>
+</div></header>
+
+<main id="main" class="wrap">
+ <div class="intro">
+  <span class="draft-banner">ПРОТОТИП · черновик для внутреннего обсуждения, не для передачи за пределы компании</span>
+  <div class="bar" id="bar"></div>
+ </div>
+ <div id="loading" class="pending" role="status">Загружаю данные карты…</div>
+ <div id="err" class="pending err" role="alert" hidden></div>
+ <section id="view-build" class="view on" role="tabpanel" aria-labelledby="tab-build"></section>
+ <section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-compare"></section>
+ <section id="view-scenario" class="view" role="tabpanel" aria-labelledby="tab-scenario"></section>
+
+ <details class="more" id="how"><summary>Как считается итог <span class="sm">статус слоя, правила, как собраны пресеты, что пока не учитывается</span></summary><div class="body"><ul>
+  <li><b>Итог слоя</b> — худшее из трёх: уверенность выбранных позиций (✓ on-prem подтверждено · ◐ заявлено, детали не проверены · ? не подтверждено — считается как ◐), заявки участников без позиции в каталоге (не выше ◐) и замечания правил. Слой без позиций, нарушенное требование или известная дыра — ✖.</li>
+  <li><b>Правила взяты из текста карты:</b> «ни одного подключения к модели в обход шлюза» (этаж 5) · единая дверь к моделям — один шлюз · «каждая версия проходит допуск как модельный риск» (этаж 4) · персональные данные попадают в индексы только обезличенными (этаж 6) · «один ответственный за стыки между слоями» (С5) · Claude Code с другими моделями официально не поддерживается (вкладки 1 и 2) · стыковка со «Сферой» — условие входа в банк (вкладка 4).</li>
+  <li><b>Отметка ⚠ «проверить»</b> — юридические и поставочные проверки: КИИ (187-ФЗ с поправками 58-ФЗ), суверенные модели (243-ФЗ), смена владельца вендора, выход наружу для лицензии. На итог не влияют, попадают в паспорт.</li>
+  <li><b>Пресет «Консорциум»</b> — предложения Ростелекома, Veai и Яндекса, на которые опирается итог вкладки 4, кандидаты, которых она называет (Гарда, Arenadata, Kolmogorov AI), и то, что уже есть у банка. Из альтернатив берётся вариант участника с лучшей уверенностью; недоступное в контуре не берётся. Остальные заявки вкладки 4 можно добавить в панели слоя.</li>
+  <li><b>Пресеты «только одна группа»</b> — все позиции группы из вкладки 3, для США — из вкладки 2 по вхождению IBM или NVIDIA в поле «компания»; плюс то, что уже есть у банка.</li>
+  <li><b>Пока не учитывается:</b> полнота слоя по компонентам — известные пробелы из вкладок 3 и 4 можно отметить закрытыми вручную, отметка попадёт в паспорт; цены и сроки поставки — источников нет.</li>
+  <li><b>Данные.</b> Каталог, требования слоёв, заметки, вкладка 4 и шаги сборки читаются с карты при каждом открытии. Тексты правил, пресет «Консорциум», известные пробелы и факты о банке сверены с картой на дату среза 28.09.2026 и записаны в конструкторе — если карта обновится, конструктор предупредит. Сборка хранится только в адресе ссылки — на сервер ничего не отправляется.</li>
+ </ul></div></details>
+</main>
+
+<footer>Прототип конструктора стека · данные — карта The 2026 On-Prem AI Landscape · черновик для внутреннего обсуждения, не для передачи за пределы компании<br>Адрес страницы: <a href="https://animated-adventure-wwz21jk.pages.github.io/veai-rostelecom/vtb-stack/builder/">animated-adventure-wwz21jk.pages.github.io/veai-rostelecom/vtb-stack/builder/</a> — приватные Pages, открываются участникам репозитория</footer>
+
+<dialog id="dlg-pp" aria-labelledby="pp-title">
+ <div class="dlg-h"><h2 id="pp-title">Паспорт стека</h2><button type="button" class="btn pri" data-act="print">Печать или PDF</button><button type="button" class="btn" data-act="close">Закрыть</button></div>
+ <div class="dlg-b" id="pp-body"></div>
+</dialog>
+<dialog id="dlg-st" aria-labelledby="st-title">
+ <div class="dlg-h"><h2 id="st-title">Если уйдёт…</h2><button type="button" class="btn" data-act="close">Закрыть</button></div>
+ <div class="dlg-b" id="st-body"></div>
+</dialog>
+<section id="print-pp" aria-hidden="true"></section>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* Конструктор стека · прототип.
+   Каталог, слои, заметки, вкладка 4 и шаги сборки читаются с карты ../index.html (G, L, ORDER, CONF, GRP, US, RU, VTB) при каждом открытии.
+   Тексты правил, пресет «Консорциум», известные пробелы и факты о банке сверены с картой на FACTS_CHECKED и записаны здесь.
+   Сборка хранится только в адресе ссылки (#v=…&l=…&s=…); на сервер ничего не отправляется. */
+const MAP_URL='../index.html';
+let D=null,SNAP='',STEPS=[];
+const CAT={},BYL={},BANK={},CLAIM={};
+let PROFILES={},CONS=[],AGAPS={};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+function h32(str){let h=0x811c9dc5;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0;}return h.toString(36);}
+function plural(n,a,b,c){const m=n%10,mm=n%100;return m===1&&mm!==11?a:(m>=2&&m<=4&&(mm<10||mm>=20))?b:c;}
+const ST_T={ok:'✓ закрыто',part:'◐ частично',gap:'✖ дыра'};
+const SEV_T={gap:'✖',part:'◐',chk:'⚠',info:'✎'};
+const SEV_W={gap:'дыра',part:'частично',chk:'проверить',info:'вручную'};
+const CONF_C={h:'#10b981',m:'#f59e0b',l:'#94a3b8'};
+const CONF_T={h:'✓ on-prem подтверждено',m:'◐ on-prem заявлен, детали не проверены',l:'? on-prem не подтверждён'};
+const W={ok:0,part:1,gap:2};
+const byId=id=>D.L.find(l=>l.id===id);
+const isX=l=>l.g==='x';
+const codeLabel=l=>isX(l)?l.code:'Этаж '+l.code;
+const codeShort=l=>isX(l)?l.code:'этаж '+l.code;
+const FLOORS=()=>D.L.filter(l=>!isX(l)).slice().reverse();
+const CROSS=()=>D.L.filter(isX);
+const ORD=id=>D.L.findIndex(l=>l.id===id);
+const own=(o,k)=>o!=null&&Object.prototype.hasOwnProperty.call(o,k);
+const FACTS_CHECKED='28.09.2026';   // дата среза, на которую с картой сверены правила, пресеты и факты о банке
+const WARN=[];                      // что не нашлось на карте при сборке пресетов
+const OSS='c:открытый код';         // открытый код без компании — не «компания» для стыков и выбывания
+const isVendor=p=>p!=='bank'&&p!==OSS;
+
+async function loadMap(){
+ const res=await fetch(MAP_URL,{credentials:'same-origin',cache:'no-cache'});
+ if(!res.ok)throw new Error('страница карты ответила кодом '+res.status);
+ const html=await res.text();
+ const doc=new DOMParser().parseFromString(html,'text/html');
+ const code=[...doc.querySelectorAll('script:not([src])')].map(s=>s.textContent).find(t=>t.includes('const L=['));
+ if(!code)throw new Error('на странице карты не найден блок данных');
+ const cut=code.indexOf('\nfunction vendorRow');
+ if(cut<0)throw new Error('структура данных карты изменилась');
+ // блок данных карты исполняется как код той же страницы сайта (доверие как к тегу <script>);
+ // при будущей политике CSP для этого понадобится 'unsafe-eval'
+ const data=new Function(code.slice(0,cut)+'\n;return {G,L,ORDER,CONF,GRP,US,RU,VTB};')();
+ const m=html.match(/снимок\s+(\d{2}\.\d{2}\.\d{4})/);
+ SNAP=m?m[1]:'';
+ STEPS=[...doc.querySelectorAll('.road')].map(r=>({t:(r.querySelector('h3')||{}).textContent||'',d:(r.querySelector('p')||{}).innerHTML||'',c:r.style.getPropertyValue('--rc')||'#64748b'}));
+ return data;
+}
+
+/* ---- каталог: позиции вкладок 2 (США) и 3 (Россия) ---- */
+function normCo(co){
+ let s=String(co||'').replace(/\([^)]*\)/g,' ').replace(/[«»"]/g,'').replace(/^\s*(ГК|Группа|Group)\s+/i,'').trim();
+ s=s.split(/\s+[·\/]\s+/)[0].trim();
+ return s||String(co||'').trim();
+}
+function partyKey(mk,co,g){
+ if(g&&g!=='os')return 'g:'+g;
+ if(mk==='us'){if(/IBM/.test(co))return 'c:IBM';if(/NVIDIA/.test(co))return 'c:NVIDIA';}
+ if(/^open source/i.test(String(co||'').trim()))return OSS;
+ const c=normCo(co);
+ return c?'c:'+c:OSS;
+}
+function partyName(k){
+ if(k==='bank')return 'банк';
+ if(k.startsWith('g:')){const g=k.slice(2);if(g==='we')return 'Veai';if(g==='vtb')return 'Т1';return (D.GRP[g]&&D.GRP[g].t)||g;}
+ return k.slice(2);
+}
+function shortName(n){const s=String(n).split(/:| · | \+ /)[0].replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim();return s.length>28?s.slice(0,27)+'…':s;}
+function buildCatalog(){
+ D.L.forEach(l=>BYL[l.id]=[]);
+ [['ru',D.RU],['us',D.US]].forEach(([mk,M])=>Object.entries(M.layers).forEach(([lid,vs])=>vs.forEach(v=>{
+  if(!BYL[lid])return;
+  const id=mk+'.'+lid+'.'+h32(mk+'|'+lid+'|'+v.n);
+  CAT[id]={id,kind:'pos',mk,layer:lid,n:v.n,co:v.co,r:v.r,u:v.u,c:v.c||'l',g:v.g,party:partyKey(mk,v.co,v.g),short:shortName(v.n)};
+  BYL[lid].push(id);
+ })));
+}
+const findPos=(mk,lid,prefix)=>{const id=(BYL[lid]||[]).find(x=>CAT[x].mk===mk&&CAT[x].n.startsWith(prefix));if(!id){const l=byId(lid);WARN.push((l?codeLabel(l):lid)+': «'+prefix+'»');}return id;};
+const getOpt=id=>typeof id!=='string'?null:own(CAT,id)?CAT[id]:own(BANK,id)?BANK[id]:own(CLAIM,id)?CLAIM[id]:null;
+const foreign=o=>!!o.foreign||o.mk==='us'||/США|Китай|китайск/i.test((o.n||'')+' '+(o.co||''));
+
+/* ---- ВТБ: что уже есть у банка (вкладка 4 и факты о ВТБ) и заявки участников из вкладки 4 ---- */
+function buildVtb(){
+ const b=(id,layer,n,r,u,src,x)=>{BANK[id]=Object.assign({id,kind:'bank',layer,n,r,u,src,c:'h',party:'bank',short:shortName(n)},x||{});};
+ b('b.gpu','f1','GPU-кластер на китайских ускорителях','китайские GPU — в опытно-промышленной эксплуатации с 03.2026','https://ria.ru/20260408/vtb-2085882241.html','РИА Новости · 08.04.2026',
+  {risk:'Риск — китайские GPU (вкладка 4). Распределение GPU во всех платформах держится на открытых компонентах NVIDIA; поддержку китайских GPU этими платформами подтвердить не удалось (вкладка 3, этаж 2).'});
+ b('b.cloud','f2','Облако VTB.Cloud','собственное облако банка','','вкладка 4 карты');
+ b('b.llm','f3','LLM на собственных серверах','модели работают на серверах банка','https://ria.ru/20260421/vtb-2088005033.html','РИА Новости · 21.04.2026');
+ b('b.qwen','m4','Qwen — открытые веса','одна из двух LLM в работе у банка','https://www.comnews.ru/content/244652/2026-04-08/2026-w15/1008/yazyk-moy-vrag-moy-bolshie-yazykovye-modeli-ne-prinosyat-dokhoda','ComNews · 08.04.2026',{foreign:true});
+ b('b.agents','a9','Платформа ИИ-агентов','уже используется в банке (по данным карты)','https://aif.ru/spief2026/platforma-dlya-robotov-i-ii-agentov-vtb-izuchaet-vozmozhnost-ee-sozdaniya','АиФ · 02.06.2026');
+ // заявки — только там, где у участника нет позиции на этом слое в каталоге России
+ const NA=/только облак|не подтвержден|внутренний инструмент|своих моделей нет|своего агента нет|модели не производим/i;
+ D.VTB.rows.forEach(r=>[['rt','rt'],['veai','we'],['yx','yx']].forEach(([f,g])=>{
+  if(!r[f]||!BYL[r.id])return;
+  const party='g:'+g;
+  if(BYL[r.id].some(id=>CAT[id].mk==='ru'&&CAT[id].party===party))return;
+  const txt=r[f].replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
+  const id='t4.'+r.id+'.'+f,pn=partyName(party);
+  let first=txt.split(/[;(]/)[0].trim();
+  if(first.length>80)first=first.slice(0,first.lastIndexOf(' ',78))+'…';
+  const n=first.includes(pn)?first.charAt(0).toUpperCase()+first.slice(1):pn+' — '+first;
+  CLAIM[id]={id,kind:'claim',layer:r.id,party,html:r[f],c:'m',na:NA.test(txt),n,short:pn};
+ }));
+}
+
+/* ---- профили банка и пресеты ---- */
+function buildProfiles(){
+ const P=(lid,prefix)=>findPos('ru',lid,prefix);
+ const own=[P('m4','YandexGPT'),P('k8','«Сфера»')].filter(Boolean);
+ PROFILES={
+  vtb:{name:'ВТБ — по открытым источникам',mk:'ru',kii:true,sfera:true,bank:Object.keys(BANK),own,
+   kiiNote:'Значимые объекты КИИ банка импортозамещены полностью (БанкИнформ, 18.02.2026)',
+   presets:['consortium','g:sb','g:vtb','g:yx','g:mts','g:ast','g:rt','own'],cmp:['g:sb','g:vtb']},
+  ru:{name:'Банк РФ — без исходных данных',mk:'ru',kii:true,sfera:false,bank:[],own:[],
+   kiiNote:'Значимые объекты КИИ переводятся на доверенное российское ПО и ПАК (187-ФЗ с поправками 58-ФЗ)',
+   presets:['g:sb','g:yx','g:mts','g:ast','g:rt','g:vtb','empty'],cmp:['g:yx','g:mts']},
+  us:{name:'Банк США — без исходных данных',mk:'us',kii:false,sfera:false,bank:[],own:[],
+   presets:['c:IBM','c:NVIDIA','empty'],cmp:['c:NVIDIA','empty']}
+ };
+ CONS=[P('f2','Basis Dynamix'),P('f3','On-Premises AI-as-a-Service'),P('m5','Veai Platform'),
+  P('k6','Solar Dozor'),P('k6','Гарда Data Masking'),P('k6','Arenadata Catalog'),'t4.k6.veai',
+  't4.k7.veai',P('k7','Arenadata Advanced RAG'),P('k7','YDB'),'t4.k8.veai',
+  P('a9','Yandex AI Studio'),P('a10','Агент Veai'),'t4.a11.veai','t4.a11.yx','t4.a12.veai',
+  't4.x1.veai',P('x1','Kolmogorov AI'),P('x2','Solar webProxy'),'t4.x2.veai',
+  't4.x3.veai','t4.x4.veai','t4.x5.rt','t4.x5.veai'].filter(id=>{
+   if(!id)return false;   // не найденную позицию каталога уже записал findPos
+   if(getOpt(id))return true;
+   const m=/^t4\.(\w+)\.(\w+)$/.exec(id),l=m&&byId(m[1]);
+   WARN.push((l?codeLabel(l):id)+': заявка '+(m?({rt:'Ростелекома',veai:'Veai',yx:'Яндекса'})[m[2]]||m[2]:'')+' из вкладки 4');
+   return false;
+  });
+ AGAPS={a11:{sev:'part',scope:'proc',t:'Чат с моделями для сотрудников не выбран.',src:'вкладка 4'},
+  a12:{sev:'part',scope:'proc',t:'Агенты в процессах банка не закрыты — закрыта только разработка.',src:'вкладка 4'},
+  x3:{sev:'gap',t:'Дыра когорты — независимая оценка агентов: нужен пятый участник или своя разработка.',src:'вкладка 4'}};
+}
+const MGAPS={
+ ru:{k6:{sev:'part',t:'Отдельного российского продукта для синтетических данных нет — только модуль «Сферы» (Т1).',src:'вкладка 3'},
+  x1:{sev:'part',t:'Рынок как класс не сложился: готового продукта «реестр агентов + права на решения + управление модельным риском для LLM» нет — его собирают из шлюза, агентной платформы и Kolmogorov AI.',src:'вкладка 3'},
+  x2:{sev:'part',t:'Защита самих LLM и агентов — рынок формируется; сертификатов ФСТЭК для этого класса не нашли.',src:'вкладка 3'},
+  x3:{sev:'part',t:'Независимого оценщика агентов в контуре нет: инструменты есть — оценщика нет.',src:'вкладка 4'},
+  x4:{sev:'part',t:'Трассировка агентов и учёт затрат на LLM — только модулями платформ (Just AI, Neoflex Neon, MWS AI), отдельного продукта нет.',src:'вкладка 3'}},
+ us:{x1:{sev:'part',t:'Готового продукта нет: ни один продукт целиком не закрывает классы решений, права на решения и реестр агентов — ближе всего IBM и DataRobot.',src:'вкладка 2'}}
+};
+function presetName(pid,prof){
+ const P=PROFILES[prof],plus=(P.bank.length||P.own.length)?' + своё у банка':'';
+ if(pid==='consortium')return 'Консорциум: Ростелеком + Veai + Яндекс';
+ if(pid==='own')return 'Только своё у банка';
+ if(pid==='empty')return 'Пустая сборка';
+ if(pid==='g:vtb')return 'Только Т1'+plus+(plus?' — банк строит сам':'');
+ if(pid.startsWith('c:'))return 'Только '+pid.slice(2)+' (США)';
+ return 'Только '+partyName(pid)+plus;
+}
+function presetSel(pid,prof){
+ const P=PROFILES[prof],sel={};
+ D.L.forEach(l=>sel[l.id]=[]);
+ const add=id=>{const o=getOpt(id);if(o&&sel[o.layer]&&!sel[o.layer].includes(id))sel[o.layer].push(id);};
+ if(pid==='consortium')CONS.forEach(add);
+ else if(pid!=='own'&&pid!=='empty')Object.values(CAT).filter(p=>p.mk===P.mk&&p.party===pid).forEach(p=>add(p.id));
+ if(pid!=='empty'){P.bank.forEach(add);P.own.forEach(add);}
+ return sel;
+}
+const newAsm=(pid,prof)=>({base:pid,sel:presetSel(pid,prof),gaps:pid==='consortium'?clone(AGAPS):{},res:{},edited:false});
+/* ---- правила: итог слоя = худшее из уверенности позиций, заявок и замечаний ---- */
+const nameMid=o=>{const s=String(o.n);return s.length>92?s.slice(0,s.lastIndexOf(' ',90))+'…':s;};
+const names=(os,tag=true)=>os.map(o=>esc(nameMid(o))+(tag&&o.kind==='claim'?' · заявка вкладки 4':'')).join(', ');
+const partiesOf=os=>[...new Set(os.filter(o=>o.party!=='bank').map(o=>o.party))].sort();
+const whoOf=(os,suffix)=>{const ps=partiesOf(os).map(partyName);return (ps.length?ps.join(', '):'банк')+(suffix||'');};
+function gapF(id,gid,g,asm,F){
+ const done=own(asm.res,gid);
+ F(id,{rule:'kgap',gid,src:g.src||'',who:g.who||'владелец сборки',sev:done?'info':g.sev,t:(done?'Отмечено закрытым вручную — проверить: ':'')+esc(g.t)});
+}
+function evaluate(asm,prof,flags,ctx){
+ ctx=ctx||{};
+ const P=PROFILES[prof],RU=P.mk==='ru',out={lay:{},counts:{ok:0,part:0,gap:0},parties:{}};
+ D.L.forEach(l=>{
+  const os=[...new Set(asm.sel[l.id]||[])].map(getOpt).filter(o=>o&&o.layer===l.id);
+  out.lay[l.id]={opts:os,f:[]};
+  os.forEach(o=>{if(isVendor(o.party))(out.parties[o.party]=out.parties[o.party]||[]).push(l.id);});
+ });
+ const has=id=>out.lay[id].opts.length>0,nP=Object.keys(out.parties).length;
+ const F=(id,f)=>out.lay[id].f.push(Object.assign({layer:id},f));
+ D.L.forEach(l=>{
+  const id=l.id,os=out.lay[id].opts;
+  if(!os.length){
+   let t='В сборке нет позиции — слой не закрыт.',who='владелец сборки',rule='empty';
+   if(id==='m5'&&['a9','a10','a11','a12'].some(has)){t='Шлюза нет, а агенты выбраны: нарушено требование «ни одного подключения к модели в обход шлюза».';who='архитектор банка';rule='bypass';}
+   else if(id==='x5'&&nP>1){t=`В сборке ${nP} ${plural(nP,'компания','компании','компаний')}, а ответственного за стыки нет — требование «один ответственный за стыки между слоями».`;rule='joints';}
+   else if(id==='x1'){
+    const why=[];
+    if(has('m4'))why.push('модели выбраны, а допуска каждой версии как модельного риска нет (требование этажа 4)');
+    if(RU&&has('a12'))why.push('по рекомендациям ЦБ от 16.06.2026 в критичных процессах операцию подтверждает сотрудник');
+    if(!RU&&(has('m4')||has('a12')))why.push('SR 26-2 вывел генеративный и агентный ИИ за рамки руководства — банку нужна своя рамка контроля, например NIST AI RMF');
+    if(why.length){t='Управления автономией нет: '+why.join('; ')+'.';rule='x1need';who='служба модельного риска банка';}
+   }
+   else if(id==='k6'&&has('k7')){t=`Знания и индексы выбраны, а обезличивания нет: персональные данные попадут в индексы (требование этажа 6; ${RU?'152-ФЗ':'GLBA'}).`;rule='pd';who='владелец данных и ИБ банка';}
+   F(id,{sev:'gap',rule,t,who});
+  }
+  const pos=os.filter(o=>o.kind!=='claim'),m=pos.filter(o=>o.c==='m'),lo=pos.filter(o=>o.c==='l'),cl=os.filter(o=>o.kind==='claim');
+  if(m.length)F(id,{sev:'part',rule:'conf-m',ps:partiesOf(m),nm:names(m),t:`On-prem заявлен, детали не проверены: ${names(m)}. Нужен пилот с полностью закрытым выходом наружу.`,who:whoOf(m,' и архитектор банка')});
+  if(lo.length)F(id,{sev:'part',rule:'conf-l',ps:partiesOf(lo),nm:names(lo),t:`On-prem не подтверждён: ${names(lo)}. Без пилота с закрытым выходом не брать.`,who:whoOf(lo,' и архитектор банка')});
+  if(cl.length)F(id,{sev:'part',rule:'claim',ps:partiesOf(cl),nm:names(cl,false),t:`Заявлено во вкладке 4, но в каталоге позиции нет: ${names(cl,false)}. Уверенность не выше ◐.`,who:whoOf(cl)});
+  if(id==='m5'&&os.length>1)F(id,{sev:'part',rule:'2gw',t:`В сборке ${os.length} ${plural(os.length,'шлюз','шлюза','шлюзов')} — это нарушает принцип «единая дверь к моделям»: выбрать один или развести роли.`,who:'архитектор банка'});
+  if(id==='x5'&&partiesOf(os).length>1){const ps=partiesOf(os);F(id,{sev:'part',rule:'1owner',t:`Ответственный за стыки должен быть один, сейчас их ${ps.length}: ${ps.map(p=>esc(partyName(p))).join(', ')}.`,who:'владелец сборки'});}
+  if(id==='a10'&&os.some(o=>/Claude Code/.test(o.n||'')))F(id,{sev:'part',rule:'cc',t:'Anthropic официально не поддерживает работу Claude Code с другими моделями: версии фиксировать, каждое обновление — регрессия на стенде банка; шлюз обязан принимать /v1/messages и пропускать заголовки anthropic-version и anthropic-beta.',who:'ИБ и разработка банка'});
+  if(P.sfera&&flags.sfera&&(id==='k8'||id==='a10')){
+   const ext=os.filter(o=>o.party!=='g:vtb'&&o.party!=='bank');
+   if(ext.length)F(id,{sev:'part',prio:0,rule:'sfera',ps:partiesOf(ext),nm:names(ext),t:`Стык со «Сферой» не подтверждён: ${names(ext)}. Стыковка со «Сферой» — условие входа в банк.`,who:'Т1 и '+whoOf(ext)});
+  }
+  if(RU&&flags.kii&&id!=='m4'){const f=os.filter(foreign);if(f.length)F(id,{sev:'chk',rule:'kii',t:`Иностранное ПО или оборудование: ${names(f)}. Значимые объекты КИИ переводятся на доверенное российское ПО и ПАК (187-ФЗ с поправками 58-ФЗ) — проверить допустимость.`,who:'юрист банка'});}
+  if(RU&&id==='m4'){const f=os.filter(foreign);if(f.length)F(id,{sev:'chk',rule:'243',t:`${names(f)}: по 243-ФЗ (вступает в силу с 01.09.2026, часть норм — позже) правительство сможет определять случаи, когда допустимы только суверенные и национальные модели; переходный период — до 01.09.2032. Проверить, в каких процессах модель допустима.`,who:'юрист банка'});}
+  const ch=os.filter(o=>/куплен|бывш/i.test((o.n||'')+' '+(o.co||'')));
+  if(ch.length)F(id,{sev:'chk',rule:'owner',t:`Сменился владелец: ${names(ch)} — нужен план замены (С5).`,who:'владелец сборки'});
+  const eg=os.filter(o=>o.mk==='us'&&/GitLab|Grafana/.test(o.n||''));
+  if(eg.length)F(id,{sev:'chk',rule:'egress',t:`По карте, для лицензии или токена нужен выход наружу: ${names(eg)}. Проверить пилотом с закрытым выходом.`,who:'архитектор банка'});
+  os.filter(o=>o.risk).forEach(o=>F(id,{sev:'chk',rule:'risk',t:esc(o.risk),who:'архитектор банка'}));
+  const mg=own(MGAPS[P.mk]||{},id)?MGAPS[P.mk][id]:null;if(mg&&!(ctx.noProc&&mg.scope==='proc'))gapF(id,'m:'+id,mg,asm,F);
+  const ag=own(asm.gaps||{},id)?asm.gaps[id]:null;if(ag&&!(ctx.noProc&&ag.scope==='proc'))gapF(id,'a:'+id,ag,asm,F);
+  const w=out.lay[id].f.reduce((a,f)=>Math.max(a,f.sev==='gap'?2:f.sev==='part'?1:0),0);
+  out.lay[id].st=['ok','part','gap'][w];out.counts[out.lay[id].st]++;
+ });
+ return out;
+}
+const prioOf=f=>f.prio!=null?f.prio:({gap:1,part:2,chk:3,info:9})[f.sev];
+const bySev=(a,b)=>prioOf(a)-prioOf(b);
+const MERGE_T={
+ sfera:x=>`Не подтверждён стык со «Сферой»: ${x.items.map(f=>f.nm).join('; ')}. Это условие входа в банк.`,
+ 'conf-m':x=>`On-prem заявлен, но не проверен: ${x.items.map(f=>f.nm).join('; ')} — нужен пилот с полностью закрытым выходом наружу.`,
+ 'conf-l':x=>`On-prem не подтверждён: ${x.items.map(f=>f.nm).join('; ')} — без пилота с закрытым выходом не брать.`,
+ claim:x=>`Заявки из вкладки 4 без позиции в каталоге: ${x.items.map(f=>f.nm).join('; ')} — нужны подтверждения поставки в контур.`
+};
+function topList(ev,ids){
+ const m=new Map();let u=0;
+ ids.forEach(id=>ev.lay[id].f.forEach(f=>{
+  if(f.sev==='info')return;
+  const key=own(MERGE_T,f.rule)?f.rule+'|'+(f.ps||[]).join(','):'u'+(u++);
+  if(!m.has(key))m.set(key,Object.assign({},f,{layers:[f.layer],items:[f]}));
+  else{const x=m.get(key);x.layers.push(f.layer);x.items.push(f);}
+ }));
+ const arr=[...m.values()];
+ arr.forEach(x=>{if(x.items.length>1&&own(MERGE_T,x.rule))x.t=MERGE_T[x.rule](x);});
+ return arr.sort((a,b)=>prioOf(a)-prioOf(b)||ORD(a.layers[0])-ORD(b.layers[0]));
+}
+function layersLabel(ids){
+ const ls=[...new Set(ids)].map(byId),fl=ls.filter(l=>!isX(l)).map(l=>l.code),xs=ls.filter(isX).map(l=>l.code),parts=[];
+ if(fl.length)parts.push((fl.length>1?'Этажи ':'Этаж ')+fl.join(', '));
+ if(xs.length)parts.push(xs.join(', '));
+ return parts.join(' · ');
+}
+function verdictText(ev,ids){
+ ids=ids||D.L.map(l=>l.id);
+ const g=ids.filter(id=>ev.lay[id].st==='gap'),p=ids.filter(id=>ev.lay[id].st==='part');
+ if(!g.length&&!p.length){
+  const k=ids.reduce((a,id)=>a+ev.lay[id].f.filter(f=>f.sev==='chk').length,0);
+  return 'Контур закрыт: у всех позиций подтверждён on-prem.'+(k?` Осталось проверок ⚠: ${k} — они в паспорте.`:' Замечаний правил нет.');
+ }
+ let s='Контур не закрыт: '+(g.length?`${g.length} ${plural(g.length,'дыра','дыры','дыр')} — ${g.map(id=>esc(byId(id).n)).join(', ')}`:'дыр нет');
+ if(p.length)s+=`; ${p.length} ${plural(p.length,'слой','слоя','слоёв')} частично — непроверенный on-prem, заявки без подтверждения или известные пробелы`;
+ return s+'.';
+}
+/* «если уйдёт»: убрать все позиции и заявки игрока, пересчитать, предложить замены из каталога */
+function stressData(party){
+ const a0=S.asm,before=evaluate(a0,S.prof,S.flags),a1=clone(a0);
+ Object.keys(a1.sel).forEach(l=>a1.sel[l]=a1.sel[l].filter(id=>{const o=getOpt(id);return !o||o.party!==party;}));
+ const after=evaluate(a1,S.prof,S.flags),mk=PROFILES[S.prof].mk;
+ const rows=D.L.filter(l=>a0.sel[l.id].some(id=>(getOpt(id)||{}).party===party)||before.lay[l.id].st!==after.lay[l.id].st).map(l=>{
+  const id=l.id,worse=W[after.lay[id].st]>W[before.lay[id].st];
+  const alts=worse?BYL[id].map(x=>CAT[x]).filter(p=>p.mk===mk&&p.party!==party&&!a1.sel[id].includes(p.id)).sort((x,y)=>'hml'.indexOf(x.c)-'hml'.indexOf(y.c)).slice(0,4):[];
+  return {l,before:before.lay[id].st,after:after.lay[id].st,worse,lost:a0.sel[id].map(getOpt).filter(o=>o&&o.party===party),alts};
+ });
+ return {before,after,rows};
+}
+/* ---- состояние: живёт в адресе ссылки ---- */
+let S={prof:'vtb',view:'build',layer:null,mk:null,asm:null,cmp:[],sc:{dev:true,proc:false},flags:{kii:true,sfera:true},diff:false,hist:[],pend:{}};
+function b64e(str){const b=new TextEncoder().encode(str);let s='';b.forEach(c=>s+=String.fromCharCode(c));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function b64d(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const bin=atob(s),b=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return new TextDecoder().decode(b);}
+function stateHash(){
+ const o={p:S.prof,b:S.asm.base,c:S.cmp,sc:[+S.sc.dev,+S.sc.proc],f:[+S.flags.kii,+S.flags.sfera]};
+ if(S.asm.edited){o.s=S.asm.sel;o.g=Object.keys(S.asm.gaps);}
+ const r=Object.keys(S.asm.res);if(r.length)o.r=r;
+ if(S.mk)o.m=S.mk;
+ const q=new URLSearchParams();q.set('v',S.view);if(S.layer)q.set('l',S.layer);q.set('s',b64e(JSON.stringify(o)));
+ return '#'+q.toString();
+}
+function sync(){const h=stateHash();if(location.hash!==h){try{history.replaceState(null,'',h);}catch(e){/* частые вызовы в Firefox/Safari */}}}
+function canon(a){const s={};Object.keys(a.sel).sort().forEach(k=>s[k]=[...new Set(a.sel[k])].sort());return JSON.stringify([s,Object.keys(a.gaps||{}).sort(),Object.keys(a.res||{}).sort()]);}
+function markEdited(){S.asm.edited=canon(S.asm)!==canon(newAsm(S.asm.base,S.prof));}
+function defaults(){const P=PROFILES.vtb;S.pend={};S.prof='vtb';S.view='build';S.asm=newAsm(P.presets[0],'vtb');S.cmp=P.cmp.slice();S.sc={dev:true,proc:false};S.flags={kii:P.kii,sfera:P.sfera};S.mk=null;S.layer=null;}
+function fromHash(){try{parseHash();}catch(e){console.error(e);defaults();toast('Ссылку не удалось прочитать — открыта сборка по умолчанию.');}}
+function parseHash(){
+ const q=new URLSearchParams(location.hash.slice(1));let o=null,lost=0;S.pend={};
+ try{if(q.get('s'))o=JSON.parse(b64d(q.get('s')));}catch(e){o=null;}
+ if(!o||typeof o!=='object'||Array.isArray(o))o=null;
+ const v=q.get('v');S.view=['build','compare','scenario'].includes(v)?v:'build';
+ S.prof=o&&typeof o.p==='string'&&own(PROFILES,o.p)?o.p:'vtb';
+ const P=PROFILES[S.prof],base=o&&P.presets.includes(o.b)?o.b:P.presets[0];
+ S.asm=newAsm(base,S.prof);
+ if(o&&o.s&&typeof o.s==='object'){
+  const sel={};
+  D.L.forEach(l=>{const raw=own(o.s,l.id)&&Array.isArray(o.s[l.id])?o.s[l.id]:[];sel[l.id]=[...new Set(raw)].filter(id=>{const x=getOpt(id),ok=!!x&&x.layer===l.id;if(!ok)lost++;return ok;});});
+  S.asm.sel=sel;
+  const g={};(Array.isArray(o.g)?o.g:[]).forEach(k=>{if(base==='consortium'&&typeof k==='string'&&own(AGAPS,k))g[k]=clone(AGAPS[k]);});S.asm.gaps=g;
+ }
+ (o&&Array.isArray(o.r)?o.r:[]).forEach(k=>{if(typeof k==='string'&&/^[am]:[a-z0-9]+$/.test(k))S.asm.res[k]=1;});
+ markEdited();
+ S.cmp=(o&&Array.isArray(o.c)?o.c:P.cmp).filter(pid=>P.presets.includes(pid)).slice(0,2);
+ while(S.cmp.length<2)S.cmp.push(P.cmp[S.cmp.length]||P.presets[0]);
+ S.sc=o&&Array.isArray(o.sc)?{dev:!!o.sc[0],proc:!!o.sc[1]}:{dev:true,proc:false};
+ S.flags=o&&Array.isArray(o.f)?{kii:!!o.f[0]&&P.mk==='ru',sfera:!!o.f[1]&&P.sfera}:{kii:P.kii,sfera:P.sfera};
+ S.mk=o&&['ru','us','all'].includes(o.m)?o.m:null;
+ const l=q.get('l');S.layer=l&&own(BYL,l)?l:null;
+ if(lost)toast(`Позиций из ссылки, которых больше нет на карте: ${lost}. Они убраны из сборки.`);
+}
+const asmName=()=>presetName(S.asm.base,S.prof)+(S.asm.edited?' · изменена':'');
+/* отмена: стек последних 30 действий; кнопка «Отменить» в панели управления видна, пока стек не пуст */
+function snapshot(){S.hist.push(clone({asm:S.asm,prof:S.prof,flags:S.flags,cmp:S.cmp,mk:S.mk}));if(S.hist.length>30)S.hist.shift();}
+function undo(){const p=S.hist.pop();if(!p)return;Object.assign(S,p);S.pend={};if(S.layer&&!own(BYL,S.layer))S.layer=null;render();toast('Последнее действие отменено.');}
+function edit(fn){snapshot();fn(S.asm);markEdited();render();}
+function addOpt(id){const o=getOpt(id);if(o)edit(a=>{if(!a.sel[o.layer].includes(id))a.sel[o.layer].push(id);});}
+function rmOpt(id){const o=getOpt(id);if(o)edit(a=>{a.sel[o.layer]=a.sel[o.layer].filter(x=>x!==id);});}
+function loadPreset(pid){if(!PROFILES[S.prof].presets.includes(pid))return;snapshot();S.asm=newAsm(pid,S.prof);S.layer=null;S.pend={};render();toast('Загружена сборка: '+presetName(pid,S.prof)+'.',true);}
+function setProfile(p){
+ if(!own(PROFILES,p))return;snapshot();const P=PROFILES[p];
+ S.prof=p;S.flags={kii:P.kii,sfera:P.sfera};S.asm=newAsm(P.presets[0],p);S.cmp=P.cmp.slice();S.mk=null;S.layer=null;S.pend={};
+ render();toast('Банк: '+P.name+'.',true);
+}
+function resetAsm(){snapshot();S.asm=newAsm(S.asm.base,S.prof);render();toast('Изменения сброшены.',true);}
+function replaceWith(party,id){
+ const p=getOpt(id);if(!p)return;S.layer=p.layer;
+ const d=$('#dlg-st');if(d.open)d.close();
+ edit(a=>{a.sel[p.layer]=a.sel[p.layer].filter(x=>(getOpt(x)||{}).party!==party);if(!a.sel[p.layer].includes(id))a.sel[p.layer].push(id);});
+ toast(`${codeLabel(byId(p.layer))}: вместо ${partyName(party)} — ${p.short}.`,true);
+}
+/* ---- отрисовка: общие элементы ---- */
+const stBadge=st=>`<span class="st ${st}">${ST_T[st]}</span>`;
+const sevBadge=sev=>`<span class="st ${sev}">${SEV_T[sev]} ${SEV_W[sev]}</span>`;
+function stBadgeN(st,n){const w={ok:'закрыто',part:'частично',gap:plural(n,'дыра','дыры','дыр')}[st];return `<span class="st ${st}">${ST_T[st].split(' ')[0]} ${n} ${w}</span>`;}
+const isOwnPos=id=>(PROFILES[S.prof].own||[]).includes(id);
+function chipsHTML(opts,max){
+ max=max||3;
+ if(!opts.length)return '<span class="chip none">нет позиции</span>';
+ const cls=o=>o.kind==='bank'||isOwnPos(o.id)?' bank':o.kind==='claim'?' claim':'';
+ const lab=o=>o.kind==='bank'||isOwnPos(o.id)?'у банка: '+o.short:o.kind==='claim'?o.short+' · заявка':o.short;
+ return opts.slice(0,max).map(o=>`<span class="chip${cls(o)}" translate="no" title="${esc(o.n)}">${esc(lab(o))}</span>`).join('')+(opts.length>max?`<span class="chip more">+${opts.length-max}</span>`:'');
+}
+function legendHTML(){
+ return `<div class="legend"><span class="i">${stBadge('ok')} все позиции с подтверждённым on-prem</span><span class="i">${stBadge('part')} on-prem не проверен либо есть известный пробел</span><span class="i">${stBadge('gap')} позиции нет, нарушено требование или известная дыра</span><span class="i">${sevBadge('chk')} проверка, на итог не влияет</span><span class="i"><span class="chip bank">у банка: уже есть</span></span><span class="i"><span class="chip claim">заявка вкладки 4</span></span></div>`;
+}
+function todoLI(x){
+ return `<li>${sevBadge(x.sev)}<div><button type="button" class="lnk" data-act="goto" data-l="${x.layers[0]}">${esc(layersLabel(x.layers))}</button> — ${x.t}<span class="who">Решает: ${esc(x.who)}</span></div></li>`;
+}
+function tab4Note(ev){
+ if(S.prof!=='vtb'||S.asm.base!=='consortium')return '';
+ const t4={ok:0,part:0,gap:0},dif=[];
+ D.VTB.rows.forEach(r=>{if(t4[r.st]!=null)t4[r.st]++;if(ev.lay[r.id]&&ev.lay[r.id].st!==r.st)dif.push(r.id);});
+ const links=dif.map(id=>`<button type="button" class="lnk" data-act="goto" data-l="${id}">${esc(codeShort(byId(id)))}</button>`).join(', ');
+ return `<p class="v-note"><b>Ручная оценка вкладки 4:</b> ✓ ${t4.ok} · ◐ ${t4.part} · ✖ ${t4.gap}. ${dif.length?`Правила дают другой итог на ${dif.length} ${plural(dif.length,'слое','слоях','слоях')}: ${links} — причина в панели слоя.`:'Итог совпадает с ручной оценкой.'}${S.asm.edited?' Сборка изменена, поэтому сравнение условное.':''}</p>`;
+}
+function verdictHTML(ev){
+ const c=ev.counts,top=topList(ev,D.L.map(l=>l.id)),ps=Object.keys(ev.parties).sort((a,b)=>partyName(a).localeCompare(partyName(b),'ru'));
+ const more=top.length-3;
+ return `<div class="verdict"><div>
+  <h2 class="v-kicker">Итог сборки · ${esc(asmName())}</h2>
+  <div class="big">${c.ok} <small>из ${D.L.length} слоёв закрыто</small></div>
+  <div class="counts">${stBadgeN('ok',c.ok)}${stBadgeN('part',c.part)}${stBadgeN('gap',c.gap)}</div>
+  <p class="v-sub">${verdictText(ev)}</p>${tab4Note(ev)}
+ </div><div>
+  <h3 class="v-kicker">Решить первым</h3>
+  ${top.length?`<ol class="todo">${top.slice(0,3).map(todoLI).join('')}</ol>${more>0?`<p class="more-n">Ещё ${more} ${plural(more,'замечание','замечания','замечаний')} — в панели слоёв и в паспорте.</p>`:''}`:'<p class="v-sub">Замечаний нет.</p>'}
+  ${ps.length?`<div class="stress-pick"><label class="fld" for="stress-sel">Проверить выбывание: если уйдёт</label><select id="stress-sel">${ps.map(p=>`<option value="${esc(p)}">${esc(partyName(p))}</option>`).join('')}</select><button type="button" class="btn sm" data-act="stress-go">Показать, что сломается</button></div>`:''}
+ </div></div>`;
+}
+/* ---- вид A: сборка на этажах ---- */
+function towerHTML(ev){
+ let h='<div class="floors">',g0=null;
+ FLOORS().forEach(l=>{
+  if(l.g!==g0){h+=`<div class="gsep" aria-hidden="true">${esc(D.G[l.g].n)}</div>`;g0=l.g;}
+  const L=ev.lay[l.id];
+  h+=`<button type="button" class="floor" style="--gc:${D.G[l.g].c}" data-act="layer" data-l="${l.id}" aria-pressed="${S.layer===l.id}"><span class="fc" aria-hidden="true">${esc(l.code)}</span><span class="fn"><span class="sr">Этаж ${esc(l.code)}. </span>${esc(l.n)}</span><span class="chips">${chipsHTML(L.opts)}</span>${stBadge(L.st)}</button>`;
+ });
+ h+='</div><div class="gsep" aria-hidden="true">Сквозные слои — работают на всех этажах</div><div class="cross">';
+ CROSS().forEach(l=>{
+  const L=ev.lay[l.id];
+  h+=`<button type="button" class="xc" style="--gc:${D.G.x.c}" data-act="layer" data-l="${l.id}" aria-pressed="${S.layer===l.id}"><span class="fc">${esc(l.code)}</span><span class="fn">${esc(l.n)}</span><span class="chips">${chipsHTML(L.opts,2)}</span>${stBadge(L.st)}</button>`;
+ });
+ return h+'</div>';
+}
+function findLI(f){
+ const btn=f.gid?`<button type="button" class="btn sm" data-act="${S.asm.res[f.gid]?'unres':'res'}" data-g="${esc(f.gid)}">${S.asm.res[f.gid]?'Вернуть пробел':'Отметить закрытым вручную'}</button>`:'';
+ return `<li>${sevBadge(f.sev)}<div>${f.t}<span class="who">Решает: ${esc(f.who)}${f.src?' · источник: '+esc(f.src):''}</span>${btn}</div></li>`;
+}
+function optRow(o,inAsm){
+ const own=o.kind==='bank'||isOwnPos(o.id);
+ const nm=o.u?`<a href="${esc(o.u)}" target="_blank" rel="noopener" translate="no">${esc(o.n)}</a>`:`<span translate="no">${esc(o.n)}</span>`;
+ const g=o.g&&D.GRP[o.g]?`<span class="pill" style="background:${D.GRP[o.g].bg};color:${D.GRP[o.g].fg}">${esc(D.GRP[o.g].t)}</span>`:'';
+ let meta;
+ if(o.kind==='claim')meta=`<span class="conf"><span class="dot" style="background:${CONF_C.m}" aria-hidden="true"></span>заявка вкладки 4 — в каталоге позиции нет</span>`;
+ else if(o.kind==='bank')meta=`<span>есть у банка · ${esc(o.src)}</span>`;
+ else meta=`<span translate="no">${esc(o.co)}</span>${g}<span class="conf"><span class="dot" style="background:${CONF_C[o.c]}" aria-hidden="true"></span>${CONF_T[o.c]}</span><span>${o.mk==='ru'?'Россия':'США'}${own?' · уже работает у банка':''}</span>`;
+ const role=o.kind==='claim'?o.html:esc(o.r);
+ let acts;
+ if(o.kind==='claim'&&o.na&&!inAsm)acts='<span class="st info">недоступно в контуре</span>';
+ else if(inAsm)acts=`<button type="button" class="btn sm" data-act="rm" data-id="${esc(o.id)}" aria-label="Убрать из сборки: ${esc(o.n)}">Убрать</button>${isVendor(o.party)?`<button type="button" class="btn sm" data-act="stress" data-p="${esc(o.party)}">Если уйдёт ${esc(partyName(o.party))}</button>`:''}`;
+ else acts=`<button type="button" class="btn sm" data-act="add" data-id="${esc(o.id)}" aria-label="Добавить в сборку: ${esc(o.n)}">Добавить</button>`;
+ return `<div class="opt${o.na&&!inAsm?' na':''}"><div><div class="on">${nm}</div><div class="meta">${meta}</div><div class="role">${role}</div></div><div class="acts">${acts}</div></div>`;
+}
+function panelHTML(ev){
+ const l=byId(S.layer),L=ev.lay[l.id],P=PROFILES[S.prof],mk=S.mk||P.mk,inSel=id=>S.asm.sel[l.id].includes(id);
+ let h=`<div class="p-head"><span class="code" style="background:${D.G[l.g].c}">${esc(codeLabel(l))}</span><h2 tabindex="-1">${esc(l.n)}</h2>${stBadge(L.st)}</div>
+  <p class="p-one">${esc(l.one)}</p><p class="need"><b>Требование банка:</b> ${esc(l.need)}</p>`;
+ h+=`<div class="p-sec"><h3>Почему такой итог</h3>${L.f.length?`<ul class="finds">${L.f.slice().sort(bySev).map(findLI).join('')}</ul>`:'<p class="empty">Замечаний нет: у всех позиций слоя подтверждён on-prem.</p>'}</div>`;
+ h+=`<div class="p-sec"><h3>В сборке · ${L.opts.length}</h3>${L.opts.length?L.opts.map(o=>optRow(o,true)).join(''):'<p class="empty">Пока ничего — добавьте позицию из списков ниже.</p>'}</div>`;
+ const bank=[...P.bank.map(id=>BANK[id]),...P.own.map(id=>CAT[id])].filter(o=>o&&o.layer===l.id&&!inSel(o.id));
+ if(bank.length)h+=`<div class="p-sec"><h3>Есть у банка</h3>${bank.map(o=>optRow(o,false)).join('')}</div>`;
+ if(S.prof==='vtb'){const cl=Object.values(CLAIM).filter(o=>o.layer===l.id&&!inSel(o.id));if(cl.length)h+=`<div class="p-sec"><h3>Заявки участников из вкладки 4</h3>${cl.map(o=>optRow(o,false)).join('')}</div>`;}
+ const cat=BYL[l.id].map(id=>CAT[id]).filter(p=>(mk==='all'||p.mk===mk)&&!inSel(p.id)&&!P.own.includes(p.id));
+ const seg=`<span class="seg" role="group" aria-label="Рынок каталога">${[['ru','Россия'],['us','США'],['all','Все']].map(([k,t])=>`<button type="button" data-act="mk" data-mk="${k}" aria-pressed="${mk===k}">${t}</button>`).join('')}</span>`;
+ h+=`<div class="p-sec"><h3>Каталог карты · можно добавить</h3><div class="seg-row">${seg}</div>${cat.length?cat.map(o=>optRow(o,false)).join(''):'<p class="empty">Все позиции этого рынка уже в сборке.</p>'}</div>`;
+ [mk!=='us'&&D.RU.notes[l.id]?['Россия',D.RU.notes[l.id]]:null,mk!=='ru'&&D.US.notes[l.id]?['США',D.US.notes[l.id]]:null].filter(Boolean)
+  .forEach(([t,n])=>h+=`<p class="p-note"><b>Заметка карты · ${t}:</b> ${n}</p>`);
+ h+=`<details class="comp"><summary>Из чего состоит слой · ${l.c.length} ${plural(l.c.length,'компонент','компонента','компонентов')}</summary><ul>${l.c.map(t=>`<li><b>${esc(t[0])}</b> — ${esc(t[1])}</li>`).join('')}</ul></details>`;
+ return h;
+}
+function renderBuild(ev){
+ if(!S.layer||!byId(S.layer))S.layer=(topList(ev,D.L.map(l=>l.id))[0]||{layers:['m5']}).layers[0];
+ $('#view-build').innerHTML=verdictHTML(ev)+`<div class="work"><div class="box"><h2>Кто закрывает каждый слой</h2><p class="sub">Нажмите на слой, чтобы увидеть, почему у него такой итог, и поменять позиции.</p>${towerHTML(ev)}${legendHTML()}</div><aside class="box panel" id="panel" aria-label="Выбранный слой">${panelHTML(ev)}</aside></div>`;
+}
+/* ---- вид C: сравнение сборок ---- */
+const hasBank=asm=>Object.values(asm.sel).some(ids=>ids.some(id=>{const o=getOpt(id);return o&&(o.kind==='bank'||isOwnPos(id));}));
+function renderCompare(){
+ const P=PROFILES[S.prof];
+ const cols=[{cur:true,asm:S.asm,name:asmName()}].concat(S.cmp.map((pid,i)=>({i,pid,asm:newAsm(pid,S.prof),name:presetName(pid,S.prof)})));
+ const evs=cols.map(c=>evaluate(c.asm,S.prof,S.flags));
+ let h=`<h2 class="vh">Какую сборку предлагать?</h2><p class="vsub">Текущая сборка против двух других — на тех же правилах и с тем, что уже есть у банка. Итог — в карточках, разбор по слоям — в таблице.</p>`;
+ h+='<div class="heads">'+cols.map((c,k)=>{
+  const ev=evs[k],top=topList(ev,D.L.map(l=>l.id))[0],n=Object.keys(ev.parties).length;
+  const title=c.cur?`<div class="v-kicker">Текущая сборка</div><div class="hn">${esc(c.name)}</div>`
+   :`<label class="v-kicker" for="cmp-${c.i}">Сравнить с</label><select id="cmp-${c.i}" data-act="cmp" data-i="${c.i}">${P.presets.map(pid=>`<option value="${esc(pid)}"${pid===c.pid?' selected':''}>${esc(presetName(pid,S.prof))}</option>`).join('')}</select>`;
+  return `<div class="head${c.cur?' cur':''}">${title}<div class="row2">${stBadgeN('ok',ev.counts.ok)}${stBadgeN('part',ev.counts.part)}${stBadgeN('gap',ev.counts.gap)}</div>
+   <div class="hs">В сборке <b>${n} ${plural(n,'компания','компании','компаний')}</b>${hasBank(c.asm)?' и то, что уже есть у банка':''}.</div>
+   ${top?`<div class="hs"><b>Решить первым:</b> ${esc(layersLabel(top.layers))} — ${top.t}</div>`:''}
+   <div class="act">${c.cur?'<button type="button" class="btn sm" data-act="view" data-v="build">Открыть в сборке</button>':`<button type="button" class="btn sm pri" data-act="take" data-i="${c.i}">Взять в работу</button>`}</div></div>`;
+ }).join('')+'</div>';
+ h+=`<div class="cmp-tools"><label class="chk"><input type="checkbox" data-act="diff"${S.diff?' checked':''}> Только слои с разным итогом</label>${legendHTML()}</div>`;
+ h+=`<div class="cmp-wrap"><table class="cmp"><caption class="sr">Итог по слоям для трёх сборок</caption><thead><tr><th class="ln" scope="col">Слой</th>${cols.map(c=>`<th scope="col">${esc(c.name)}</th>`).join('')}</tr></thead><tbody>`;
+ let shown=0;
+ [...FLOORS(),...CROSS()].forEach(l=>{
+  const sts=evs.map(ev=>ev.lay[l.id].st),same=sts.every(s=>s===sts[0]);
+  if(S.diff&&same)return;shown++;
+  h+=`<tr${same?'':' class="diff"'}><th scope="row"><span class="code" style="background:${D.G[l.g].c}">${esc(l.code)}</span>${esc(l.n)}</th>${cols.map((c,k)=>{
+   const L=evs[k].lay[l.id];
+   return `<td data-col="${esc(c.name)}"><div class="cell">${stBadge(L.st)}<span class="chips">${chipsHTML(L.opts,3)}</span>${c.cur?`<button type="button" class="lnk" data-act="goto" data-l="${l.id}">Открыть слой</button>`:''}</div></td>`;
+  }).join('')}</tr>`;
+ });
+ if(!shown)h+=`<tr><td colspan="${cols.length+1}">Во всех сборках одинаковый итог на всех слоях.</td></tr>`;
+ $('#view-compare').innerHTML=h+'</tbody></table></div>';
+}
+/* ---- вид B: под сценарий (шаги по разделу карты «С чего начинать сборку») ---- */
+const STEP_LAYERS=[['f1','f2','f3','m4','m5','x1','x2'],['k7','k8','a10','a11','a12','x3'],['k6','k8','a9','a11','a12']];
+function srowHTML(ev,id){
+ const l=byId(id),L=ev.lay[id],f=L.f.slice().sort(bySev).find(x=>x.sev!=='info');
+ return `<div class="srow"><button type="button" class="lnk" data-act="goto" data-l="${id}"><span class="code" style="background:${D.G[l.g].c}">${esc(l.code)}</span> ${esc(l.n)}</button><span class="chips">${chipsHTML(L.opts,3)}</span>${stBadge(L.st)}${f?`<div class="sf">${SEV_T[f.sev]} ${f.t}</div>`:''}</div>`;
+}
+function renderScenario(){
+ const ev=evaluate(S.asm,S.prof,S.flags,{noProc:!S.sc.proc});   // пробелы процессов не влияют на сценарий «только разработка»
+ const need=[],steps=[],any=S.sc.dev||S.sc.proc;
+ const add=i=>{const ls=STEP_LAYERS[i].filter(x=>!need.includes(x));ls.forEach(x=>need.push(x));steps.push({i,ls,dup:STEP_LAYERS[i].filter(x=>!ls.includes(x))});};
+ if(any){add(0);if(S.sc.dev)add(1);if(S.sc.proc)add(2);}
+ let h=`<fieldset class="scen"><legend>Что должны делать агенты в банке?</legend>
+  <label class="sc"><input type="checkbox" data-act="sc" data-k="dev"${S.sc.dev?' checked':''}><span><b>Агентная разработка</b><span>агенты пишут, тестируют и переносят код</span></span></label>
+  <label class="sc"><input type="checkbox" data-act="sc" data-k="proc"${S.sc.proc?' checked':''}><span><b>Агенты в процессах банка</b><span>эксплуатация, бэк-офис, поддержка, аналитика</span></span></label></fieldset>`;
+ if(!any){$('#view-scenario').innerHTML=h+'<div class="pending">Выберите хотя бы один сценарий — появятся нужные для него слои.</div>';return;}
+ const c={ok:0,part:0,gap:0};need.forEach(id=>c[ev.lay[id].st]++);
+ const top=topList(ev,need),who=S.sc.dev&&S.sc.proc?'Обоим сценариям':S.sc.dev?'Пилоту агентной разработки':'Агентам в процессах банка';
+ h+=`<div class="verdict"><div><h2 class="v-kicker">Итог под сценарий · ${esc(asmName())}</h2>
+  <div class="big">${c.ok} <small>из ${need.length} нужных слоёв закрыто</small></div>
+  <div class="counts">${stBadgeN('ok',c.ok)}${stBadgeN('part',c.part)}${stBadgeN('gap',c.gap)}</div>
+  <p class="v-sub">${who} нужны ${need.length} ${plural(need.length,'слой','слоя','слоёв')} из ${D.L.length} — по разделу карты «С чего начинать сборку». ${verdictText(ev,need)}</p></div>
+  <div><h3 class="v-kicker">Решить первым</h3>${top.length?`<ol class="todo">${top.slice(0,3).map(todoLI).join('')}</ol>`:'<p class="v-sub">Замечаний нет.</p>'}</div></div>`;
+ steps.forEach(({i,ls,dup})=>{
+  const st=STEPS[i]||{t:'Шаг '+(i+1),d:'',c:'#64748b'};
+  h+=`<div class="step" style="--rc:${esc(st.c)}"><h3>${esc(st.t)}</h3><div class="sd">${st.d}</div>${ls.map(id=>srowHTML(ev,id)).join('')}`;
+  if(i===1)h+='<p class="sf vsub">С3 «Оценка и бенчмарки» отнесён к шагу 2 по его тексту: «с внутренними бенчмарками до и после».</p>';
+  if(dup.length)h+=`<p class="sf vsub">${esc(layersLabel(dup))} — уже учтены в шагах выше.</p>`;
+  h+='</div>';
+ });
+ const rest=D.L.filter(l=>!need.includes(l.id));
+ if(rest.length)h+=`<details class="more"><summary>Не нужны для выбранного сценария · ${rest.length} <span class="sm">${esc(rest.map(codeShort).join(', '))}${rest.some(l=>l.id==='x4'||l.id==='x5')?' · С4 и С5 в шаги 1–3 карты не входят':''}</span></summary><div class="body">${rest.map(l=>srowHTML(ev,l.id)).join('')}</div></details>`;
+ $('#view-scenario').innerHTML=h;
+}
+/* ---- панель управления ---- */
+function renderBar(){
+ const P=PROFILES[S.prof];
+ const pp=S.pend.prof&&own(PROFILES,S.pend.prof)?S.pend.prof:S.prof,pa=S.pend.asm&&P.presets.includes(S.pend.asm)?S.pend.asm:S.asm.base;
+ $('#bar').innerHTML=`<span class="grp"><label class="fld" for="sel-prof">Банк</label><select id="sel-prof" data-act="pend">${Object.entries(PROFILES).map(([k,p])=>`<option value="${k}"${k===pp?' selected':''}>${esc(p.name)}</option>`).join('')}</select><button type="button" class="btn" id="btn-prof" data-act="prof-go"${pp===S.prof?' disabled':''}>Сменить банк</button></span>
+  <span class="grp"><label class="fld" for="sel-asm">Сборка</label><select id="sel-asm" data-act="pend">${P.presets.map(pid=>`<option value="${esc(pid)}"${pid===pa?' selected':''}>${esc(presetName(pid,S.prof))}</option>`).join('')}</select><button type="button" class="btn" id="btn-asm" data-act="preset-go"${pa===S.asm.base?' disabled':''}>Загрузить</button></span>
+  ${S.asm.edited?'<span class="edited">изменена</span>':''}
+  ${P.mk==='ru'?`<label class="chk" title="${esc(P.kiiNote||'')}"><input type="checkbox" data-act="flag" data-k="kii"${S.flags.kii?' checked':''}> Значимый объект КИИ</label>`:''}
+  ${P.sfera?'<label class="chk" title="На «Сфере» разработкой заняты больше 24 тыс. сотрудников ВТБ (АРБ, 01.07.2025)"><input type="checkbox" data-act="flag" data-k="sfera"'+(S.flags.sfera?' checked':'')+'> Условие входа: стык со «Сферой»</label>':''}
+  <span class="sp"></span>
+  <span class="bar-acts"><button type="button" class="btn pri" data-act="passport">Паспорт стека</button>
+  <button type="button" class="btn" data-act="copy">Скопировать ссылку</button>
+  <button type="button" class="btn" data-act="json">Скачать JSON</button>
+  ${S.hist.length?'<button type="button" class="btn" data-act="undo" aria-label="Отменить последнее действие">Отменить</button>':''}
+  ${S.asm.edited?'<button type="button" class="btn" data-act="reset">Сбросить изменения</button>':''}</span>`;
+}
+/* ---- паспорт стека: то же в окне и при печати ---- */
+function ppOpt(o){
+ const conf=o.kind==='claim'?'заявка вкладки 4':o.kind==='bank'?'есть у банка':CONF_T[o.c];
+ const nm=o.u?`<a href="${esc(o.u)}">${esc(o.n)}</a>`:esc(o.n);
+ return `${nm}${o.co?' · '+esc(o.co):''} · ${conf}`;
+}
+function passportHTML(){
+ const ev=evaluate(S.asm,S.prof,S.flags),P=PROFILES[S.prof],all=topList(ev,D.L.map(l=>l.id));
+ const date=new Intl.DateTimeFormat('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date());
+ const rows=[...FLOORS(),...CROSS()].map(l=>{const L=ev.lay[l.id];
+  return `<tr><td><b>${esc(codeLabel(l))}</b> · ${esc(l.n)}</td><td>${stBadge(L.st)}</td><td>${L.opts.length?L.opts.map(ppOpt).join('<br>'):'—'}</td><td>${L.f.length?L.f.slice().sort(bySev).map(f=>`${SEV_T[f.sev]} ${f.t}`).join('<br>'):'—'}</td></tr>`;}).join('');
+ const href=location.href,short=href.length>110?href.slice(0,107)+'…':href;
+ return `<div class="pp"><span class="draft-banner">ЧЕРНОВИК · для внутреннего обсуждения, не для передачи за пределы компании</span>
+  <h1 style="margin-top:10px">Паспорт стека · ${esc(asmName())}</h1>
+  <p class="meta">Банк: ${esc(P.name)} · данные карты The 2026 On-Prem AI Landscape, снимок ${esc(SNAP)} · паспорт сформирован ${esc(date)}</p>
+  <h2>Итог</h2><p><b>${ev.counts.ok} из ${D.L.length} слоёв закрыто</b> · ◐ ${ev.counts.part} частично · ✖ ${ev.counts.gap} ${plural(ev.counts.gap,'дыра','дыры','дыр')}. ${verdictText(ev)}</p>
+  <h2>Что решить и кому</h2>${all.length?`<ol>${all.map(x=>`<li>${SEV_T[x.sev]} <b>${esc(layersLabel(x.layers))}</b> — ${x.t} <i>Решает: ${esc(x.who)}.</i></li>`).join('')}</ol>`:'<p>Замечаний нет.</p>'}
+  <h2>Слои</h2><table><thead><tr><th scope="col">Слой</th><th scope="col">Итог</th><th scope="col">Кто закрывает</th><th scope="col">Почему такой итог</th></tr></thead><tbody>${rows}</tbody></table>
+  <h2>Как считали</h2><p>Итог слоя — худшее из уверенности выбранных позиций, заявок без позиции в каталоге (не выше ◐) и замечаний правил; слой без позиций, нарушенное требование или известная дыра — ✖. Правила взяты из требований карты; отметки ⚠ — проверки, на итог не влияют.${Object.keys(S.asm.res).length?' Часть известных пробелов отмечена закрытыми вручную — это видно в строках слоёв.':''}</p>
+  <p class="meta">Ссылка на эту сборку: <a href="${esc(href)}">${esc(short)}</a></p></div>`;
+}
+const plain=h=>new DOMParser().parseFromString('<!doctype html><body>'+h,'text/html').body.textContent||'';
+function exportJSON(){
+ const ev=evaluate(S.asm,S.prof,S.flags);
+ const out={format:'stack-assembly/v0',map:'The 2026 On-Prem AI Landscape',snapshot:SNAP,bank:PROFILES[S.prof].name,assembly:asmName(),preset:S.asm.base,flags:S.flags,link:location.href,counts:ev.counts,
+  layers:D.L.map(l=>({id:l.id,code:l.code,name:l.n,status:ev.lay[l.id].st,
+   options:ev.lay[l.id].opts.map(o=>({id:o.id,kind:o.kind,name:o.n,company:o.co||partyName(o.party),confidence:o.kind==='pos'?o.c:null,url:o.u||null})),
+   findings:ev.lay[l.id].f.map(f=>({severity:f.sev,rule:f.rule,text:plain(f.t),decides:f.who}))}))};
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));
+ a.download='stack-'+S.asm.base.replace(/[^a-z0-9]+/gi,'-')+(S.asm.edited?'-edited':'')+'.json';
+ document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);
+ toast('Файл сборки скачан.');
+}
+/* ---- «если уйдёт» ---- */
+function openStress(party){
+ const d=stressData(party),c0=d.before.counts,c1=d.after.counts,nm=partyName(party),worse=d.rows.filter(r=>r.worse);
+ $('#st-title').textContent='Если уйдёт '+nm+': что сломается и чем заменить';
+ let h=`<div class="dcounts"><span>Сейчас: ${stBadgeN('ok',c0.ok)} ${stBadgeN('part',c0.part)} ${stBadgeN('gap',c0.gap)}</span><span>Без ${esc(nm)}: ${stBadgeN('ok',c1.ok)} ${stBadgeN('part',c1.part)} ${stBadgeN('gap',c1.gap)}</span></div>`;
+ h+=`<p class="v-sub" style="margin-top:0">${worse.length?`Если уйдёт ${esc(nm)}, хуже ${plural(worse.length,'станет','станут','станут')} ${worse.length} ${plural(worse.length,'слой','слоя','слоёв')}: ${esc(worse.map(r=>codeShort(r.l)).join(', '))}.`:`Если уйдёт ${esc(nm)}, ни один слой не станет хуже.`}</p>`;
+ d.rows.forEach(r=>{
+  h+=`<div class="dl"><h3><span class="code" style="background:${D.G[r.l.g].c}">${esc(codeLabel(r.l))}</span>${esc(r.l.n)} ${stBadge(r.before)} → ${stBadge(r.after)}</h3>`;
+  if(r.lost.length)h+=`<p class="role" style="font-size:12.5px;margin-top:4px">Уходит: ${esc(r.lost.map(o=>o.kind==='claim'?o.n:o.short).join(', '))}</p>`;
+  if(r.alts.length)h+=`<div class="alt"><span>Чем заменить:</span>${r.alts.map(p=>`<button type="button" class="btn sm" data-act="replace" data-p="${esc(party)}" data-id="${esc(p.id)}"><span class="dot" style="background:${CONF_C[p.c]}" aria-hidden="true"></span>${CONF_T[p.c].split(' ')[0]} ${esc(p.short)}${normCo(p.co)?' · '+esc(normCo(p.co)):''}<span class="sr"> — ${CONF_T[p.c]}</span></button>`).join('')}</div>`;
+  else if(r.worse)h+='<p class="empty">Замены в каталоге этого рынка нет.</p>';
+  h+='</div>';
+ });
+ $('#st-body').innerHTML=h;
+ const dl=$('#dlg-st');if(!dl.open)dl.showModal();
+}
+/* ---- сообщения и ссылка ---- */
+let toastT=null,toastMs=5000;
+function hideToastLater(){clearTimeout(toastT);toastT=setTimeout(()=>$('#toast').classList.remove('show'),toastMs);}
+function toast(msg,withUndo,extra){
+ const t=$('#toast');
+ t.innerHTML=`<span>${esc(msg)}</span>${withUndo?'<button type="button" data-act="undo">Вернуть</button>':''}${extra||''}`;
+ t.classList.add('show');toastMs=withUndo||extra?10000:5000;hideToastLater();
+}
+{ // сообщение не исчезает, пока на нём курсор или фокус
+ const t=$('#toast');
+ t.addEventListener('mouseenter',()=>clearTimeout(toastT));t.addEventListener('mouseleave',hideToastLater);
+ t.addEventListener('focusin',e=>{clearTimeout(toastT);if(e.target.tagName==='INPUT')e.target.select();});t.addEventListener('focusout',hideToastLater);
+}
+function copyLink(){
+ const url=location.href;
+ const p=navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(url):Promise.reject(new Error('нет доступа к буферу'));
+ p.then(()=>toast('Ссылка на сборку скопирована.')).catch(()=>toast('Скопируйте ссылку вручную:',false,`<input type="text" readonly value="${esc(url)}" aria-label="Ссылка на сборку">`));
+}
+/* ---- отрисовка и фокус ---- */
+function focusKey(){
+ const ae=document.activeElement;
+ if(!ae||ae===document.body||!ae.closest('main,#bar'))return null;
+ return {id:ae.id,act:ae.dataset&&ae.dataset.act,l:ae.dataset&&ae.dataset.l,oid:ae.dataset&&ae.dataset.id,g:ae.dataset&&ae.dataset.g,mk:ae.dataset&&ae.dataset.mk,k:ae.dataset&&ae.dataset.k,i:ae.dataset&&ae.dataset.i};
+}
+function restoreFocus(k){
+ if(!k)return;
+ const scopes=['#bar','.view.on'].map(s=>document.querySelector(s)).filter(Boolean);   // скрытые виды не ищем
+ const q=(act,x)=>{for(const sc of scopes){const e=sc.querySelector('[data-act="'+act+'"]'+(x||''));if(e)return e;}return null;};
+ let el=k.id?document.getElementById(k.id):null;
+ if(el&&!scopes.some(sc=>sc.contains(el)))el=null;
+ if(!el&&k.act){
+  const at=(n,v)=>v?'[data-'+n+'="'+CSS.escape(v)+'"]':'';
+  el=q(k.act,at('l',k.l)+at('id',k.oid)+at('g',k.g)+at('mk',k.mk)+at('k',k.k)+at('i',k.i));
+  if(!el&&k.act==='add')el=q('rm',at('id',k.oid));
+  if(!el&&k.act==='rm')el=q('add',at('id',k.oid));
+  if(!el&&k.act==='res')el=q('unres',at('g',k.g));
+  if(!el&&k.act==='unres')el=q('res',at('g',k.g));
+ }
+ if(el&&el.disabled){const p=el.previousElementSibling;el=p&&p.tagName==='SELECT'?p:null;}   // «Загрузить» после применения недоступна — фокус на её список
+ if(!el&&(k.act==='add'||k.act==='rm'))el=$('#panel h2');
+ if(!el)el=focusFallback();
+ if(el&&el!==document.activeElement)el.focus({preventScroll:true});
+}
+function focusFallback(){
+ const h=document.querySelector('.view.on h2');
+ if(h&&!h.hasAttribute('tabindex'))h.setAttribute('tabindex','-1');
+ return h;
+}
+function syncTabs(){
+ document.querySelectorAll('.tab').forEach(t=>{const on=t.dataset.v===S.view;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;});
+ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='view-'+S.view));
+}
+function render(){
+ const fk=focusKey(),ev=evaluate(S.asm,S.prof,S.flags);
+ renderBar();
+ if(S.view==='build')renderBuild(ev);else if(S.view==='compare')renderCompare();else renderScenario();
+ syncTabs();sync();restoreFocus(fk);
+}
+function goLayer(id){
+ S.layer=id;S.view='build';render();
+ const p=$('#panel');if(p){p.scrollIntoView({block:'nearest'});const h2=$('#panel h2');if(h2)h2.focus({preventScroll:true});}
+}
+/* ---- события ---- */
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-act]');if(!b||b.tagName==='SELECT'||b.tagName==='INPUT')return;
+ const a=b.dataset.act;
+ if(a==='layer'){S.layer=b.dataset.l;render();if(matchMedia('(max-width:980px)').matches){const p=$('#panel');if(p)p.scrollIntoView({block:'start'});}}
+ else if(a==='goto')goLayer(b.dataset.l);
+ else if(a==='view'){S.view=b.dataset.v;render();window.scrollTo({top:0});}
+ else if(a==='add')addOpt(b.dataset.id);
+ else if(a==='rm')rmOpt(b.dataset.id);
+ else if(a==='stress')openStress(b.dataset.p);
+ else if(a==='replace')replaceWith(b.dataset.p,b.dataset.id);
+ else if(a==='res')edit(x=>{x.res[b.dataset.g]=1;});
+ else if(a==='unres')edit(x=>{delete x.res[b.dataset.g];});
+ else if(a==='mk'){S.mk=b.dataset.mk;render();}
+ else if(a==='take'){const pid=S.cmp[+b.dataset.i];snapshot();S.asm=newAsm(pid,S.prof);S.view='build';S.layer=null;S.pend={};render();window.scrollTo({top:0});toast('В работе: '+presetName(pid,S.prof)+'.',true);}
+ else if(a==='passport'){$('#pp-body').innerHTML=passportHTML();$('#dlg-pp').showModal();}
+ else if(a==='print')window.print();
+ else if(a==='close'){const d=b.closest('dialog');if(d)d.close();}
+ else if(a==='copy')copyLink();
+ else if(a==='json')exportJSON();
+ else if(a==='reset')resetAsm();
+ else if(a==='undo'){undo();const f=$('#bar [data-act="undo"]')||focusFallback();if(f)f.focus({preventScroll:true});}
+ else if(a==='prof-go')setProfile($('#sel-prof').value);
+ else if(a==='preset-go')loadPreset($('#sel-asm').value);
+ else if(a==='stress-go'){const s=$('#stress-sel');if(s&&s.value)openStress(s.value);}
+});
+/* списки «Банк» и «Сборка» только выбирают; применение — кнопкой рядом (стрелки в списке ничего не заменяют) */
+document.addEventListener('change',e=>{
+ const b=e.target.closest('[data-act]');if(!b)return;
+ const a=b.dataset.act;
+ if(a==='pend'){   // выбранное значение держится до применения, даже если экран перерисуется
+  if(b.id==='sel-prof'){S.pend.prof=b.value;$('#btn-prof').disabled=b.value===S.prof;}
+  else if(b.id==='sel-asm'){S.pend.asm=b.value;$('#btn-asm').disabled=b.value===S.asm.base;}
+ }
+ else if(a==='flag'){S.flags[b.dataset.k]=b.checked;render();}
+ else if(a==='cmp'){S.cmp[+b.dataset.i]=b.value;render();}
+ else if(a==='diff'){S.diff=b.checked;render();}
+ else if(a==='sc'){S.sc[b.dataset.k]=b.checked;render();}
+});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(!D)return;S.view=t.dataset.v;render();window.scrollTo({top:0});}));
+document.querySelector('.tabs').addEventListener('keydown',e=>{
+ if(!D)return;
+ const tabs=[...document.querySelectorAll('.tab')],i=tabs.findIndex(t=>t.classList.contains('on'));
+ const j={ArrowRight:(i+1)%tabs.length,ArrowLeft:(i+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[e.key];
+ if(j===undefined)return;
+ e.preventDefault();S.view=tabs[j].dataset.v;render();tabs[j].focus();
+});
+window.addEventListener('beforeprint',()=>{
+ let h='<p>Данные карты не загружены — печатать нечего.</p>';
+ if(D&&S.asm){try{h=passportHTML();}catch(e){console.error(e);h='<p>Паспорт не удалось собрать.</p>';}}
+ $('#print-pp').innerHTML=h;
+});
+function showErr(html){$('#loading').hidden=true;const e=$('#err');e.hidden=false;e.innerHTML=html;}
+function safeRender(){
+ try{render();$('#err').hidden=true;}
+ catch(err){console.error(err);showErr(`<b>Не удалось собрать экран.</b> ${esc(err&&err.message||err)}. <a href="./">Открыть конструктор без параметров ссылки</a>`);}
+}
+window.addEventListener('hashchange',()=>{
+ if(!D)return;
+ if(!/(^|&)s=/.test(location.hash.slice(1))){sync();return;}   // якорь вроде #main — состояние не сбрасываем
+ try{snapshot();fromHash();}catch(err){console.error(err);showErr(`<b>Не удалось открыть ссылку.</b> ${esc(err&&err.message||err)}. <a href="./">Открыть конструктор без параметров ссылки</a>`);return;}
+ safeRender();
+});
+(async function init(){
+ try{D=await loadMap();buildCatalog();buildVtb();buildProfiles();}
+ catch(err){
+  console.error(err);
+  showErr(`<b>Не удалось прочитать данные карты.</b> ${esc(err&&err.message||err)}.<br>Конструктор берёт данные со страницы карты, поэтому открывать его нужно по адресу сайта, а не как файл с диска. <a href="../">Открыть карту</a>`);
+  return;
+ }
+ $('#snap').textContent=SNAP||'дата не найдена';
+ const w=[];
+ if(!SNAP)w.push(`Дата среза карты не найдена, а правила, пресет «Консорциум» и факты о банке сверены с картой на ${FACTS_CHECKED} — перед показом сверьте их с картой.`);
+ else if(SNAP!==FACTS_CHECKED)w.push(`Карта обновлена (снимок ${esc(SNAP)}), а правила, пресет «Консорциум» и факты о банке сверены с ней на ${FACTS_CHECKED} — перед показом сверьте их с картой.`);
+ if(WARN.length)w.push('На карте не найдены позиции, на которые опирается пресет: '+esc(WARN.join('; '))+'.');
+ if(w.length){const b=document.createElement('div');b.className='warn';b.setAttribute('role','note');b.innerHTML='<b>Внимание.</b> '+w.join(' ');$('.intro').appendChild(b);}
+ try{fromHash();}
+ catch(err){console.error(err);showErr(`<b>Не удалось собрать сборку по данным карты.</b> ${esc(err&&err.message||err)}. Возможно, на карте переименованы слои.`);return;}
+ $('#loading').hidden=true;safeRender();
+})();
+</script>
+</body></html>

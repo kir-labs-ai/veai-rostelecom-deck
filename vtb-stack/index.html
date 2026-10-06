@@ -1,0 +1,876 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#f3f4f6">
+<title>The 2026 On-Prem AI Landscape · стек ИИ-агентов банка в закрытом контуре</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+ :root{--bg:#f3f4f6;--ink:#0f172a;--mut:#5b6678;--card:#fff;--bd:#e2e5ea;--soft:#f7f8fa;--sans:"Inter","Helvetica Neue",Arial,system-ui,"Noto Sans",sans-serif;--max:1400px}
+ *{box-sizing:border-box;margin:0;padding:0}
+ html{scroll-padding-top:170px}
+ body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.4}
+ a{color:#1d4ed8}
+ a,button{touch-action:manipulation}
+ h1,h2,h3{text-wrap:balance}
+ .skip{position:absolute;left:12px;top:-60px;background:#1f2430;color:#fff;padding:8px 14px;border-radius:8px;z-index:100;font-weight:600;text-decoration:none}
+ .skip:focus{top:12px}
+ .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+ header.top{background:#fff;border-bottom:1px solid var(--bd);padding:16px 0 12px;position:sticky;top:0;z-index:20}
+ header .row{display:flex;align-items:center;gap:26px}
+ .tabs{display:flex;gap:6px;flex-wrap:wrap}
+ .tab{font-size:14px;font-weight:600;color:var(--mut);padding:8px 15px;border-radius:8px;background:#eef0f3;border:0;cursor:pointer;font-family:inherit}
+ .tab:hover{color:var(--ink);background:#e4e7eb}
+ .tab.on{background:#1f2430;color:#fff}
+ .tab:focus-visible,.tile:focus-visible,.band:focus-visible,summary:focus-visible,.vname:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+ .tab .st{font-size:10px;font-weight:700;margin-left:6px;padding:1px 6px;border-radius:10px;background:#fef3c7;color:#92400e}
+ header h1{font-size:clamp(17px,2vw,24px);font-weight:800;letter-spacing:-.02em;margin-left:auto;color:var(--ink);text-align:right}
+ header h1 .h1-sub{display:block;font-size:12.5px;font-weight:600;color:var(--mut);letter-spacing:0;margin-top:3px}
+ .subline{font-size:13px;color:var(--mut);padding:10px 0 0}
+ .subline b{color:var(--ink)}
+ .legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:10px 0 0;font-size:12px;color:var(--mut)}
+ .legend .ttl{font-weight:700;color:var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+ .lg{display:inline-flex;align-items:center;gap:6px}.lg .sq{width:11px;height:11px;border-radius:3px}
+ .view{display:none;padding-bottom:10px}.view.on{display:block}
+ /* verdict */
+ .verdict{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:22px 24px;margin:18px 0 0;display:grid;grid-template-columns:1.25fr 1fr;gap:26px}
+ @media(max-width:900px){.verdict{grid-template-columns:1fr}}
+ .v-kicker{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+ .v-main{font-size:clamp(20px,2.3vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.25;color:var(--ink)}
+ .v-main em{font-style:normal;color:#be123c}
+ .v-sub{font-size:14px;color:#374151;margin-top:12px;line-height:1.55}
+ .v-sub b{color:var(--ink)}
+ .rules{list-style:none;display:flex;flex-direction:column;gap:10px}
+ .rules li{position:relative;padding-left:40px;font-size:13.5px;color:#374151;line-height:1.5}
+ .rules li b{color:var(--ink)}
+ .rules li span.n{position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:#1f2430;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+ /* stack diagram */
+ .secblk{margin:26px 0}
+ .secblk>h2{font-size:21px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+ .secblk p.sub{font-size:13.5px;color:var(--mut);margin-bottom:16px;line-height:1.6}.secblk p.sub b{color:var(--ink)}
+ .stackwrap{display:grid;grid-template-columns:1fr 300px;gap:12px;background:#fff;border:1px solid var(--bd);border-radius:14px;padding:16px}
+ @media(max-width:860px){.stackwrap{grid-template-columns:1fr}}
+ .floors{display:flex;flex-direction:column;gap:5px}
+ .band{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;border-radius:9px;padding:8px 14px;color:#fff;text-decoration:none;text-align:left;font-family:inherit;cursor:pointer}
+ .band .bn{font-weight:800;font-size:15px;font-variant-numeric:tabular-nums}
+ .band .bt{font-weight:700;font-size:14px}
+ .band .bo{font-size:12px;opacity:.94;font-weight:500}
+ .band .bg{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.88;white-space:nowrap}
+ @media(max-width:560px){.band{grid-template-columns:28px 1fr}.band .bg{display:none}}
+ .band:hover{filter:brightness(1.08)}
+ .axis{font-size:11px;color:var(--mut);display:flex;justify-content:space-between;margin-top:6px;padding:0 4px}
+ .cross{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:1fr auto;gap:6px}
+ @media(max-width:860px){.cross{grid-template-columns:repeat(2,1fr);grid-template-rows:none}}
+ .cross .band{grid-template-columns:1fr;writing-mode:vertical-rl;transform:rotate(180deg);justify-items:center;text-align:center;padding:12px 6px}
+ .cross .band .bn{display:none}
+ @media(max-width:860px){.cross .band{writing-mode:horizontal-tb;transform:none;padding:10px 12px;text-align:left;justify-items:start}}
+ .cross-cap{grid-column:1/-1;font-size:11px;color:var(--mut);text-align:center;padding-top:2px}
+ /* how-to */
+ .howto{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:18px 20px;margin:18px 0 4px}
+ .howto-h{font-weight:800;font-size:15px;color:var(--ink);margin-bottom:12px}
+ .howto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+ @media(max-width:900px){.howto-grid{grid-template-columns:1fr}}
+ .ht{border-left:2px solid var(--bd);padding-left:14px}
+ .ht-n{font-weight:700;font-size:13px;color:var(--ink);margin-bottom:5px}
+ .ht-d{font-size:12.5px;color:#374151;line-height:1.55}
+ .ht-d b{color:var(--ink)}
+ dl.gl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:12.5px;line-height:1.45}
+ dl.gl dt{font-weight:700;color:var(--ink);white-space:nowrap}dl.gl dd{color:#374151}
+ /* landscape */
+ .super{margin:22px 0}
+ .super-tab{display:inline-flex;align-items:baseline;gap:12px;color:#fff;font-weight:800;font-size:13px;letter-spacing:.04em;padding:8px 16px;border-radius:9px 9px 0 0;text-transform:uppercase}
+ .super-en{font-weight:500;font-size:11.5px;opacity:.92;letter-spacing:0;text-transform:none}
+ .super-box{border:2px solid;border-radius:0 12px 12px 12px;background:#fbfbfc;padding:14px}
+ .mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px}
+ @media(max-width:560px){.mods{grid-template-columns:1fr}}
+ .modbox{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:13px 14px;display:flex;flex-direction:column}
+ .modbox:target{box-shadow:0 0 0 3px #93c5fd}
+ .mod-h{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+ .mod-code{font-size:11px;font-weight:800;color:#fff;border-radius:6px;padding:2px 7px;white-space:nowrap}
+ .mod-nm{font-weight:700;font-size:14px}.mod-ct{margin-left:auto;font-size:10px;font-weight:700;color:var(--mut);background:#f1f3f6;border-radius:20px;padding:2px 8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+ .mod-one{font-size:12.5px;color:#374151;line-height:1.45;margin-bottom:10px}
+ .tiles{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+ .tile{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;color:#1f2937;background:#fff;border:1px solid var(--bd);border-radius:6px;padding:5px 9px;line-height:1.15;cursor:help;transition:border-color .12s,box-shadow .12s;font-family:inherit;text-align:left}
+ .tile:hover{border-color:#94a3b8;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+ .tile .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+ .need{margin-top:auto;font-size:12px;color:#374151;line-height:1.5;border-top:1px dashed var(--bd);padding-top:9px}
+ .need b{color:var(--ink)}
+ .plist{display:none}
+ .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+ #tip{position:fixed;z-index:60;max-width:340px;background:#1f2430;color:#fff;border-radius:9px;padding:11px 13px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:13px;line-height:1.45;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
+ #tip.show{opacity:1;transform:translateY(0)}#tip .t-name{font-weight:700;margin-bottom:4px}#tip .t-meta{margin-top:7px;font-size:11.5px;color:#cbd5e1}
+ /* tables */
+ .mtx-wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:14px;background:#fff}
+ table.mtx{border-collapse:collapse;width:100%;min-width:900px}
+ table.mtx th,table.mtx td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--bd);font-size:13px;vertical-align:top;color:#374151;line-height:1.5}
+ table.mtx thead th{background:var(--soft);font-weight:700;color:var(--ink)}
+ table.mtx td.aname{font-weight:600;color:var(--ink);min-width:170px}
+ table.mtx tbody tr:last-child td{border-bottom:0}
+ .road-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:900px){.road-grid{grid-template-columns:1fr}}
+ .road{border:1px solid var(--bd);border-left:4px solid var(--rc);border-radius:12px;padding:16px 18px;background:#fff}
+ .road h3{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:8px}
+ .road p{font-size:13.5px;color:#374151;line-height:1.55}
+ .road p b{color:var(--ink)}
+ details.more{background:#fff;border:1px solid var(--bd);border-radius:12px;margin:12px 0}
+ details.more>summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:14.5px;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+ details.more>summary::-webkit-details-marker{display:none}
+ details.more>summary::before{content:"▸";color:var(--mut)}details.more[open]>summary::before{content:"▾"}
+ details.more>summary .sm{font-weight:500;font-size:12.5px;color:var(--mut)}
+ details.more .body{padding:0 18px 16px;font-size:13.5px;color:#374151;line-height:1.6}
+ details.more .body ul{padding-left:18px}
+ .pending{background:#fff;border:1px dashed #cbd5e1;border-radius:14px;padding:26px 24px;margin:22px 0}
+ .pending h2{font-size:19px;font-weight:800;margin-bottom:8px}
+ .pending p{font-size:14px;color:#374151;line-height:1.6;max-width:880px}
+ .draft-banner{display:inline-block;font-size:11px;font-weight:700;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:7px;padding:4px 10px;margin-bottom:10px}
+ /* vendor maps (tabs 2–3) */
+ .vlist{margin-bottom:8px}
+ .vrow{display:grid;grid-template-columns:10px 1fr;gap:9px;padding:7px 0;border-top:1px dashed var(--bd)}
+ .vrow:first-child{border-top:0}
+ .vrow .dot{width:8px;height:8px;border-radius:50%;margin-top:5px}
+ .vname{font-weight:700;font-size:12.5px;color:var(--ink);text-decoration:none}.vname:hover{text-decoration:underline}
+ .vco{color:var(--mut);font-size:11.5px}
+ .vrole{color:#374151;font-size:12px;line-height:1.4;margin-top:1px}
+ .conf{font-size:10.5px;color:var(--mut);white-space:nowrap}
+ .pill{display:inline-block;font-size:9.5px;font-weight:700;border-radius:10px;padding:1px 7px;margin-left:6px;white-space:nowrap;vertical-align:1px}
+ .note-row{font-size:12px;color:#374151;background:#f7f8fa;border-radius:7px;padding:7px 9px;margin:4px 0 8px;line-height:1.45}
+ .note-row b{color:var(--ink)}
+ .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}@media(max-width:700px){.kpis{grid-template-columns:1fr}}
+ .kpi{border:1px solid var(--bd);border-radius:10px;padding:12px 14px;background:#fbfbfc}
+ .kpi b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:4px}.kpi span{font-size:12.5px;color:#374151;line-height:1.45}
+ ul.plain{padding-left:18px;font-size:13.5px;color:#374151;line-height:1.6}ul.plain li{margin:3px 0}ul.plain b{color:var(--ink)}
+ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#f1f3f6;border-radius:4px;padding:1px 5px;color:#1f2937;word-break:break-word}
+ table.mtx.facts{min-width:640px}table.mtx.facts td:last-child{white-space:nowrap;width:1%}
+ .mlegend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--mut);margin:16px 0 0}
+ .mlegend .ch{display:inline-flex;align-items:center;gap:6px}.mlegend .dot{width:9px;height:9px;border-radius:50%}
+ /* consortium (tab 4) */
+ .stc{display:inline-block;font-size:11px;font-weight:700;border-radius:12px;padding:2px 9px;white-space:nowrap}
+ .stc.ok{background:#dcfce7;color:#166534}.stc.part{background:#fef3c7;color:#92400e}.stc.gap{background:#fee2e2;color:#991b1b}
+ table.mtx td .who{display:block;font-size:12px;color:var(--mut);margin-top:2px}
+ footer{padding:26px 0 46px;font-size:11.5px;color:var(--mut);text-align:center;line-height:1.6}
+ @media(max-width:700px){header .row{flex-wrap:wrap}header h1{margin-left:0;width:100%;order:-1;margin-bottom:8px;text-align:left}header.top{position:static}html{scroll-padding-top:0}}
+ @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+ @media print{
+  header.top{position:static}.view{display:block!important;break-before:page}.view:first-of-type{break-before:auto}
+  #tip,.tabs,.skip{display:none}.plist{display:block;font-size:11px;color:#374151;margin:0 0 8px 16px}
+  .tiles{display:none}details.more .body{display:block}
+  body{background:#fff}.super-box,.modbox,.verdict,.howto{break-inside:avoid}
+ }
+</style></head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="top"><div class="wrap"><div class="row">
+ <div class="tabs" role="tablist" aria-label="Варианты карты">
+  <button class="tab on" role="tab" id="tab-stack" aria-controls="view-stack" aria-selected="true" data-v="stack">1 · Стек без вендоров</button>
+  <button class="tab" role="tab" id="tab-us" aria-controls="view-us" aria-selected="false" data-v="us" tabindex="-1">2 · США: on-prem игроки<span class="st" data-pending="us">в работе</span></button>
+  <button class="tab" role="tab" id="tab-ru" aria-controls="view-ru" aria-selected="false" data-v="ru" tabindex="-1">3 · Россия<span class="st" data-pending="ru">в работе</span></button>
+  <button class="tab" role="tab" id="tab-vtb" aria-controls="view-vtb" aria-selected="false" data-v="vtb" tabindex="-1">4 · ВТБ под ключ<span class="st" data-pending="vtb">в работе</span></button>
+ </div>
+ <h1>The 2026 On-Prem AI Landscape<span class="h1-sub">стек ИИ-агентов банка в закрытом контуре</span></h1></div>
+ <div class="subline">Банк масштаба <b>ВТБ / Bank of America</b> · всё внутри корпоративного контура, <b>без облаков и внешних сервисов</b> · от железа до агентов · <b>12 этажей + 5 сквозных слоёв</b> · снимок 28.09.2026 · черновик v1</div>
+ <div class="legend"><span class="ttl">Контуры карты</span>
+  <span class="lg"><span class="sq" style="background:#0369a1"></span>Фундамент: железо, вычисления, инференс</span>
+  <span class="lg"><span class="sq" style="background:#6d28d9"></span>Модели и доступ к ним</span>
+  <span class="lg"><span class="sq" style="background:#c2410c"></span>Данные и связь с системами банка</span>
+  <span class="lg"><span class="sq" style="background:#15803d"></span>Агенты и результат</span>
+  <span class="lg"><span class="sq" style="background:#be123c"></span>Сквозные слои</span>
+ </div>
+</div></header>
+
+<main id="main" class="wrap">
+
+<section class="view on" id="view-stack" role="tabpanel" aria-labelledby="tab-stack">
+ <div class="verdict">
+  <div>
+   <div class="v-kicker">Вариант 1 · стек без привязки к компаниям</div>
+   <p class="v-main">Агенты — только верхний этаж. Чтобы банк внедрил их целиком внутри контура, ему нужны <em>все 12 этажей от железа до агентов и 5 сквозных слоёв</em>: выпадет хоть один — контур не закрыт.</p>
+   <p class="v-sub">Задача стека: дать банку <b>агентную разработку</b> (агенты пишут, тестируют и переносят код) и <b>агентов в процессах банка</b> (эксплуатация, бэк-офис, поддержка, аналитика) — так, чтобы железо, модели, данные и журнал действий оставались у банка.</p>
+  </div>
+  <ol class="rules" aria-label="Правила контура">
+   <li><span class="n" aria-hidden="true">1</span><b>Ничего внешнего.</b> Железо, модели, данные и журналы — в ЦОД банка. Облачные сервисы и внешние API исключены.</li>
+   <li><span class="n" aria-hidden="true">2</span><b>Модели свои.</b> Открытые веса, развёрнутые у банка и прошедшие допуск как модельный риск. Облачные API моделей, включая Anthropic, не используются.</li>
+   <li><span class="n" aria-hidden="true">3</span><b>Claude Code — только как локальный харнес.</b> Ставится у банка, обращается к внутреннему инференсу через шлюз, внешний трафик отключён. Оговорка: работу Claude Code с не-Claude моделями Anthropic официально не поддерживает — каждое обновление проверяется на стенде банка.</li>
+  </ol>
+ </div>
+
+ <div class="secblk">
+  <h2>Весь стек на одном экране</h2>
+  <p class="sub">Этажи снизу вверх: каждый опирается на предыдущий. Сквозные слои работают на всех этажах сразу. Нажмите на этаж или слой — откроется его описание ниже.</p>
+  <div class="stackwrap">
+   <div>
+    <div class="floors" id="floors"></div>
+    <div class="axis"><span>↑ к результату</span><span>от железа ↑</span></div>
+   </div>
+   <div class="cross" id="cross"><div class="cross-cap">сквозные — на всех этажах</div></div>
+  </div>
+ </div>
+
+ <div class="howto">
+  <div class="howto-h">Как читать карту</div>
+  <div class="howto-grid">
+   <div class="ht"><div class="ht-n">Для кого и зачем</div><div class="ht-d"><b>Для руководителя</b>, который собирает предложение банку уровня ВТБ. Вопрос карты: <b>что нужно, чтобы внедрить агентов полностью внутри контура</b>, и кто это может закрыть. Варианты 2 и 3 кладут на те же слои игроков США и России, вариант 4 — решение для ВТБ из независимых игроков.</div></div>
+   <div class="ht"><div class="ht-n">Как устроена карточка слоя</div><div class="ht-d">Название и одна фраза — <b>что делает слой</b>. Плитки — <b>из чего он состоит</b>: наведите курсор или нажмите, чтобы увидеть описание. Внизу — <b>требование банка</b>: что должно быть выполнено, чтобы слой считался закрытым внутри контура. Слои объединяют 12 модулей <a href="https://gistpreview.github.io/?1dd80dcf48441bc6a52fbc29d25a516c">технологической карты AI-OS Dev</a> и фундамент от железа.</div></div>
+   <div class="ht"><div class="ht-n">Обозначения</div><dl class="gl">
+    <dt>LLM</dt><dd>большая языковая модель</dd>
+    <dt>On-prem</dt><dd>развёрнуто в собственном ЦОД банка</dd>
+    <dt>Инференс</dt><dd>запуск модели для получения ответа</dd>
+    <dt>Харнес</dt><dd>рабочая среда агента: модель + инструменты + правила + песочница (например, Claude Code)</dd>
+    <dt>RAG</dt><dd>поиск по базе знаний перед ответом модели</dd>
+    <dt>MCP</dt><dd>открытый стандарт подключения инструментов к агентам</dd>
+    <dt>Управление автономией</dt><dd>что агент решает сам, а что — только с подписью человека (governance)</dd>
+    <dt>DLP</dt><dd>защита от утечек данных</dd>
+    <dt>ПАК</dt><dd>программно-аппаратный комплекс: железо и ПО одной поставкой</dd>
+    <dt>КИИ</dt><dd>критическая информационная инфраструктура</dd>
+    <dt>SLA</dt><dd>гарантированный уровень сервиса</dd>
+   </dl></div>
+  </div>
+ </div>
+
+ <div id="stack-grid"></div>
+
+ <div class="secblk">
+  <h2>С чего начинать сборку</h2>
+  <p class="sub">Слои строятся не все сразу. Порядок ниже снижает риск: сначала фундамент и один измеримый сценарий, потом тираж.</p>
+  <div class="road-grid">
+   <div class="road" style="--rc:#0369a1"><h3>Шаг 1 · фундамент</h3><p><b>Этажи 1–5 + безопасность и управление автономией.</b> Железо, пул вычислений, инференс, первые модели и шлюз. Без шлюза нельзя начинать: он даёт единую дверь к моделям, учёт и журнал с первого дня.</p></div>
+   <div class="road" style="--rc:#15803d"><h3>Шаг 2 · пилот агентной разработки</h3><p><b>Этажи 7, 8, 10, 11 + сценарии разработки на этаже 12.</b> Индекс кода, связь с Git, CI и трекером, харнес и плагины IDE — на одном домене и одной команде, с внутренними бенчмарками до и после. Разработка — самый быстрый путь к измеримому эффекту: код, тесты и ревью уже оцифрованы.</p></div>
+   <div class="road" style="--rc:#c2410c"><h3>Шаг 3 · агенты в процессах банка</h3><p><b>Этажи 6, 8, 9, 11 + остальные сценарии этажа 12.</b> Обезличенные данные, адаптеры к АБС и шинам, агентная платформа, чат для сотрудников — и выход за пределы разработки: эксплуатация, бэк-офис, поддержка, аналитика.</p></div>
+  </div>
+ </div>
+
+ <details class="more" id="out-of-scope"><summary>Что сознательно не входит в стек <span class="sm">облака, внешние API, SaaS — и почему</span></summary><div class="body"><ul>
+  <li><b>Публичные облака и облачные сервисы ИИ</b> — противоречат условию «всё внутри контура», даже если провайдер обещает изоляцию.</li>
+  <li><b>Облачные API моделей</b> (Anthropic, OpenAI и аналоги) — данные и код уходят за периметр. Их место занимают открытые модели на этаже 4.</li>
+  <li><b>SaaS-инструменты для агентов, интеграций и наблюдаемости</b> — только версии, которые ставятся в ЦОД банка.</li>
+  <li><b>Anthropic допустим в одной роли</b> — Claude Code как локальный харнес на этаже 10, который работает с внутренним инференсом через шлюз.</li>
+  <li><b>«On-prem» у вендора ещё не значит «без сети».</b> Лицензии, телеметрия и обновления часто требуют выхода наружу — каждый компонент проверяется пилотом с полностью закрытым выходом.</li>
+ </ul></div></details>
+</section>
+
+<section class="view" id="view-us" role="tabpanel" aria-labelledby="tab-us">
+ <div id="us-body"><div class="pending"><div class="draft-banner">В РАБОТЕ · появится в этой вкладке сегодня</div><h2>Вариант 2 · те же 17 слоёв — игроки рынка США</h2><p>Для каждого слоя — американские стартапы и крупные игроки, которые ставятся <b>on-prem</b>, без облака. У каждой позиции — подтверждение on-prem поставки (ссылка) и уровень уверенности. Anthropic появляется только на этаже харнеса — как Claude Code, работающий с локальным инференсом.</p></div></div>
+</section>
+
+<section class="view" id="view-ru" role="tabpanel" aria-labelledby="tab-ru">
+ <div id="ru-body"><div class="pending"><div class="draft-banner">В РАБОТЕ · появится в этой вкладке сегодня</div><h2>Вариант 3 · те же 17 слоёв — игроки рынка России</h2><p>Российские продукты, которые ставятся в контур заказчика, с отметкой принадлежности к группам (Ростелеком, Яндекс, Сбер, МТС и независимые) и подтверждением on-prem. Где российского продукта нет — честно: какой открытый компонент используют и какой риск это создаёт.</p></div></div>
+</section>
+
+<section class="view" id="view-vtb" role="tabpanel" aria-labelledby="tab-vtb">
+ <div id="vtb-body"><div class="pending"><div class="draft-banner">В РАБОТЕ · черновик-гипотеза после вариантов 2 и 3</div><h2>Вариант 4 · ВТБ: решение «под ключ» из независимых игроков</h2><p>Кто закрывает каждый слой: Ростелеком, Veai, Яндекс и кандидаты в состав решения. Где стыки и где остаются дыры. Исходная посылка — со слов Михаила Кудинова: ВТБ строит всё внутри контура, но агентную разработку и внедрение агентов будет делать на внешних технологиях, развёрнутых внутри.</p></div></div>
+</section>
+
+</main>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<footer class="wrap">Источник задачи: созвон с Михаилом Кудиновым 28.09.2026 · черновик для внутреннего обсуждения, не для передачи за пределы компании · вариант 1 не называет вендоров сознательно — компании появляются во вкладках 2–4<br>Адрес страницы: <a href="https://animated-adventure-wwz21jk.pages.github.io/veai-rostelecom/vtb-stack/">animated-adventure-wwz21jk.pages.github.io/veai-rostelecom/vtb-stack/</a> — приватные Pages, открываются участникам репозитория</footer>
+
+<script>
+const G={
+ f:{n:'Фундамент',en:'железо · вычисления · инференс',c:'#0369a1'},
+ m:{n:'Модели и доступ к ним',en:'модели · шлюз',c:'#6d28d9'},
+ k:{n:'Данные и связь с системами банка',en:'данные · знания · интеграции',c:'#c2410c'},
+ a:{n:'Агенты и результат',en:'платформа · харнес · интерфейсы · сценарии',c:'#15803d'},
+ x:{n:'Сквозные слои',en:'работают на всех этажах',c:'#be123c'}
+};
+const L=[
+{id:'f1',g:'f',code:'1',n:'ЦОД и железо',one:'Физическая основа: где считаются модели.',
+ need:'всё — в собственном ЦОД или выделенных стойках банка; запас мощности под пики; план поставок ускорителей на 2–3 года вперёд.',
+ c:[['Ускорители (GPU)','Карты для инференса и дообучения моделей. Главный дефицитный ресурс и крупнейшая статья затрат стека.'],
+  ['GPU-серверы и кластеры','Узлы с несколькими ускорителями и быстрой связью внутри узла — строительный блок кластера.'],
+  ['Сеть кластера','Высокоскоростная связь между узлами (InfiniBand или Ethernet с RDMA). Без неё большие модели не делятся на несколько серверов.'],
+  ['Хранилище для ИИ','Быстрое хранилище весов моделей, данных для дообучения, журналов и поисковых индексов.'],
+  ['Питание и охлаждение','GPU-стойки потребляют в разы больше обычных: нужны мощность, усиленное или жидкостное охлаждение.'],
+  ['План поставок и замены','Закупка ускорителей на 2–3 года вперёд, запас на отказы, гарантия и сервис.']]},
+{id:'f2',g:'f',code:'2',n:'Управление вычислениями',one:'Превращает железо в общую платформу, которую делят команды.',
+ need:'квоты и учёт GPU по подразделениям; изоляция сред разработки, теста и прода; работа без интернета — зеркала образов и пакетов внутри.',
+ c:[['Выдача серверов','Автоматическая установка ОС, драйверов и прошивок на GPU-узлы.'],
+  ['Контейнерная платформа','Единая среда запуска моделей, сервисов и песочниц агентов (обычно Kubernetes).'],
+  ['Планировщик GPU и квоты','Делит ускорители между командами и задачами: приоритеты, дробление карт, очереди.'],
+  ['Частное облако и самообслуживание','Команда заказывает ресурсы сама, без тикета и ожидания.'],
+  ['Мультиарендность','Подразделения делят одну платформу, но не видят данные и нагрузки друг друга.'],
+  ['Изоляция сред','Разные контуры для экспериментов, тестов и боевых данных.'],
+  ['Топологии развёртывания','Один ЦОД, два ЦОДа, изолированный контур без интернета — одна и та же платформа.'],
+  ['Отказоустойчивость и резервные копии','Второй ЦОД, переключение при сбое, резервные копии весов, индексов и журналов.'],
+  ['Обновления и внутренние зеркала','Драйверы и библиотеки обновляются без простоя; пакеты, образы и модели берутся из внутренних зеркал.']]},
+{id:'f3',g:'f',code:'3',n:'Инференс',one:'Запускает модели и отдаёт ответы с нужной скоростью.',
+ need:'гарантированная задержка для интерактивных агентов; ёмкость под тысячи одновременных агентских сессий; нагрузки подразделений не мешают друг другу.',
+ c:[['Движок инференса','Сервер, который исполняет модель: пакетирование запросов, кэш, сжатие весов.'],
+  ['Распределённый инференс','Большая модель делится на несколько GPU и узлов — иначе она не помещается в память.'],
+  ['Автомасштабирование','Добавляет и снимает копии модели под нагрузку; ночью освобождает ресурсы под пакетные задачи.'],
+  ['Ускорение генерации','Сжатие весов (квантизация) и спекулятивная генерация — больше ответов на тот же GPU.'],
+  ['Кэш промптов и контекста','Агенты многократно отправляют один и тот же контекст — кэш экономит вычисления и время.'],
+  ['Пакетная обработка','Ночные массовые прогоны: перенос кода, разметка документов.']]},
+{id:'m4',g:'m',code:'4',n:'Модели',one:'Интеллект стека: собственные копии открытых моделей внутри контура.',
+ need:'только модели с правом использования on-prem; каждая версия проходит допуск как модельный риск; модель можно заменить без переделки агентов.',
+ c:[['Большие универсальные модели','Основные модели для рассуждений и агентов. Веса хранятся у банка.'],
+  ['Модели для кода','Специализированные модели для генерации и правки кода.'],
+  ['Малые быстрые модели','Дешёвые модели для классификации, маршрутизации и автодополнения.'],
+  ['Эмбеддинги и реранкеры','Модели для поиска по смыслу в документах и коде.'],
+  ['Дообучение и адаптация','Подстройка под язык банка, внутренние фреймворки и легаси.'],
+  ['Каталог и версии моделей','Какая модель и версия, кто одобрил, где развёрнута.'],
+  ['Проверка происхождения','Лицензия весов, отсутствие закладок, допуск к использованию.']]},
+{id:'m5',g:'m',code:'5',n:'LLM-шлюз',one:'Единая дверь к моделям для всех агентов и приложений.',
+ need:'ни одного подключения к модели в обход шлюза; журнал запросов хранится по требованиям регулятора; учёт затрат по подразделениям.',
+ c:[['Единый API','Совместим с API OpenAI и Anthropic: любой харнес подключается одинаково, модели меняются без переписывания.'],
+  ['Маршрутизация','Задача направляется подходящей модели; при сбое одной — переключение на запасную.'],
+  ['Стоимость, квоты, лимиты','Кто сколько может потратить: бюджет на задачу, команду, подразделение.'],
+  ['Маскирование в запросах','Персональные данные и секреты вырезаются из запроса до того, как он дойдёт до модели.'],
+  ['Журнал запросов','Кто, что спросил и какой ответ получил — для аудита и разбора инцидентов.'],
+  ['Учёт токенов','Потребление в разрезе подразделений и сценариев.']]},
+{id:'k6',g:'k',code:'6',n:'Данные',one:'Чем кормим модели и агентов — и как защищаем персональные данные.',
+ need:'персональные данные и банковская тайна попадают в индексы и дообучение только обезличенными; у каждого набора данных есть владелец и происхождение.',
+ c:[['Загрузка и конвейеры данных','Регулярная выгрузка из систем банка в хранилища для ИИ — по расписанию и по событиям.'],
+  ['Персональные данные и анонимизация','Поиск и маскирование персональных данных и банковской тайны до индексации и дообучения.'],
+  ['Синтетические данные','Реалистичные данные без реальных клиентов — для тестов, дообучения и демонстраций.'],
+  ['Происхождение и каталог данных','Откуда пришли данные, кто владелец, где использованы (lineage).'],
+  ['Контроль локации данных','Данные не покидают разрешённые площадки и юрисдикцию.'],
+  ['Классификация и DLP','Метки конфиденциальности и запрет выноса данных.'],
+  ['Наборы для дообучения и оценки','Версионирование датасетов и их связь с моделями.']]},
+{id:'k7',g:'k',code:'7',n:'Контекст и знания',one:'Без контекста ИИ пишет «вообще», а не «в вашем коде и по вашим регламентам».',
+ need:'агент видит ровно то, что видит пользователь, от имени которого работает; индекс обновляется вместе с кодом и документами; удалённое из источника исчезает из индекса.',
+ c:[['Индексация кода','Весь код банка разобран на модули, символы и зависимости — агент ищет по смыслу, а не по тексту.'],
+  ['Векторное хранилище','База для поиска по смыслу в документах и коде.'],
+  ['Поиск по знаниям (RAG, GraphRAG)','Модель получает найденные фрагменты документов, кода и связей перед ответом.'],
+  ['Сжатие контекста','Длинные задачи не упираются в окно модели: история сворачивается без потери сути.'],
+  ['Память агентов','Что агент знает о проекте и прошлых решениях.'],
+  ['Коннекторы баз знаний','Вики, документы, регламенты, тикеты.'],
+  ['Права доступа к знаниям','Агент наследует права пользователя, а не получает доступ ко всему.']]},
+{id:'k8',g:'k',code:'8',n:'Интеграции',one:'Подключает агентов к системам банка — от Git до АБС и мейнфреймов.',
+ need:'агент работает с системами банка только через штатные интеграции с правами и журналом — никаких прямых доступов в обход.',
+ c:[['Git и контроль версий','Репозитории банка: агент работает через ветки и запросы на слияние.'],
+  ['Трекеры задач','Задачи приходят агенту из трекера и возвращаются туда с результатом.'],
+  ['CI/CD','Сборка и тесты прогоняются автоматически до ревью человека.'],
+  ['Шина событий','Агенты реагируют на события систем банка.'],
+  ['API-шлюз','Единая точка вызова внутренних API с правами и лимитами.'],
+  ['Адаптеры корпоративных систем','АБС, CRM, ERP, документооборот.'],
+  ['Адаптеры унаследованных систем','Мейнфреймы и старые платформы без современных API.'],
+  ['Интеграционная платформа (iPaaS)','Сквозные сценарии между системами без разработки с нуля.']]},
+{id:'a9',g:'a',code:'9',n:'Агентная платформа',one:'Здесь ИИ перестаёт быть подсказкой и становится исполнителем.',
+ need:'у каждого агента есть лимит времени и бюджета, контракт инструментов и маршрут эскалации к человеку.',
+ c:[['Среда исполнения агентов','Запуск и остановка агентов, лимиты времени и бюджета.'],
+  ['Вызов инструментов','Агент вызывает функции и API по описанному контракту.'],
+  ['MCP-серверы','Стандартный способ дать агенту доступ к системам — с правами.'],
+  ['Планирование и декомпозиция','Большая задача разбивается на шаги и подзадачи.'],
+  ['Мультиагентная оркестрация','Несколько агентов делят работу и сверяют результат.'],
+  ['Долгие процессы','Задача идёт часами и днями и переживает сбои.'],
+  ['Диспетчер задач','Раздаёт задачи агентам по очереди, приоритету и классу риска.'],
+  ['Эскалация человеку','Агент застрял или вышел за границы — задача уходит ответственному.']]},
+{id:'a10',g:'a',code:'10',n:'Харнес',one:'Рабочее место агента-разработчика: связка модели, инструментов, правил и песочницы.',
+ need:'харнес не ходит в интернет; изменения агента попадают в код только через ревью в репозитории банка.',
+ c:[['Ядро харнеса','Цикл «план → действие → проверка»: Claude Code, Codex CLI и аналоги, подключённые к внутреннему шлюзу.'],
+  ['Песочница исполнения','Агент запускает код и тесты в изолированном контейнере без выхода наружу.'],
+  ['Правила и контекст проекта','Инструкции, стандарты кода и запреты версионируются вместе с репозиторием.'],
+  ['Навыки-контракты','Повторяемые сценарии с чётким входом и выходом: перенос кода, тесты, ревью.'],
+  ['Изоляция задач','Один агент — одна задача — одна изолированная копия репозитория.'],
+  ['Хуки и политики исполнения','Проверки до и после каждого действия агента: что разрешено, что заблокировано.'],
+  ['Работа без интернета','Телеметрия отключена или собирается внутри; обновления — из внутренних зеркал.']]},
+{id:'a11',g:'a',code:'11',n:'Интерфейсы',one:'Как люди видят агентов и управляют ими.',
+ need:'все интерфейсы работают с корпоративной учётной записью и внутри контура; мессенджер — корпоративный, не публичный.',
+ c:[['Плагины для IDE','IntelliJ, VS Code и другие: подсказки, правки и агентные задачи прямо в редакторе.'],
+  ['Командная строка','Для разработчиков и автоматизации.'],
+  ['Чат и веб-интерфейс','Главная дверь для сотрудников вне разработки: вопросы, документы, запуск агентов.'],
+  ['Уведомления в мессенджере','Агент сообщает о результате и просит одобрения там, где работают люди.'],
+  ['Дашборды','Что сделали агенты, где застряли, какой эффект.'],
+  ['Админ-консоль','Пользователи, модели, агенты, квоты и политики — в одном месте.']]},
+{id:'a12',g:'a',code:'12',n:'Агенты и сценарии',one:'То, ради чего строится стек: агенты в разработке и в процессах банка.',
+ need:'у каждого сценария — владелец, метрика эффекта и класс риска; масштабирование — только по доказанному на пилоте эффекту.',
+ c:[['Задача → изменение кода','Агент берёт задачу из трекера и возвращает изменение с тестами на ревью.'],
+  ['ИИ-ревью кода','Агент проверяет изменения до человека.'],
+  ['Тесты и покрытие','Генерация и поддержка тестов, регрессия.'],
+  ['Документация по изменениям','Описание изменений и документация собираются из кода.'],
+  ['Модернизация легаси','Перенос со старых стеков с доказательством, что поведение не изменилось.'],
+  ['Проверка безопасности в потоке','Уязвимости ищутся до слияния, а не после релиза.'],
+  ['Эксплуатация','Разбор инцидентов, анализ журналов, автоматизация регламентов.'],
+  ['Бэк-офис и операции','Документы, сверки, комплаенс-проверки.'],
+  ['Поддержка клиентов и сотрудников','Ответы по регламентам и продуктам банка.'],
+  ['Аналитика и отчётность','Запросы к данным на естественном языке, подготовка отчётов.']]},
+{id:'x1',g:'x',code:'С1',n:'Управление автономией',one:'Превращает «ИИ делает» в «ИИ делает под контролем».',
+ need:'автономия агента выдаётся классами решений и расширяется только по данным журнала; у каждого действия есть основание и ответственный человек.',
+ c:[['Политики и ограничители','Что агенту можно и нельзя: действия, данные, системы.'],
+  ['Классы решений','Что агент решает сам, что — с подписью человека, что — никогда.'],
+  ['Человек в контуре','Необратимые шаги выполняются только после одобрения ответственного.'],
+  ['Гейты утверждения','Контрольные точки: задача переходит дальше только после проверки.'],
+  ['Риск-гейты','Изменение классифицируется по риску: низкий идёт сам, высокий — к людям.'],
+  ['Аудит-след','Неизменяемый журнал: кто — человек или агент — что сделал и на каком основании.'],
+  ['Реестр агентов и права на решения','Кто владеет каждым агентом и какие решения ему делегированы.'],
+  ['Управление модельным риском','Модели и агенты проходят допуск, мониторинг и пересмотр — как скоринговые модели банка.']]},
+{id:'x2',g:'x',code:'С2',n:'Безопасность',one:'Изоляция, доступы и защита от инъекций — фундамент доверия.',
+ need:'агент — субъект доступа, как сотрудник; код агента проходит те же проверки безопасности, что и код людей.',
+ c:[['Учётные записи агентов','У агента своя учётная запись и минимальные права.'],
+  ['Контроль доступа','Права по ролям и атрибутам: подразделение, данные, среда.'],
+  ['Секреты','Ключи и пароли не попадают в промпты, журналы и код.'],
+  ['Защита от инъекций в промпт','Фильтры ввода и вывода: чужие инструкции в документах не управляют агентом.'],
+  ['Изолированное исполнение','Песочницы и сетевые политики: агент не выходит за разрешённые границы.'],
+  ['Сканирование кода','Статический и динамический анализ, проверка зависимостей — для кода людей и агентов.'],
+  ['Цепочка поставок','Проверка весов моделей и зависимостей, подпись артефактов.'],
+  ['Требования регуляторов','В России — закон об ИИ 243-ФЗ, ЦБ и ФСТЭК; в США — GLBA, SOX, NYDFS Part 500. Руководство США по модельному риску SR 26-2 генеративный и агентный ИИ пока не покрывает — банку нужна своя рамка контроля.']]},
+{id:'x3',g:'x',code:'С3',n:'Оценка и бенчмарки',one:'Отвечает на вопрос «стало ли лучше» — до и после внедрения.',
+ need:'модель выбирают и масштабируют по цифрам на задачах банка, а не по маркетинговым рейтингам.',
+ c:[['Стенд оценки моделей','Единый воспроизводимый прогон моделей на наборах задач.'],
+  ['Внутренние бенчмарки','Набор задач из реальных репозиториев и процессов банка.'],
+  ['Публичные бенчмарки','Для первичного отбора моделей (например, SWE-bench для кода).'],
+  ['Проверка при смене модели','Новая версия не хуже старой на задачах банка.'],
+  ['Red-teaming','Атаки на модели и агентов до выхода в прод.'],
+  ['Оценка агентов целиком','Дошёл ли агент до принятого результата, а не только «ответила ли модель».'],
+  ['Метрики эффекта','Время цикла, доля принятых изменений, дефекты, сэкономленные часы.']]},
+{id:'x4',g:'x',code:'С4',n:'Наблюдаемость и петля улучшения',one:'Видно, что делают агенты и сколько это стоит, — и система учится на своих ошибках.',
+ need:'метрики — в существующем мониторинге банка; стоимость сценария видна его владельцу; уроки из журнала превращаются в правила.',
+ c:[['Трассировка действий','Цепочка шагов агента: запросы к модели, вызовы инструментов, решения.'],
+  ['Метрики инференса','Задержка, пропускная способность, загрузка GPU.'],
+  ['Метрики качества','Доля принятых результатов, возвраты, ошибки.'],
+  ['Детекция дрейфа','Качество модели или агента поплыло — сигнал до жалоб пользователей.'],
+  ['Наблюдаемость расходов','GPU-часы и токены по подразделениям и сценариям.'],
+  ['Сенсоры','Автоматические проверки: застрявшие задачи, нарушения правил.'],
+  ['Петля улучшения','Журнал → разбор → новые правила и навыки.'],
+  ['Алерты и дежурство','Сбой шлюза или модели — такой же инцидент, как сбой банковской системы.']]},
+{id:'x5',g:'x',code:'С5',n:'Жизненный цикл и внедрение',one:'Люди и процессы: без них стек остаётся стендом.',
+ need:'один ответственный за стыки между слоями; SLA на каждый слой; план замены любого компонента.',
+ c:[['Операционная модель и роли','Кто владеет платформой, моделями и агентами; кто подписывает риск.'],
+  ['Пилот → тираж','Пилот на одном домене с измеримыми критериями, затем масштабирование.'],
+  ['Онбординг и обучение команд','Разработчики, ревьюеры, архитекторы, безопасность.'],
+  ['Версии и откат','Модели, промпты, навыки и агенты версионируются; откат — одной операцией.'],
+  ['Управление инцидентами','Ошибки агентов разбираются по тому же регламенту, что и ИТ-инциденты.'],
+  ['Банк знаний команды','Уроки и решения копятся в общем хранилище, а не в головах.'],
+  ['Отчётность по комплаенсу','Регулярные отчёты для регулятора и внутреннего аудита — из журнала.'],
+  ['Поддержка и SLA','Обновление моделей и харнесов, патчи безопасности.'],
+  ['Интегратор и стыки','Кто собирает стек целиком и отвечает за стыки между слоями.']]}
+];
+const ORDER=['f','m','k','a','x'];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const byId=id=>L.find(l=>l.id===id);
+const codeLabel=l=>l.g==='x'?l.code:'Этаж '+l.code;
+
+function renderStack(){
+ const fl=document.getElementById('floors');
+ L.filter(l=>l.g!=='x').slice().reverse().forEach(l=>{
+  const b=document.createElement('a');b.className='band';b.href='#'+l.id;b.style.background=G[l.g].c;
+  b.innerHTML='<span class="bn">'+l.code+'</span><span><span class="bt">'+esc(l.n)+'</span><br><span class="bo">'+esc(l.one)+'</span></span><span class="bg">'+esc(G[l.g].n)+'</span>';
+  fl.appendChild(b);
+ });
+ const cr=document.getElementById('cross');
+ L.filter(l=>l.g==='x').forEach(l=>{
+  const b=document.createElement('a');b.className='band';b.href='#'+l.id;b.style.background=G.x.c;
+  b.innerHTML='<span class="bn">'+l.code+'</span><span class="bt">'+esc(l.n)+'</span>';
+  cr.insertBefore(b,cr.lastElementChild);
+ });
+ let html='';
+ ORDER.forEach(g=>{
+  const c=G[g].c;
+  html+='<div class="super" id="grp-'+g+'"><h2 class="super-tab" style="background:'+c+'">'+esc(G[g].n)+' <span class="super-en">'+esc(G[g].en)+'</span></h2><div class="super-box" style="border-color:'+c+'"><div class="mods">';
+  L.filter(l=>l.g===g).forEach(l=>{
+   html+='<article class="modbox" id="'+l.id+'"><div class="mod-h"><span class="mod-code" style="background:'+c+'">'+codeLabel(l)+'</span><h3 class="mod-nm">'+esc(l.n)+'</h3><span class="mod-ct">'+l.c.length+' компонентов</span></div>';
+   html+='<p class="mod-one">'+esc(l.one)+'</p><div class="tiles">';
+   l.c.forEach(t=>{html+='<button type="button" class="tile" data-n="'+esc(t[0])+'" data-d="'+esc(t[1])+'"><span class="dot" style="background:'+c+'" aria-hidden="true"></span>'+esc(t[0])+'<span class="sr">: '+esc(t[1])+'</span></button>';});
+   html+='</div><ul class="plist">'+l.c.map(t=>'<li><b>'+esc(t[0])+'</b> — '+esc(t[1])+'</li>').join('')+'</ul>';
+   html+='<p class="need"><b>Требование банка:</b> '+esc(l.need)+'</p></article>';
+  });
+  html+='</div></div></div>';
+ });
+ document.getElementById('stack-grid').innerHTML=html;
+}
+
+/* ---- tabs 2–3: vendor maps; tab 4: consortium. Data is filled in below. ---- */
+const CONF={h:{c:'#10b981',t:'✓ on-prem подтверждено'},m:{c:'#f59e0b',t:'◐ on-prem заявлен, детали не проверены'},l:{c:'#94a3b8',t:'? не подтверждено'}};
+const GRP={rt:{t:'Ростелеком',bg:'#e0f2fe',fg:'#075985'},yx:{t:'Яндекс',bg:'#fef9c3',fg:'#854d0e'},sb:{t:'Сбер',bg:'#dcfce7',fg:'#166534'},mts:{t:'МТС',bg:'#fee2e2',fg:'#991b1b'},tb:{t:'Т-Банк',bg:'#ffedd5',fg:'#9a3412'},ast:{t:'Группа Астра',bg:'#ede9fe',fg:'#5b21b6'},vtb:{t:'ВТБ*',bg:'#e0e7ff',fg:'#3730a3'},os:{t:'открытый код',bg:'#f1f5f9',fg:'#334155'},we:{t:'мы',bg:'#1f2430',fg:'#fff'}};
+const V=(n,co,r,u,c,g)=>({n,co,r,u,c,g});
+const US={notes:{},layers:{
+ f1:[V('DGX B300 / SuperPOD','NVIDIA','GPU-кластеры и сеть (Spectrum-X, InfiniBand) в ЦОД заказчика','https://docs.nvidia.com/dgx-superpod/reference-architecture/scalable-infrastructure-b300/latest/dgx-superpod-components.html','h'),
+  V('Instinct MI355X · стойка Helios','AMD','альтернативные ускорители; Helios — со второй половины 2026','https://www.amd.com/en/products/rackscale-solutions/helios.html','m'),
+  V('AI Factory (PowerEdge XE9780/XE9785)','Dell','серверы с GPU и готовые стойки','https://www.dell.com/en-us/lp/nvidia-ai','h'),
+  V('GPU SuperServer','Supermicro','серверы и стоечные решения','https://www.supermicro.com/en/pressreleases/supermicro-and-vast-data-launch-new-enterprise-ai-data-platform-solution-nvidia','h'),
+  V('VAST AI OS','VAST Data','хранилище для ИИ со встроенным поиском','https://www.vastdata.com/platform/insightengine','h'),
+  V('FlashBlade//EXA','Pure Storage','хранилище для ИИ; альтернативы — DDN, WEKA','https://www.purestorage.com/company/newsroom/press-releases/pure-storage-introduces-flashblade-exa.html','h')],
+ f2:[V('Run:ai self-hosted','NVIDIA (Run:ai — Израиль)','планирование GPU и квоты, пакет для изолированного контура','https://run-ai-docs.nvidia.com/self-hosted','h'),
+  V('OpenShift AI Self-Managed','Red Hat (IBM)','Kubernetes-платформа для ИИ, реестр моделей, установка без интернета','https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/3.2/html-single/installing_and_uninstalling_openshift_ai_self-managed_in_a_disconnected_environment/index','h'),
+  V('VMware Private AI Foundation','Broadcom','виртуализованные GPU, изолированный контур','https://techdocs.broadcom.com/content/dam/broadcom/techdocs/us/en/pdf/vmware/private-ai/private-ai-nvidia/vmware-private-ai-foundation-with-nvidia-9-1.pdf','h'),
+  V('Nutanix Enterprise AI','Nutanix','эндпоинты моделей на гиперконвергентной платформе без интернета','https://portal.nutanix.com/page/documents/details?targetId=Nutanix-Enterprise-AI-v2_6%3Atop-deploy-nai-airgap-t.html','h'),
+  V('Private Cloud AI','HPE','готовое частное ИИ-облако в изолированном исполнении','https://www.hpe.com/us/en/solutions/air-gapped-private-cloud-solutions.html','h'),
+  V('Slurm + Base Command Manager','NVIDIA (SchedMD куплена в 12/2025)','планирование вычислительных задач и выдача серверов','https://blogs.nvidia.com/blog/nvidia-acquires-schedmd','h')],
+ f3:[V('vLLM / Red Hat AI Inference','open source / Red Hat','основной движок; понимает API OpenAI и Anthropic (/v1/messages)','https://docs.vllm.ai/en/stable/serving/integrations/claude_code/','h'),
+  V('SGLang','open source (LMSYS)','альтернативный движок инференса','https://github.com/sgl-project/sglang','h'),
+  V('NIM + TensorRT-LLM','NVIDIA','упакованные контейнеры моделей с офлайн-кэшем','https://docs.nvidia.com/nim/large-language-models/latest/deployment/air-gap-deployment.html','h'),
+  V('Dynamo','NVIDIA','распределённый инференс на много узлов; API Anthropic с версии 1.1','https://docs.nvidia.com/dynamo/reference/releases/v1-1-0','h'),
+  V('llm-d','CNCF (Red Hat, Google, IBM)','распределённый инференс в Kubernetes с маршрутизацией по кэшу','https://www.cncf.io/blog/2026/03/24/welcome-llm-d-to-the-cncf-evolving-kubernetes-into-sota-ai-infrastructure/','m')],
+ m4:[V('gpt-oss-120b / 20b','OpenAI','открытые веса Apache 2.0; обновлений с 08/2025 нет','https://openai.com/index/introducing-gpt-oss/','h'),
+  V('Nemotron 3 + NeMo Retriever / Customizer','NVIDIA','открытые модели, эмбеддинги, дообучение','https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models','h'),
+  V('Granite 4.1 + Embedding / Reranker','IBM','малые модели Apache 2.0 и модели поиска','https://research.ibm.com/blog/granite-4-1-ai-foundation-models','h'),
+  V('Gemini на Google Distributed Cloud','Google','закрытая модель на оборудовании в контуре; открытые — Gemma','https://cloud.google.com/blog/products/ai-machine-learning/run-gemini-and-ai-on-prem-with-google-distributed-cloud','h'),
+  V('Command A · Embed · Rerank · North','Cohere (Канада)','модели и агентная платформа с изолированным развёртыванием','https://docs.cohere.com/docs/deployment-options-overview','h'),
+  V('Devstral 2 · Mistral Large 3','Mistral (Франция)','модели для кода и агентов; банку такого размера нужна коммерческая лицензия','https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512/blob/main/LICENSE','m')],
+ m5:[V('LiteLLM Proxy','BerriAI','переводит /v1/messages на любой бэкенд; ключи, бюджеты, учёт','https://docs.litellm.ai/docs/tutorials/claude_non_anthropic_models','h'),
+  V('Kong AI Gateway','Kong','самостоятельная установка; семантический кэш и лимиты токенов — в Enterprise','https://konghq.com/products/kong-ai-gateway','h'),
+  V('Envoy AI Gateway 1.0','CNCF (Bloomberg, Tetrate)','лимиты токенов, авторизация MCP','https://tetrate.io/press/envoy-ai-gateway-reaches-v1-0-establishing-the-open-source-standard-for-enterprise-ai-traffic','h'),
+  V('Prisma AIRS AI Gateway (бывший Portkey)','Palo Alto Networks','маршрутизация и ограничители; изолированный режим — только Enterprise','https://portkey.ai/docs/changelog/enterprise','m')],
+ k6:[V('IBM Knowledge Catalog + Manta Lineage','IBM','каталог, происхождение данных и правила защиты на OpenShift','https://www.ibm.com/docs/en/software-hub/5.3.x?topic=services-knowledge-catalog','h'),
+  V('Collibra Platform Self-Hosted','Collibra (США / Бельгия)','каталог и происхождение данных, в том числе без сети','https://www.collibra.com/blog/end-to-end-data-visibility-for-collibra-platform-self-hosted-customers-with-collibra-data','h'),
+  V('Immuta Self-Managed','Immuta','политики доступа, маскирование, контроль локации данных','https://documentation.immuta.com/latest/configuration/self-managed-deployment/configure/immuta-in-an-air-gapped-environment','h'),
+  V('Astro Private Cloud (Airflow)','Astronomer','оркестрация конвейеров данных без сети','https://www.astronomer.io/product/astro-private-cloud/','h'),
+  V('BigID self-managed','BigID','поиск чувствительных данных, DLP для промптов, режим без интернета','https://bigid.com/sovereign-ai/','m'),
+  V('Protecto Privacy Vault','Protecto','токенизация персональных данных до LLM и RAG','https://www.protecto.ai/product/privacy-vault/','m'),
+  V('MOSTLY AI','Syntho (Нидерланды)','синтетические табличные данные','https://mostly.ai/docs/install/deploy','m')],
+ k8:[V('GitLab Self-Managed + Duo Agent Platform','GitLab','Git, трекер и CI/CD; ИИ без сети на своих моделях требует исключения из облачного лицензирования','https://docs.gitlab.com/administration/gitlab_duo_self_hosted/offline_deployment/','h'),
+  V('GitHub Enterprise Server 3.22','GitHub (Microsoft)','Git и Actions; Copilot CLI без сети — только предпросмотр','https://github.blog/changelog/2026-09-08-github-enterprise-server-3-22-is-now-generally-available/','h'),
+  V('Confluent Platform','Confluent (IBM)','шина событий Kafka, установка без сети','https://docs.confluent.io/ansible/current/ansible-airgap.html','h'),
+  V('Kong Gateway Enterprise','Kong','API-шлюз; лицензия проверяется без сети','https://developer.konghq.com/gateway/entities/license/','h'),
+  V('IBM z/OS Connect + MQ','IBM','доступ агентов к мейнфрейму через REST и MCP','https://www.ibm.com/products/zos-connect','h'),
+  V('MuleSoft Anypoint Private Cloud Edition','Salesforce','интеграционная платформа целиком внутри контура','https://docs.mulesoft.com/private-cloud/latest/','h')],
+ k7:[V('Elasticsearch self-managed','Elastic (США / Нидерланды)','гибридный и векторный поиск, коннекторы, связка с локальным vLLM','https://www.elastic.co/docs/explore-analyze/ai-features/llm-guides/connect-to-vLLM','h'),
+  V('EDB Postgres AI (pgvector)','EDB','Postgres с векторным поиском','https://www.enterprisedb.com/products/edb-postgres-ai','m'),
+  V('Milvus 3.0','LF AI & Data / Zilliz','открытая векторная БД для изолированного контура','https://zilliz.com/news/milvus-3-0-lake-native-vector-database','h'),
+  V('Qdrant Private Cloud','Qdrant (Германия)','векторная БД для изолированного контура','https://qdrant.tech/documentation/private-cloud/','h')],
+ a9:[V('LangGraph + LangSmith self-hosted','LangChain','контрольные точки и одобрение человеком; для изолированного контура нужна отдельная лицензия','https://docs.langchain.com/langsmith/deployment','m'),
+  V('Temporal','Temporal','долгие процессы, сигналы для одобрений','https://temporal.io/solutions/ai','h'),
+  V('Microsoft Agent Framework 1.0','Microsoft','SDK под MIT вместо Semantic Kernel и AutoGen, локальные модели','https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/','h'),
+  V('MCP + ContextForge / agentgateway','Linux Foundation / IBM / Solo.io','протокол инструментов и MCP-шлюзы в контуре','https://github.com/IBM/mcp-context-forge','h'),
+  V('CrewAI Factory','CrewAI','мультиагентная среда в контуре; изолированный режим не подтверждён','https://blog.crewai.com/unlocking-agent-native-transformation-with-crewai-factory-and-nvidia/','l')],
+ a10:[V('Claude Code + шлюз','Anthropic','CLI-харнес: подключается к внутреннему шлюзу, но работу с не-Claude моделями Anthropic официально не поддерживает','https://code.claude.com/docs/en/llm-gateway','m'),
+  V('Codex CLI','OpenAI (Apache 2.0)','режим --oss и собственный провайдер; нужен Responses API','https://developers.openai.com/codex/config-advanced','h'),
+  V('OpenHands (+ Enterprise)','OpenHands','агент под MIT на vLLM и SGLang, Enterprise — в Kubernetes','https://docs.openhands.dev/openhands/usage/llms/local-llms','h'),
+  V('Cline (+ Enterprise)','Cline','агент в IDE под Apache 2.0 с локальными моделями','https://docs.cline.bot/running-models-locally/overview','m'),
+  V('Tabnine Enterprise','Tabnine (Израиль)','изолированный контур, модель заказчика','https://docs.tabnine.com/main/welcome/readme/system-requirements/system-requirements','h'),
+  V('JetBrains AI Enterprise','JetBrains (Чехия)','изолированный контур через vLLM и Mellum; агент Junie on-prem не подтверждён','https://www.jetbrains.com/help/ide-services/aie-on-premises.html','m')],
+ a11:[V('Open WebUI','Open WebUI Inc.','чат к внутренним моделям без сети; для больше 50 пользователей смена бренда — только с enterprise-лицензией','https://openwebui.com/defense','h'),
+  V('LibreChat','ClickHouse','чат и агенты с MCP, лицензия MIT','https://clickhouse.com/blog/clickhouse-acquires-librechat','h'),
+  V('Mattermost + Agents','Mattermost','мессенджер с агентами на локальных моделях, без сети','https://docs.mattermost.com/agents/docs/sovereign_ai.html','h'),
+  V('Rocket.Chat','Rocket.Chat','мессенджер без сети, регистрация офлайн','https://docs.rocket.chat/setup-and-configure/rocket.chat-air-gapped-deployment','h'),
+  V('Grafana OSS / Enterprise','Grafana Labs','дашборды и наблюдение за агентами; продление токена Enterprise без сети — через вендора','https://grafana.com/docs/grafana/latest/administration/enterprise-licensing/','h')],
+ a12:[V('Coder Agents','Coder','фоновые агенты разработки в изолированном контуре (с 09/2026)','https://coder.com/blog/coder-agents-ga','h'),
+  V('Moderne DX','Moderne','массовые миграции кода в изолированном контуре; MCP для агентов','https://moderne.ai/moderne-dx','h'),
+  V('Qodo Enterprise','Qodo (Израиль / США)','агенты ревью и тестов в изолированном контуре','https://www.qodo.ai/solutions/enterprise/','m'),
+  V('IBM Bob · пакет для Z','IBM','модернизация мейнфреймов; Bob on-prem не подтверждён','https://bob.ibm.com/docs/ide/enterprise/on-premises/installation/model-serving','l'),
+  V('watsonx Orchestrate','IBM','агенты бизнес-процессов, изолированный контур','https://developer.watson-orchestrate.ibm.com/tutorials/tutorial_5_operating_in_an_airgapped_environment','h'),
+  V('UiPath Automation Suite (Agents, Maestro)','UiPath','агентная автоматизация процессов on-prem; свои LLM — не для всех функций','https://www.uipath.com/blog/product-and-updates/agentic-ai-now-where-your-data-lives','h')],
+ x1:[V('watsonx.governance + watsonx Orchestrate','IBM','реестр ИИ и агентов, управление модельным риском, одобрения человеком; без сети','https://www.ibm.com/docs/en/software-hub/5.1.x?topic=watsonxgovernance-installing','h'),
+  V('DataRobot Agent Workforce Platform','DataRobot','единые политики, происхождение и документация для агентов, без сети','https://www.datarobot.com/newsroom/press/datarobot-unifies-ai-governance-beyond-the-cloud/','h'),
+  V('SAS Model Risk Management (Viya)','SAS','банковское управление модельным риском: инвентарь, валидация, аттестация','https://github.com/sassoftware/viya4-iac-k8s','h'),
+  V('Credo AI self-hosted','Credo AI','реестр ИИ-систем, оценка рисков, политики','https://docs.selfhost.credo.ai/docs/self-hosted/installation/common/','m'),
+  V('ModelOp Center','ModelOp','инвентарь ИИ, маршруты одобрений, контроль агентов','https://www.modelop.com/ai-governance-software','m')],
+ x2:[V('Vault Enterprise (agentic IAM)','HashiCorp (IBM)','секреты и отдельная идентичность агента на каждый запрос','https://www.hashicorp.com/en/blog/hashicorp-vault-agentic-iam-is-now-generally-available','h'),
+  V('CyberArk PAM Self-Hosted','Palo Alto Networks (CyberArk — Израиль)','привилегированный доступ; функции для агентов — сначала в SaaS','https://docs.cyberark.com/pam-self-hosted/latest/en/content/release%20notes/rn-whatsnew.htm','m'),
+  V('NeMo Guardrails + NemoGuard','NVIDIA','ограничители и модели безопасности для изолированного контура','https://docs.nvidia.com/nim/nemoguard-jailbreakdetect/1.10.1/air-gapped.html','h'),
+  V('gpt-oss-safeguard · Llama Guard 4 · Granite Guardian','OpenAI · Meta · IBM','локальные классификаторы безопасности с открытыми весами','https://openai.com/index/introducing-gpt-oss-safeguard/','m'),
+  V('agent-sandbox + gVisor / Kata','Kubernetes SIG Apps','изоляция кода, созданного агентом; ещё созревает','https://github.com/kubernetes-sigs/agent-sandbox','m')],
+ x3:[V('lm-evaluation-harness','EleutherAI','офлайн-бенчмарки против локальных моделей','https://github.com/EleutherAI/lm-evaluation-harness','h'),
+  V('HELM','Stanford CRFM','комплексная оценка моделей','https://github.com/stanford-crfm/helm','h'),
+  V('NeMo Evaluator','NVIDIA','SDK под Apache 2.0 и микросервис on-prem','https://github.com/NVIDIA-NeMo/Evaluator','h'),
+  V('Promptfoo Enterprise On-Prem','OpenAI (куплен в 03/2026)','оценки и red-teaming в CI','https://www.promptfoo.dev/docs/usage/self-hosting/','m'),
+  V('garak · PyRIT','NVIDIA · Microsoft','поиск уязвимостей моделей, red-team кампании','https://github.com/NVIDIA/garak','h'),
+  V('SWE-bench / SWE-bench Pro','Princeton–Stanford / Scale AI','запуск локально в Docker; публичные результаты в 2026 ненадёжны','https://openai.com/index/separating-signal-from-noise-coding-evaluations/','m')],
+ x4:[V('Langfuse self-hosted','ClickHouse (Langfuse — Германия)','трассировка агентов, оценки, управление промптами','https://clickhouse.com/blog/clickhouse-acquires-langfuse-open-source-llm-observability','h'),
+  V('Arize Phoenix','Arize','трассировка на OpenTelemetry для изолированного контура, лицензия ELv2','https://arize.com/docs/phoenix/self-hosting','h'),
+  V('OpenTelemetry GenAI','CNCF','стандарт трассировки агентов; пока в статусе разработки','https://opentelemetry.io/blog/2026/genai-observability/','m'),
+  V('Splunk Enterprise + AI POD','Cisco','аудит и SIEM, качество агентов и учёт токенов on-prem','https://www.networkworld.com/article/4222333/cisco-brings-splunk-ai-on-premises-expands-agent-observability-monitors-token-costs.html','m'),
+  V('OpenCost + DCGM exporter','CNCF','стоимость GPU и цена миллиона токенов','https://www.cncf.io/blog/2026/08/05/opencost-1-121-0-first-of-a-kind-kubernetes-inference-cost-tracking/','h')],
+ x5:[V('AI Proving Ground','WWT','лабораторная проверка стека; кейс сертификации DGX в банке','https://www.wwt.com/case-study/how-a-bank-gained-early-insights-from-wwts-ai-proving-ground','h'),
+  V('AI-фабрики для банков','AHEAD','партнёр NVIDIA 2026 года в финансовом секторе','https://www.ahead.com/news/ahead-awarded-nvidia-2026-npn-financial-services-partner-of-the-year/','m'),
+  V('Silicon2Service AI Factory','Deloitte','управляемая ИИ-фабрика on-prem или в колокации','https://www.deloitte.com/us/en/services/consulting/articles/s2s-ai-factory-nvidia.html','m'),
+  V('IBM Consulting + Sovereign Core','IBM','изолированный суверенный ИИ-стек и интеграция','https://newsroom.ibm.com/2026-05-05-think-2026-ibm-makes-digital-sovereignty-operational-with-general-availability-of-ibm-sovereign-core','h')]
+}};
+US.notes={
+ m4:'<b>Риск закупки:</b> сильнейшие открытые модели для кода — китайского происхождения (Qwen, DeepSeek, GLM, Kimi). Американские открытые модели обновляются реже.',
+ m5:'Открытые компоненты шлюза — только из внутреннего зеркала с фиксацией версий и хэшей: пакеты ИИ-инструментов — частая цель атак на цепочку поставок.',
+ k6:'Не подходят: Informatica PowerCenter — стандартная поддержка закончилась в 03.2026, преемник работает только в облаке; Private AI и Tonic требуют выхода в интернет (лицензия, телеметрия).',
+ k8:'Atlassian Data Center новым клиентам не продаётся с 30.03.2026, конец жизни — 28.03.2029: для нового контура не брать. Альтернатива трекеру — Azure DevOps Server.',
+ a10:'Штатно работают с локальными моделями открытые харнесы: Codex CLI, OpenHands, Cline, Aider, Goose.',
+ a11:'Плагины IDE — см. харнес (Tabnine, Cline, JetBrains). Исключены: у Microsoft Teams нет on-prem версии, GitHub Copilot в IDE без сети не работает.',
+ x1:'<b>Готового продукта нет:</b> ни один продукт целиком не закрывает классы решений, права на решения и реестр агентов — ближе всего IBM и DataRobot. Исключены: ValidMind и Monitaur (только у вендора), Microsoft Purview (облако).<br><b>Регуляторика США:</b> <a href="https://www.federalreserve.gov/supervisionreg/srletters/SR2602.htm">SR 26-2</a> (17.04.2026) заменил SR 11-7 по управлению модельным риском, но генеративный и агентный ИИ прямо вывел за рамки руководства (сноска 3) — банку нужна своя рамка контроля, например NIST AI RMF. GLBA — защита данных клиентов, в том числе в промптах, индексах и журналах агентов. SOX §404 — контроль изменений и аудит для агентов, затрагивающих финансовую отчётность. NYDFS Part 500 — в полной силе с 01.11.2025.',
+ x2:'Исключены: Cisco AI Defense и Prisma AIRS держат управление в облаке вендора.'
+};
+US.head=`<div class="verdict"><div>
+ <div class="v-kicker">Вариант 2 · те же 17 слоёв — игроки рынка США</div>
+ <p class="v-main">Рынок США закрывает почти все слои готовыми on-prem продуктами — <em>но харнес, модели и поставщики остаются зоной риска</em>.</p>
+ <p class="v-sub">Проверено 28.09.2026 по документации вендоров, пресс-релизам и новостям; у каждой позиции — ссылка на подтверждение. Только облачные продукты исключены.</p>
+</div><ol class="rules" aria-label="Три оговорки">
+ <li><span class="n" aria-hidden="true">1</span><b>Claude Code с локальными моделями работает, но без поддержки.</b> vLLM и Dynamo понимают API Anthropic, LiteLLM переводит запросы. Однако Anthropic официально <a href="https://code.claude.com/docs/en/llm-gateway">не поддерживает</a> работу с не-Claude моделями, а каждый выпуск добавляет возможности, которые шлюз должен пропускать.</li>
+ <li><span class="n" aria-hidden="true">2</span><b>Модели.</b> Лучшие открытые модели для кода — китайского происхождения; американские обновляются реже; Mistral требует коммерческой лицензии для банка такого размера.</li>
+ <li><span class="n" aria-hidden="true">3</span><b>Поставщики меняются.</b> В 2026 году инструменты контроля активно скупаются: Promptfoo — OpenAI, Langfuse — ClickHouse, Portkey и CyberArk — Palo Alto. По каждому компоненту нужен план замены.</li>
+</ol></div>
+<details class="more" id="claude-code-setup"><summary>Как Claude Code работает в контуре банка <span class="sm">переменные, шлюз, отключение внешнего трафика — по документации Anthropic</span></summary><div class="body"><ul class="plain">
+ <li><b>Подключение к шлюзу:</b> <code>ANTHROPIC_BASE_URL</code> и учётные данные шлюза (<code>ANTHROPIC_AUTH_TOKEN</code> или <code>apiKeyHelper</code>) раздаются через управляемые настройки. Шлюз обязан принимать <code>/v1/messages</code> и пропускать заголовки <code>anthropic-version</code> и <code>anthropic-beta</code> (<a href="https://code.claude.com/docs/en/llm-gateway-protocol">совместимость шлюза</a>).</li>
+ <li><b>Локальные модели:</b> vLLM и Dynamo 1.1+ понимают API Anthropic напрямую, LiteLLM переводит его на другие бэкенды. Псевдонимы моделей задаются переменными вида <code>ANTHROPIC_DEFAULT_SONNET_MODEL</code>.</li>
+ <li><b>Внешний трафик:</b> <code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1</code> отключает весь необязательный трафик — автообновления, метрики, отчёты об ошибках, <code>/feedback</code>. Две вещи выключаются отдельно: проверка домена перед WebFetch (<code>skipWebFetchPreflight: true</code> в настройках) и автоустановка официального маркетплейса плагинов (<code>CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL=1</code>) (<a href="https://code.claude.com/docs/en/data-usage">использование данных</a>).</li>
+ <li><b>Установка без интернета:</b> пакеты — из внутреннего зеркала; <code>DISABLE_UPDATES=1</code> запрещает любые обновления, кроме раздачи через каналы банка; прокси, свой сертификат и mTLS настраиваются переменными окружения (<a href="https://code.claude.com/docs/en/env-vars">переменные окружения</a>, <a href="https://code.claude.com/docs/en/network-config">сетевые настройки</a>).</li>
+ <li><b>Ограничение:</b> Anthropic не поддерживает маршрутизацию на не-Claude модели — поэтому версии Claude Code фиксируются, а каждое обновление проходит регрессию на стенде банка.</li>
+</ul></div></details>`;
+US.tail=`<details class="more" id="us-risks"><summary>Дыры и риски рынка США <span class="sm">6 пунктов</span></summary><div class="body"><ul class="plain">
+ <li><b>On-prem — не значит «без сети».</b> Private AI (лицензия), Tonic (телеметрия), Grafana Enterprise (токен) и GitLab Duo (облачное лицензирование) требуют выхода наружу — проверять пилотом с закрытым выходом.</li>
+ <li><b>Хрупкость харнеса.</b> Claude Code на локальных моделях не поддерживается; вызовы инструментов у Codex на vLLM тоже имеют открытые ошибки. Версии фиксировать, регрессию гонять на каждый выпуск.</li>
+ <li><b>Поставка моделей.</b> Сильнейшие открытые модели для кода — китайские; американские открытые отстают по обновлениям.</li>
+ <li><b>Регуляторный вакуум по генеративному ИИ.</b> SR 26-2 прямо исключает генеративный и агентный ИИ; пока надзор не выпустил отдельных правил, банку нужна своя рамка контроля (например, NIST AI RMF).</li>
+ <li><b>Не совсем on-prem.</b> Часть продуктов держит управление в облаке вендора (Cisco AI Defense, Prisma AIRS, Pega GenAI) или работает только в облаке заказчика (Zilliz BYOC) — исключены.</li>
+ <li><b>Цепочка поставок и смена владельцев.</b> Внутренние зеркала с фиксацией хэшей, перечни компонентов (SBOM), планы выхода и собственные наборы задач для оценки на репозиториях банка.</li>
+</ul></div></details>`;
+const RU={notes:{},layers:{
+ f1:[V('G4208P G3 · VEGMAN · СХД TATLIN','YADRO (ИКС Холдинг)','GPU-сервер на 8 GPU в реестре; поддерживает H200 NVL и китайский MetaX C500','https://yadro.com/uskoriteli-nvidia-h200-i-rtx-pro-6000-teper-podderzhivayutsya-serverami-yadro','h'),
+  V('TS3030','Kraftway','доверенный сервер на 6 GPU','https://kraftway.ru/news/nadyezhnaya-platforma-dlya-iskusstvennogo-intellekta/','h'),
+  V('H200 NVL · H100','NVIDIA (США)','основной ускоритель; ввозится только параллельным импортом','https://www.ixbt.com/news/2026/03/16/4-4-141-nvidia-h200-nvl.html','m'),
+  V('Китайские GPU','производитель не назван','ВТБ пилотирует замену NVIDIA с 03.2026','https://ria.ru/20260408/vtb-2085882241.html','m'),
+  V('BE-AI-D1000 · LinQ HX','Байкал Электроникс · «ХайТэк»','отечественные ускорители; серийно — не раньше 2029–2030','https://telesputnik.ru/materials/tech/news/rossiiskie-ii-uskoriteli-baikal-sostavyat-konkurenciyu-reseniyam-nvidia','l'),
+  V('РТК-ЦОД: колокация и «Облако КИИ»','РТК-ЦОД','ЦОД и резервные площадки банков; облако по ГОСТ Р 57580','https://banks.cnews.ru/news/line/2026-06-22_rtk-tsod_poluchil_pravo_razmeshchat','m','rt')],
+ f2:[V('Basis Dynamix','«Базис» (50,3% у РТК-ЦОД)','виртуализация и частное облако вместо VMware','https://basistech.ru/products/dynamix-standard','h','rt'),
+  V('zVirt 5.0','Orion soft','виртуализация на KVM с пробросом GPU и vGPU','https://wiki.orionsoft.ru/knowledgebase/latest/vgpu/gpu-passthrough-4/','h'),
+  V('Брест','Группа Астра','виртуализация на Astra Linux с NVIDIA vGPU','https://wiki.astralinux.ru/brest/3.2/podklyuchenie-nvidia-vgpu-k-vm-302045322.html','h','ast'),
+  V('Deckhouse Platform','Флант','Kubernetes с разделением GPU (MIG, TimeSlicing)','https://deckhouse.ru/modules/gpu/','h'),
+  V('Штурвал 2.14','Лаборатория Числитель','Kubernetes со встроенными GPU Operator и Kubeflow','https://chislitellab.ru/news/vstroennye-instrumenty-dlya-ml-i-podderzhka-gateway-api-v-shturvale','h'),
+  V('Stackland','Яндекс','платформа и Kubernetes для закрытого контура','https://yandex.ru/company/news/26-03-2026-01','m','yx')],
+ f3:[V('vLLM · SGLang',null,'фактический стандарт движков; на них запускают и GigaChat 3.5','https://habr.com/ru/articles/1016062','h','os'),
+  V('Inference Valve · MWS GPT','MWS','развёртывание моделей на серверах заказчика или в ПАК','https://mws.ru/news/mws-cloud-zapustila-platformu-dlya-raboty-s-llm-i-modelyami-kompyuternogo-zreniya/','h','mts'),
+  V('On-Premises AI-as-a-Service','Яндекс (ПАК с GPU от Selectel)','готовый ПАК с Yandex AI Studio для контура','https://yandex.ru/company/news/28-05-2026-02','h','yx'),
+  V('Evolution Stack.ML','Cloud.ru','частное облако с GPU для обучения и инференса','https://cloud.ru/evolution-stack','m','sb'),
+  V('Машина ИИ Скала^р','Rubytech','ПАК для обучения и инференса, испытан на китайских GPU','https://www.skala-r.ru/products/ai/pac-for-ai/','h')],
+ m4:[V('GigaChat 3.5 Ultra · 3.1 Lightning','Сбер','открытые веса под MIT','https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B-bf16','h','sb'),
+  V('YandexGPT 5 Lite 8B · YandexGPT в AI Studio on-prem','Яндекс','Lite бесплатна в коммерции до 10 млн токенов в месяц','https://huggingface.co/yandex/YandexGPT-5-Lite-8B-instruct','h','yx'),
+  V('AliceAI-Foundation-80B-A3B-Base','Яндекс','базовая модель под Apache 2.0, требует дообучения','https://huggingface.co/yandex/AliceAI-Foundation-80B-A3B-Base','h','yx'),
+  V('T-Pro 2.0 · T-Lite','Т-Банк','открытые веса под Apache 2.0','https://huggingface.co/t-tech/T-pro-it-2.0','h','tb'),
+  V('Cotype Pro 2.5 · Pro 3','MWS AI','закрытые веса, ставится в контур заказчика','https://mts.ai/tech/mts-ai-releases-cotype-pro-2-second-generation-business-focused-llm/','h','mts'),
+  V('Kodify 2 · Kodify Nano','MWS AI','модели для кода; Nano открыта','https://mts.ai/product/kodify/','h','mts')],
+ m5:[V('Platform V SOWA AI','СберТех','шлюз к моделям с фильтрацией, в реестре Минцифры','https://www.anti-malware.ru/analytics/Market_Analysis/AI-Firewall-AI-Secure-Gateway','m','sb'),
+  V('Neoflex Neon','Неофлекс','единая точка вызова LLM и учёт затрат; в реестре ПО','https://www.cnews.ru/news/line/2026-08-13_ii-platforma_neoflex_neon_voshla','h'),
+  V('MWS GPT','MWS','каталог моделей с OpenAI-совместимым API; Model Hub — только облако','https://mws.ru/services/mws-gpt/','m','mts'),
+  V('Caila (Agent Platform Enterprise)','Just AI','единый API к GigaChat, YandexGPT и локальным моделям','https://just-ai.com/agent-platform-enterprise','m'),
+  V('Veai Platform','Veai','шлюз к моделям: квоты, журнал аудита, фильтр чувствительных данных; варианты поставки, включая on-premise, — на сайте, условия уточняются','https://veai.ru/','m','we'),
+  V('LiteLLM','BerriAI (США)','шлюз на своих серверах — выбор по умолчанию','https://arte.itlibra.com/ru/articles/llm-gateway-proxy-guide','m','os')],
+ k6:[V('Arenadata Catalog','ГК Arenadata','каталог, глоссарий и автоматическое происхождение данных; в реестре, сертификат ФСТЭК','https://arenadata.tech/products/arenadata-catalog/','h'),
+  V('Гарда Data Masking','ГК «Гарда»','обезличивание баз данных; сертификат ФСТЭК','https://cisoclub.ru/garda-data-masking-poisk-obezlichivanie-i-udalenie-konfidencialnyh-dannyh/','h'),
+  V('Jay Guard','Just AI','маскирование больше 25 типов персональных данных в промптах, журнал аудита','https://just-ai.com/agent-platform-enterprise','h'),
+  V('Solar Dozor + Solar webProxy','ГК «Солар»','DLP и контроль запросов к ИИ-сервисам','https://safe.cnews.ru/news/line/2026-02-04_solar_webproxy_kontroliruet_rabotu','h','rt'),
+  V('Traffic Monitor','InfoWatch','DLP: контролирует ИИ-сервисы как канал утечки; сертификат ФСТЭК','https://www.infowatch.ru/zaschita-dannykh-ot-utechek/dlp-sistema-traffic-monitor','h'),
+  V('Сфера.Генерация синтетических данных','НОТА / Т1','синтетика и обезличивание для тестовых сред; способ поставки модуля не указан','https://www.sferaplatform.ru/generatsiya-sinteticheskikh-dannykh','m','vtb')],
+ k8:[V('«Сфера»: задачи, знания, код, CI/CD','НОТА / Т1','замена Jira, Confluence, Bitbucket и Jenkins; в ВТБ — больше 24 тыс. пользователей','https://www.anti-malware.ru/news/2025-04-02-121598/45693','h','vtb'),
+  V('GitFlic Self-Hosted / Enterprise','Группа Астра','Git, CI/CD, релизы','https://gitflic.ru/download/onpremise','h','ast'),
+  V('GitVerse on-premise','СберТех','Git, CI/CD и GigaCode; контур без интернета с 05.2026','https://www.cnews.ru/news/line/2026-05-18_platforma_gitverse_teper_dostupna','h','sb'),
+  V('Arenadata Streaming','ГК Arenadata','шина Kafka и конвейеры NiFi; в реестре','https://arenadata.tech/products/arenadata-streaming/','h'),
+  V('Digital Q.Integration','Диасофт','интеграционная шина для банков: коннекторы ЦФТ, SWIFT, QUIK, 1С','https://q.diasoft.ru/products/tekhnologicheskie-platformy/digital-q-integration/','h'),
+  V('Platform V Synapse API Mesh','СберТех','управление API и шлюз на замену IBM DataPower','https://platformv.sbertech.ru/products/integraczionnye-servisy/synapse-api-management','h','sb')],
+ k7:[V('Postgres Pro Enterprise 18','Postgres Professional','СУБД с pgvector и pgpro_vector','https://postgrespro.ru/docs/enterprise/current/intro-pgpro-vs-pg','h'),
+  V('Tantor Postgres SE','Тантор Лабс','СУБД с pgvector','https://docs.tantorlabs.ru/tdb/ru/16_13/se/vector.html','h','ast'),
+  V('Platform V Pangolin','СберТех','СУБД с векторным типом данных','https://pangolin.sbertech.ru/center/docs/7/extensions/vector','m','sb'),
+  V('YDB','Яндекс (открытый код)','распределённая СУБД с векторными индексами','https://ydb.tech/docs/ru/dev/vector-indexes','h','yx'),
+  V('Arenadata Advanced RAG','Группа Arenadata','RAG-платформа, ставится без интернета','https://arenadata.tech/products/intellektualnyj-poiskovik-dlya-ii-agentov-i-lyudej-advanced-rag/','h')],
+ a9:[V('ГигаЧат Бизнес (GigaChat Enterprise)','Сбер','ИИ-агенты; для банков и КИИ — локальный ПАК','https://habr.com/ru/companies/sberbank/news/1005990/','h','sb'),
+  V('MWS AI Agents Platform','MWS AI','low-code агенты и их эксплуатация в закрытом контуре','https://habr.com/ru/companies/mts_ai/news/973544/','h','mts'),
+  V('Agent Platform Enterprise','Just AI','мультиагентность на любых LLM; пробный дистрибутив для контура','https://www.cnews.ru/news/line/2026-04-22_just_ai_zapuskaet_otkrytyj_distributiv','h'),
+  V('Yandex AI Studio on-premises','Яндекс','no-code агенты и модели внутри контура','https://aistudio.yandex.ru/on-premises','h','yx'),
+  V('«Око»','«Лукоморье»','мультиагентная платформа, модели на своих серверах','https://www.company.rt.ru/press/news/d479385/','m','rt'),
+  V('ELMA Cortex','ELMA','агенты внутри BPM ELMA365 On-Premises','https://elma365.com/ru/help/cortex/cortex.html','h'),
+  V('Naumen Erudite · Agent Copilot','Naumen','агенты контакт-центров (ОТП Банк, Банк ДОМ.РФ)','https://www.naumen.ru/products/erudite/','m')],
+ a10:[V('GigaCode Enterprise · GigaCode CLI · GitVerse · GigaIDE','Сбер','ассистент и мультиагентный CLI; версия для контура с 10.2024','https://gitverse.ru/docs/billing/paid-licenses/','h','sb'),
+  V('Kodify 2.5','MWS AI','автодополнение и генерация кода в VS Code и JetBrains','https://mts.ai/product/kodify/','h','mts'),
+  V('Астра ИИ Код','Группа Астра','CLI-агент для закрытого контура КИИ; полный выпуск — IV кв. 2026','https://corp.cnews.ru/news/line/2026-07-09_gruppa_astra_vypuskaet','m','ast'),
+  V('ИИ-агенты команд разработки','Т1','генерация кода и тестов в контуре','https://t1.ru/products/assistent-dlya-komand-razrabotki','m','vtb'),
+  V('Агент Veai + AI SDLC','Veai','агент в IDE и платформа управления; варианты поставки, включая on-premise, — на сайте, условия уточняются','https://veai.ru/','m','we')],
+ a11:[V('ГигаЧат Бизнес','Сбер','чат и ИИ-агенты для сотрудников в ПАК внутри контура','https://b2b.giga.chat/','h','sb'),
+  V('eXpress','Анлимитед Продакшен','корпоративный мессенджер, боты на своих серверах; сертификат ФСТЭК','https://express.ms/','h'),
+  V('VK WorkSpace','VK Tech','мессенджер и почта; ИИ-ассистент on-prem, MCP-сервер с версии 26.3','https://workspace.vk.ru/docs/on-premises/','h'),
+  V('GigaCode + GigaIDE Pro','СберТех','ИИ-ассистент в VS Code, JetBrains и GigaIDE; закрытый контур','https://platformv.sbertech.ru/products/analitika-dannyh/giga-code','h','sb'),
+  V('OpenIDE Pro','Группа Астра, Axiom JDK, Haulmont','IDE на платформе IntelliJ с плагином ИИ-агентов','https://openide.ru/blog/openide-pro-publichnyj-reliz-dlya-vseh/','h','ast')],
+ a12:[V('Разработка агентами на «Сфере»','Т1','пилот: агенты пишут код, конвейер микросервисов для ВТБ','https://www.tadviser.ru/index.php/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82:%D0%A21_(%D0%98%D0%98-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%8B_%D0%B2_%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5)','m','vtb'),
+  V('ГигаЧат Бизнес · GigaCowork','Сбер','ИИ-сотрудники в процессах; GigaCowork пока в тесте','https://www.kommersant.ru/doc/8692335','m','sb'),
+  V('AI Force · агент разбора диалогов','MWS AI','готовые агенты процессов на своей платформе','https://www.cnews.ru/news/line/2026-09-23_mws_ai_zapustila_ii-agenta_dlya','m','mts'),
+  V('Digital Q.BPM с ИИ-агентами','Диасофт','описание процессов в BPMN из текста; установка в контур не подтверждена','https://www.cnews.ru/news/line/2026-08-26_ii-agenty_v_digital_qbpm_uskoryat','l'),
+  V('Многоагентная платформа для ДБО','BSS','RAG-портал, агенты, чат-бот; установка в контур не подтверждена','https://bssys.com/about/press-center/newsc/zachem-bankam-perestraivatsya-na-mnogoagentnye-ii-sistemy-rasskazali-eksperty-bss-na-ifin-2026/','l')],
+ x1:[V('Kolmogorov AI','Data Sapience (внедряет GlowByte)','реестр моделей, валидация и управление модельным риском для классического ML; кейс Росбанка','https://corp.cnews.ru/reviews/bolshie_dannye_i_analitika_2026/interviews/mihail_zajtsev_andrej_prohorov','h'),
+  V('VK AI Space','VK Tech','изоляция агентов, политики, аудит, ограничители','https://tech.vk.ru/ai-space/','h'),
+  V('INFERA AI.Firewall + AI.SafeAgent','INFERA Security','запрет по умолчанию, очередь одобрений человеком, аварийная остановка агента','https://www.inferasecurity.ru/','m'),
+  V('Platform V SOWA AI','СберТех','права, лимиты, аудит и ограничители в ИИ-шлюзе','https://corp.cnews.ru/news/line/2026-05-22_sberteh_i_enterprise_predstavili','m','sb')],
+ x2:[V('Solar webProxy · appScreener с локальной LLM','ГК «Солар»','контроль трафика к ИИ-сервисам и утечек в LLM','https://habr.com/ru/companies/solarsecurity/news/992628/','h','rt'),
+  V('INFERA AI.Firewall','INFERA Security','межсетевой экран для LLM и агентов; в реестре ПО','https://inferasecurity.ru/ai_firewall/','m'),
+  V('HiveTrace','HiveTrace (Raft и ИТМО)','фильтрация промптов и контроль вызовов инструментов агентами','https://hivetrace.ru/','m'),
+  V('Innostage AIDR','Innostage','защита ИИ-систем, заявлена под приказ ФСТЭК №117','https://www.anti-malware.ru/analytics/Market_Analysis/AI-Firewall-AI-Secure-Gateway','m'),
+  V('AI-SPM в Yandex Security Deck','Яндекс (вместе с SolidLab)','учёт моделей, агентов и MCP-серверов; установка в контур не подтверждена','https://cisoclub.ru/jandeks-zapustil-ib-brend-yandex-security-gibridnaja-lokalnaja-multioblachnaja-bezopasnost/','l','yx'),
+  V('Сканер ИИ-агентов и моделей','Лаборатория Касперского','проверка на бэкдоры до внедрения; доступность в контуре не подтверждена','https://www.computerweekly.com/news/366646680/Kaspersky-to-scan-AI-agents-for-backdoors-as-shadow-AI-spreads','l')],
+ x3:[V('MERA','Альянс в сфере ИИ','основной русскоязычный бенчмарк, код открыт','https://github.com/MERA-Evaluation/MERA','h'),
+  V('MERA Code','Альянс в сфере ИИ','11 задач на код, 8 языков, MIT; официальная оценка — только через сайт','https://github.com/MERA-Evaluation/MERA_CODE','h'),
+  V('SWE-MERA','MWS AI, Сбер, ИТМО','обновляемый бенчмарк агентов разработки; прогон в контуре не подтверждён','https://a-ai.ru/?page_id=3197','m'),
+  V('HiveTrace Red','HiveTrace','атаки на LLM: больше 80 сценариев, ставится локально','https://hivetrace.ru/red','h')],
+ x4:[V('Астра Мониторинг 1.6','Группа Астра','метрики, журналы, трейсы, APM; CLI для агентов','https://www.cnews.ru/news/line/2026-08-27_gruppa_astra_vypustila','h','ast'),
+  V('Sage Observability','Т-Банк','мониторинг ПО; работает у НСПК и банков; ИИ-модуль — во II полугодии 2026','https://www.tbank.ru/software/sage/','h','tb'),
+  V('Ключ-Астром','Рускомтехнологии','APM в контуре для финсектора','https://reestr.digital.gov.ru/reestr/305529/','m'),
+  V('GMONIT','GMonit','APM с доступом ИИ-агентов через MCP','https://www.cnews.ru/news/line/2026-09-10_gmonit_predstavila_novuyu_funktsiyu','m'),
+  V('Deckhouse Observability Platform','Флант','наблюдаемость Kubernetes и виртуальных машин','https://deckhouse.ru/products/kubernetes-platform/features/observability/','h')],
+ x5:[V('Т1','Холдинг Т1','«Сфера», разработка агентами, ИИ-платформа для роботов ВТБ','https://www.vedomosti.ru/technology/articles/2026/06/02/1201992-vtb-sovmestno-s-t1-razrabotayut-sobstvennuyu-ii-platformu-dlya-robotov','m','vtb'),
+  V('Неофлекс Нейро','Неофлекс','внедряет Neon и разрабатывает агентов','https://www.neoflex.ru/platforms/neoflex-neon','h'),
+  V('К2 НейроТех','К2Тех','ПАК-AI с Yandex AI Studio','https://habr.com/ru/companies/k2tech/news/1042632/','h'),
+  V('Rubytech','Группа Rubytech','ПАК Скала^р вместе с Just AI под ключ','https://www.computerra.ru/331564/gruppa-rubytech-i-just-ai-predstavyat-gotovoe-reshenie-dlya-zapuska-i-ispolzovaniya-bolshih-yazykovyh-modelej-llm-v-on-premise-infrastrukture/','h'),
+  V('Инфосистемы Джет','Джет','локальные LLM и агенты для крупных компаний; лаборатория с Яндексом','https://ict-online.ru/interview/Maksim-Andrianov-Infosistemy-Dzhet-V-blizhaishiye-3-4-goda-ozhidayet-sya-snizheniye-roli-vendorov-na-rynke-korporativnogo-PO-vklyuchaya-II-resheniya-332355','m'),
+  V('IBS','IBS','инфраструктура для ИИ-агентов; банковский кейс в контуре не подтверждён','https://ibs.ru/','l')]
+}};
+RU.notes={
+ f1:'<b>GPU — главный риск:</b> H200 — от 4,4 млн ₽ за карту, только параллельный импорт; китайские ускорители — в пилотах, отечественные — не раньше 2029–2030.',
+ f2:'Распределение GPU во всех платформах держится на открытых компонентах NVIDIA; поддержку китайских GPU этими платформами подтвердить не удалось.',
+ m4:'На практике рынок стоит на открытых китайских моделях: потребление Qwen, GLM и Kimi за первое полугодие 2026 выросло больше чем в 11 раз (<a href="https://www.comnews.ru/content/246888/2026-08-14/2026-w33/1008/rossiyskie-kompanii-massovo-pereshli-kitayskie-llm">ComNews, 14.08.2026</a>).',
+ m5:'В реестре российского ПО — только Platform V SOWA AI и Neoflex Neon; остальное — открытый код.',
+ k6:'Отдельного российского продукта для синтетических данных нет — только модуль «Сферы»; SyntData (Сбер) в контуре не подтверждён.',
+ k8:'Также в контуре: трекеры EvaTeam и Kaiten, Tarantool Data Grid (VK Tech). Исключены: у SourceCraft (Яндекс) нет версии для контура, YouTrack (JetBrains) не продаётся в РФ.',
+ a10:'SourceCraft Code Assistant (Яндекс) работает только в облаке, поэтому в карту не входит.',
+ a11:'Также в контуре: DION (Т1), Compass, DataLens Enterprise для дашбордов. Яндекс 360 в контуре — Диск и Документы (03.2026), Трекер и Вики (06.2026); мессенджер — только в планах. «Пачка» — только облако, исключена.',
+ a12:'Публичного кейса, где агенты модернизируют легаси внутри контура российского банка, не нашли.',
+ x1:'<b>Рынок как класс не сложился:</b> готового продукта «реестр агентов + права на решения + управление модельным риском для LLM» нет — его собирают из шлюза, агентной платформы и Kolmogorov AI. Рекомендации ЦБ по ИИ (16.06.2026): в критичных процессах, например в платежах, операцию подтверждает сотрудник.',
+ x2:'У Positive Technologies отдельного продукта для защиты LLM и агентов не нашли. Гарда, Код Безопасности, Indeed, Avanpost — классическая ИБ и управление доступом без специфики LLM. Сертификатов ФСТЭК для защиты LLM не нашли.',
+ x4:'Трассировка и учёт стоимости LLM в контуре — только модулями Just AI, Neoflex Neon и MWS AI; иначе Langfuse (открытый код, с 01.2026 — ClickHouse, США). Monium от Яндекса — только облако.'
+};
+RU.head=`<div class="verdict"><div>
+ <div class="v-kicker">Вариант 3 · те же 17 слоёв — игроки рынка России</div>
+ <p class="v-main">Российский рынок закрывает почти все слои продуктами для контура — <em>узкие места: GPU, модели, защита агентов и наблюдаемость</em>.</p>
+ <p class="v-sub">Проверено 28.09.2026 по сайтам вендоров, документации и новостям; у каждой позиции — ссылка. Только облачные продукты исключены или помечены. Цветная метка — принадлежность к группе.</p>
+ <div class="mlegend">${Object.values(GRP).map(g=>'<span class="ch"><span class="pill" style="margin:0;background:'+g.bg+';color:'+g.fg+'">'+g.t+'</span></span>').join('')}</div>
+</div><ol class="rules" aria-label="Три узких места">
+ <li><span class="n" aria-hidden="true">1</span><b>GPU.</b> NVIDIA — только параллельный импорт, H200 — от 4,4 млн ₽ за карту. Китайские ускорители в пилотах (ВТБ — с марта 2026), отечественные — не раньше 2029–2030.</li>
+ <li><span class="n" aria-hidden="true">2</span><b>Модели.</b> Рынок фактически стоит на китайских открытых моделях; российские отстают. Новый закон об ИИ (243-ФЗ) вводит суверенные и национальные модели — это расходится с нынешней практикой.</li>
+ <li><span class="n" aria-hidden="true">3</span><b>Верх стека незрел.</b> Инструменты разработчика в контуре — GigaCode и Kodify, «Астра ИИ Код» выйдет полностью в IV кв. 2026. Рынок защиты LLM и агентов не сложился, шлюз и наблюдаемость держатся на открытом коде.</li>
+</ol></div>`;
+RU.tail=`<details class="more" id="ru-regs"><summary>Регуляторика России <span class="sm">7 документов — что они требуют от ИИ в банке</span></summary><div class="body"><ul class="plain">
+ <li><b>Закон об ИИ 243-ФЗ</b> от 26.07.2026 «О поддержке развития технологий искусственного интеллекта в Российской Федерации»: вступает в силу с 01.09.2026, часть норм — позже. Вводит суверенные и национальные модели; правительство сможет определять случаи, когда допустимы только они; переходный период — до 01.09.2032 (<a href="http://publication.pravo.gov.ru/document/0001202607260003">pravo.gov.ru</a>).</li>
+ <li><b>187-ФЗ о КИИ</b> с поправками 58-ФЗ (с 01.09.2025): значимые объекты КИИ переводятся на доверенное российское ПО и ПАК; сроки перехода пока только в проекте (<a href="https://www.garant.ru/products/ipo/prime/doc/411724730/">Гарант</a>).</li>
+ <li><b>152-ФЗ</b>: персональные данные в промптах, журналах и базах для поиска — это обработка персональных данных со всеми требованиями (<a href="https://www.consultant.ru/document/cons_doc_LAW_61801/">КонсультантПлюс</a>).</li>
+ <li><b>Приказ ФСТЭК №117</b> (с 01.03.2026): нельзя передавать закрытую информацию разработчику модели, нужно выявлять недостоверные ответы, допускаются только доверенные технологии ИИ; прямо касается ГИС (<a href="http://publication.pravo.gov.ru/document/0001202506170011">pravo.gov.ru</a>).</li>
+ <li><b>Положение ЦБ 851-П</b> заменило 683-П с 29.03.2025 — с оценкой соответствия ГОСТ Р 57580.1; 716-П об операционном риске действует (<a href="https://www.garant.ru/products/ipo/prime/doc/411601713/">Гарант</a>).</li>
+ <li><b>Рекомендации ЦБ по безопасному использованию ИИ</b> (16.06.2026): модели угроз и политика ИБ для ИИ; в критичных процессах операцию подтверждает сотрудник (<a href="https://www.cbr.ru/press/event/?id=32627">cbr.ru</a>).</li>
+ <li><b>Кодекс этики ИИ на финансовом рынке</b> (ЦБ, 09.07.2025, рекомендательный): предупреждать клиента об ИИ, давать право отказаться, пересматривать решения ИИ (<a href="https://www.cbr.ru/content/document/file/178667/code_09072025.pdf">cbr.ru</a>).</li>
+</ul></div></details>
+<details class="more" id="ru-risks"><summary>Дыры и риски российского стека <span class="sm">6 пунктов</span></summary><div class="body"><ul class="plain">
+ <li><b>GPU.</b> Только параллельный импорт NVIDIA; ПАК на китайских ускорителях ожидаются к 2027 году (<a href="https://www.vedomosti.ru/technology/articles/2026/08/20/1222386-paki-s-gpu-mogut-viiti-na-rossiiskii-rinok">Ведомости</a>).</li>
+ <li><b>Модели.</b> Российские LLM отстают от китайских — это признают и Сбер, и ВТБ; после 2027 года это столкнётся с режимом суверенных моделей.</li>
+ <li><b>Инструменты разработчика.</b> В контуре работают GigaCode и Kodify; агентная разработка у Т1 — в пилоте; кейсов модернизации легаси внутри банка нет.</li>
+ <li><b>Защита LLM и агентов.</b> Рынок только формируется; крупные вендоры ИБ не предлагают защиту LLM во время работы, сертификатов ФСТЭК для этого класса не нашли.</li>
+ <li><b>Шлюз, наблюдаемость и учёт затрат</b> держатся на открытом коде; в реестре — только Platform V SOWA AI и Neoflex Neon.</li>
+ <li><b>Концентрация.</b> Ростелеком контролирует «Базис», РТК-ЦОД и «Солар»; ЦБ отдельно предупреждает о системном риске, когда многие банки работают на одних и тех же ИИ-платформах (<a href="https://www.kommersant.ru/doc/8813665">Коммерсантъ</a>).</li>
+</ul></div></details>
+<p class="sub" style="margin-top:10px">* ВТБ — продукты Т1. По нашим данным, Т1 полностью под контролем ВТБ; публично банк вышел из капитала Т1 в 2025 году, бенефициары нынешних владельцев не раскрываются (<a href="https://www.interfax.ru/business/1016194">Интерфакс</a>).</p>`;
+const VTB={rows:[
+ {id:'f1',rt:'РТК-ЦОД: 26 ЦОД уровня Tier III, около 30% рынка. Целевые ЦОДы ВТБ созданы совместно с Ростелекомом (<a href="https://www.comnews.ru/digital-economy/content/222747/2022-10-24/2022-w43/vtb-obespechit-perekhod-tekhnologicheskikh-sistem-celevye-cody">2022</a>)',cand:'YADRO — сервер на 8 GPU в реестре Минпромторга (<a href="https://www.cnews.ru/news/line/2026-09-17_yadro_rasshirila_vozmozhnosti">09.2026</a>). Сам ВТБ — кластер на китайских GPU с 03.2026',st:'ok',note:'ВТБ строит сам; риск — китайские GPU'},
+ {id:'f2',rt:'«Базис» (50,3% у РТК-ЦОД): Basis Workplace уже работает на 65 тыс. рабочих мест ВТБ (<a href="https://globalcio.ru/projects/45441/">2024</a>); «Облако КИИ» на «Базисе»',yx:'Stackland — платформа для закрытого контура на железе заказчика (<a href="https://www.comnews.ru/content/244422/2026-03-26/2026-w13/1010/yandex-b2b-tech-zapustila-platformu-stackland-dlya-zakrytogo-kontura-kompaniy">03.2026</a>)',cand:'Группа Астра (Astra Linux); у ВТБ своё облако VTB.Cloud',st:'ok',note:'Ростелеком уже внутри ВТБ'},
+ {id:'f3',rt:'«Турбо Облако»: платформа инференса на H200 — только облако; поставка в контур не подтверждена',yx:'ПАК с Yandex AI Studio для контура (<a href="https://yandex.ru/company/news/28-05-2026-02">05.2026</a>); ПАК-AI от К2 НейроТех с моделями Alice AI (<a href="https://www.anti-malware.ru/news/2026-05-28-111332/50203">05.2026</a>)',cand:'ВТБ сам: LLM на собственных серверах',st:'ok',note:'закрывает Яндекс; поставка Ростелекома в контур не подтверждена'},
+ {id:'m4',rt:'своих моделей нет',veai:'модель по выбору заказчика — модели не производим',yx:'YandexGPT уже работает в ВТБ; открытые веса YandexGPT-5-Lite-8B и AliceAI-Foundation-80B (<a href="https://huggingface.co/yandex/AliceAI-Foundation-80B-A3B-Base">09.2026</a>)',cand:'Qwen (открытые веса) — уже в ВТБ',st:'ok'},
+ {id:'m5',rt:'«Нейрошлюз» — внутренний инструмент Ростелекома; внешние продажи — в планах (<a href="https://www.cnews.ru/news/line/2026-06-19_rostelekom_predstavil">06.2026</a>)',veai:'<b>Veai Platform</b>: единый шлюз к моделям — квоты, журнал аудита, фильтр чувствительных данных; on-premise публично заявлен (<a href="https://veai.ru/">veai.ru</a>), условия уточняются',cand:'Neoflex Neon — пересекается с Veai',st:'ok',note:'закрывают Veai (условия on-prem уточняются) или Neoflex Neon'},
+ {id:'k6',rt:'«Солар»: Solar Dozor (DLP) и контроль запросов к ИИ-сервисам',veai:'фильтр чувствительных данных в шлюзе',yx:'Яндекс 360 в контуре заказчика (<a href="https://www.comnews.ru/content/244492/2026-03-30/2026-w14/1010/yandex-b2b-tech-otkryla-dostup-k-disku-i-dokumentam-modeli-premises">03.2026</a>); YDB — открытая СУБД',cand:'Гарда Data Masking — обезличивание баз; Arenadata Catalog — каталог и происхождение данных',st:'part',note:'синтетика для ИИ — только модуль «Сферы» (Т1)'},
+ {id:'k7',veai:'контекст по кодовой базе (поиск по коду)',yx:'YDB — открытая СУБД в контуре',cand:'Arenadata Advanced RAG — RAG-платформа, ставится без интернета; Neoflex Neon — RAG и MCP',st:'ok',note:'закрывают Veai (код) и кандидаты (документы)'},
+ {id:'k8',veai:'MCP-сервер, связка с IDE и Git',yx:'агенты SourceCraft берут задачи из GitLab — только облако',cand:'<b>Т1 «Сфера»</b> (задачи, знания, код, CI/CD) — действующая платформа разработки ВТБ: на ней работают больше 24 тыс. сотрудников (<a href="https://www.asros.ru/news/members/vtb-zapuskaet-ii-agentov-dlya-sotrudnikov/">АРБ, 07.2025</a>)',st:'part',note:'стыковка со «Сферой» — условие входа'},
+ {id:'a9',rt:'«Око» («Лукоморье») — мультиагентная платформа, модели на своих серверах (<a href="https://www.company.rt.ru/press/news/d479385/">08.2026</a>)',veai:'7 специализированных агентов разработки с оркестратором',yx:'Yandex AI Studio on-premises — агенты и модели внутри контура (<a href="https://aistudio.yandex.ru/on-premises">03.2026</a>)',cand:'платформа ИИ-агентов уже работает в ВТБ (<a href="https://aif.ru/spief2026/platforma-dlya-robotov-i-ii-agentov-vtb-izuchaet-vozmozhnost-ee-sozdaniya">06.2026</a>); Neoflex Neon',st:'ok',note:'платформ с избытком'},
+ {id:'a10',veai:'<b>Veai AI SDLC</b>: собственный код агента, платформа управления, развёртывание внутри компании',cand:'Т1 (основной технологический партнёр ВТБ) — «ИИ-агенты команд разработки» на серверах заказчика (<a href="https://t1.ru/products/assistent-dlya-komand-razrabotki">t1.ru</a>): вариант «строить внутри»',st:'ok',note:'встраиваться в «Сферу», а не конкурировать'},
+ {id:'a11',veai:'агент в IDE',yx:'Яндекс 360 в контуре — рабочее пространство сотрудников',cand:'корпоративные мессенджеры в контуре — eXpress, VK WorkSpace; OpenIDE Pro (Группа Астра) — IDE',st:'part',note:'чат с моделями для сотрудников не выбран'},
+ {id:'a12',rt:'своего агента нет: в РТК ИТ используют GigaCode Сбера (<a href="https://www.cnews.ru/news/line/2025-04-04_sreda_razrabotki_gigaide_desktop">04.2025</a>)',veai:'агентная разработка: задача → код → тесты → ревью; перенос легаси на безопасный стек',yx:'агенты SourceCraft — только облако',cand:'у ВТБ — Т1; внешние конкуренты — Группа Астра («Астра ИИ Код»), Сбер (GigaCode в контуре)',st:'part',note:'разработка — Veai; агенты процессов банка не закрыты'},
+ {id:'x1',veai:'Veai Platform: роли, лимиты, учёт, журнал аудита; методология управляемой автономии',cand:'Kolmogorov AI (Data Sapience) — реестр моделей и управление модельным риском; INFERA AI.SafeAgent — одобрения и аварийная остановка агента',st:'part',note:'реестра агентов с правами на решения нет ни на одном рынке — шанс для Veai'},
+ {id:'x2',rt:'«Солар»: контроль ИИ-трафика, защита ПО от ИИ-рисков; защита самих LLM и агентов объявлена направлением',veai:'фильтр чувствительных данных, журнал аудита',cand:'Positive Technologies — безопасность приложений и SOC; INFERA AI.Firewall и HiveTrace — защита LLM и агентов; «Лаборатория Касперского» — проверка агентов на бэкдоры (анонс 08.2026)',st:'part',note:'защита самих агентов — рынок формируется'},
+ {id:'x3',veai:'метрики эффекта пилота',cand:'открытые бенчмарки MERA и MERA Code, HiveTrace Red — атаки на LLM; независимого оценщика агентов в контуре нет',st:'gap',note:'инструменты есть — оценщика нет'},
+ {id:'x4',veai:'журнал и телеметрия Veai',cand:'общий мониторинг — Астра Мониторинг, Sage (Т-Банк); трассировка агентов и учёт затрат на LLM — только модулями платформ Neoflex Neon, Just AI, MWS AI',st:'part',note:'отдельного продукта нет — модули платформ'},
+ {id:'x5',rt:'ЦМИИ — консорциум по схеме «построить — эксплуатировать — передать» (<a href="https://www.company.rt.ru/press/news/d478623/">06.2026</a>); РТК ИТ',veai:'фабрика внедрений строится: руководство и эталонные кейсы ещё не готовы',cand:'Неофлекс — интеграция в банках',st:'part'}
+]};
+VTB.head=`<div class="verdict"><div>
+ <div class="draft-banner">ЧЕРНОВИК-ГИПОТЕЗА · по открытым источникам на 28.09.2026 · не для передачи за пределы компании</div>
+ <div class="v-kicker">Вариант 4 · ВТБ: решение «под ключ» из независимых игроков</div>
+ <p class="v-main">ВТБ строит стек внутри — руками Т1, основного технологического партнёра. Место для когорты независимых игроков — <em>верх стека: шлюз, харнес, агенты, управление автономией и внедрение</em>, в связке со «Сферой», а не против неё.</p>
+ <p class="v-sub">ВТБ держит модели на собственных серверах, строит GPU-кластер на китайских ускорителях и берёт готовые модели — Qwen и YandexGPT: собственную модель банк не разрабатывает. Основной исполнитель — Т1: на его платформе «Сфера» разрабатывают больше 24 тыс. сотрудников ВТБ. По нашим данным, Т1 под полным контролем ВТБ; публично банк вышел из капитала Т1 в 2025 году.</p>
+</div><ol class="rules" aria-label="Три вывода">
+ <li><span class="n" aria-hidden="true">1</span><b>Вход — через Ростелеком.</b> Он уже внутри ВТБ: целевые ЦОДы банка построены вместе с Ростелекомом, «Базис» работает на 65 тыс. рабочих мест.</li>
+ <li><span class="n" aria-hidden="true">2</span><b>Veai закрывает шлюз, харнес и агентную разработку.</b> Т1 — основной исполнитель ВТБ, поэтому Veai встраивается в «Сферу», а не конкурирует с ней, и приносит то, чего у Т1 нет: многошаговый агент, управление парком агентов, аудит. Доля ИИ-кода, годного без переделки, у ВТБ в апреле 2026 — около 5–7% по подсчётам ИИ-помощника банка.</li>
+ <li><span class="n" aria-hidden="true">3</span><b>Дыра когорты — независимая оценка агентов.</b> Наблюдаемость закрывается только модулями платформ, отдельного продукта нет. Нужен пятый участник или своя разработка. А реестра агентов с правами на решения нет ни на одном рынке — это шанс для Veai.</li>
+</ol></div>
+<div class="secblk"><h2>ВТБ сегодня — по открытым источникам</h2>
+<p class="sub">Посылка «ВТБ строит всё внутри» — со слов Михаила Кудинова — подтверждается частично: контур и серверы у ВТБ свои, модели сторонние — Qwen и YandexGPT, основной исполнитель — Т1. Что Т1 под полным контролем ВТБ — по нашим данным, публично не подтверждено.</p>
+<div class="mtx-wrap"><table class="mtx facts"><thead><tr><th scope="col">Факт</th><th scope="col">Источник</th></tr></thead><tbody>
+ <tr><td>ИИ — один из четырёх столпов стратегии ВТБ на 2027–2029 годы</td><td><a href="https://rb.ru/news/vtb-predstavil-strategiyu-razvitiya-do-2029-goda-bank-delaet-stavku-na-sotrudnichestvo-s-wildberries-i-ii-tehnologii/">RB.RU</a> · 30.06.2026</td></tr>
+ <tr><td>«Десятки миллиардов рублей» на ИИ в собственных процессах. Принцип «бережливого ИИ»: 2–3 рубля дохода на рубль вложений, иначе модель не внедряется. «ВТБ не разрабатывает собственную модель ИИ как Яндекс или Сбербанк», а использует Qwen и наработки Яндекса ✓</td><td><a href="https://ru.themoscowtimes.com/2026/06/04/vtb-vlozhit-v-razvitie-ii-v-sobstvennykh-protsessakh-desyatki-milliardov-rubley-v-blizhayshie-gody-a197320">The Moscow Times / Reuters</a> · 04.06.2026</td></tr>
+ <tr><td>В работе две LLM — YandexGPT и Qwen; всего около 1800 ИИ-моделей, с LLM связано меньше 100</td><td><a href="https://www.comnews.ru/content/244652/2026-04-08/2026-w15/1008/yazyk-moy-vrag-moy-bolshie-yazykovye-modeli-ne-prinosyat-dokhoda">ComNews</a> · 08.04.2026</td></tr>
+ <tr><td>Доля ИИ-кода, пригодного без переделки, — около 5–7% по подсчётам ИИ-помощника банка, «увеличивается примерно на 1% в квартал». У Сбера, по оценке его собственной команды, — 20% ✓</td><td><a href="https://plusworld.ru/articles/71260/">PLUSworld</a> · 08.04.2026</td></tr>
+ <tr><td>LLM работают на собственных серверах банка; собираются российские серверы с китайскими GPU</td><td><a href="https://ria.ru/20260421/vtb-2088005033.html">РИА Новости</a> · 21.04.2026</td></tr>
+ <tr><td>С марта 2026 года китайские GPU — в опытно-промышленной эксплуатации; центр компетенций по ИИ в Китае создаётся вместе с Т1</td><td><a href="https://ria.ru/20260408/vtb-2085882241.html">РИА Новости</a> · 08.04.2026</td></tr>
+ <tr><td>Т1 — «основной технологический партнёр»; на платформе «Сфера» вместе с Т1 разработкой заняты больше 24 тыс. сотрудников ВТБ; помощники для разработчиков и тестировщиков запускаются на «Сфере» ✓</td><td><a href="https://www.asros.ru/news/members/vtb-zapuskaet-ii-agentov-dlya-sotrudnikov/">АРБ</a> · 01.07.2025</td></tr>
+ <tr><td>Т1 — исторически ИТ-интегратор группы ВТБ: в 2018 году банк купил 40% «Техносерва», из активов которого вырос Т1. На конец 2024 года у ВТБ было 3,695% Т1, затем банк вышел из капитала ✓. Бенефициары нынешних владельцев (СФО «Вектор Технологий», «Сирокко Технолоджи», ЗПИФ «Ось») не раскрываются. По нашим данным, Т1 полностью под контролем ВТБ</td><td><a href="https://www.interfax.ru/business/1016194">Интерфакс</a> · 24.03.2025</td></tr>
+ <tr><td>Платформа ИИ-агентов уже используется в банке. На её базе ВТБ вместе с Т1 изучает возможность создания платформы, объединяющей ИИ-агентов и роботов; по словам Вадима Кулика, тогда зампреда, такое объединение «в перспективе» позволит «предложить универсальное решение рынку» ✓ · уточнено 01.10.2026</td><td><a href="https://aif.ru/spief2026/platforma-dlya-robotov-i-ii-agentov-vtb-izuchaet-vozmozhnost-ee-sozdaniya">АиФ</a> · 02.06.2026</td></tr>
+ <tr><td>Значимые объекты КИИ импортозамещены полностью, остальные системы — на 98%, 100% — к концу 2027 года</td><td><a href="https://bankinform.ru/news/140686">БанкИнформ</a> · 18.02.2026</td></tr>
+ <tr><td>03.06.2026 Андрей Костин обещал «большого ответственного руководителя за искусственный интеллект». По решению от 30.06.2026 ИИ и ИТ-блок переданы первому зампреду Ольге Скоробогатовой вместо ушедшего из банка Вадима Кулика ✓ · уточнено 01.10.2026</td><td><a href="https://www.interfax.ru/forumspb/1093636">Интерфакс</a> · 03.06.2026; <a href="https://www.interfax.ru/business/1099266">Интерфакс</a>, <a href="https://www.nakanune.ru/news/2026/6/30/22877927/">«Накануне»</a> · 30.06.2026</td></tr>
+</tbody></table></div>
+<p class="sub" style="margin-top:8px">✓ — проверено по первоисточнику 28.09.2026; две строки уточнены 01.10.2026.</p></div>
+<div class="secblk" style="margin-bottom:10px"><h2>Кто закрывает каждый слой</h2><p class="sub">Ростелеком, Veai, Яндекс и кандидаты в состав решения. «Итог» — закрывает ли когорта слой внутри контура ВТБ.</p></div>`;
+VTB.tail=`<div class="secblk"><h2>Что решить Михаилу</h2><div class="road-grid">
+ <div class="road" style="--rc:#be123c"><h3>1 · Позиция относительно Т1</h3><p>Т1 — основной технологический партнёр ВТБ, по нашим данным — под полным контролем банка (публично ВТБ вышел из капитала Т1 в 2025 году). Воевать с ним бессмысленно. Выбор: встроиться в «Сферу» как агентный слой вместе с Т1 — или предложить банку то, чего у Т1 нет: многошаговый агент с проверяемым результатом, управление парком агентов, аудит. От этого зависит весь питч.</p></div>
+ <div class="road" style="--rc:#0369a1"><h3>2 · Вход через Ростелеком</h3><p>Кому в Ростелекоме нести предложение когорты и в какой связке: ЦОД и «Базис» (этажи 1–2), «Солар» (безопасность), «Око» (агентная платформа), ЦМИИ (внедрение).</p></div>
+ <div class="road" style="--rc:#c2410c"><h3>3 · Пятый участник</h3><p>Кем закрыть независимую оценку агентов (С3) и сквозную трассировку агентов (С4) — внешним партнёром или разработкой Veai. Без них банку нечем доказать эффект пилота.</p></div>
+</div></div>
+<details class="more" id="vtb-limits"><summary>Ограничения и расхождения <span class="sm">что проверено, что нет</span></summary><div class="body"><ul class="plain">
+ <li>Четыре ключевых факта о ВТБ и Т1 проверены по первоисточникам 28.09.2026: отказ от собственной модели, «Сфера» и 24 тыс. разработчиков, 5–7% годного ИИ-кода, выход ВТБ из капитала Т1. 01.10.2026 по первоисточникам уточнены ещё две строки: кто курирует ИИ и ИТ-блок и формулировка о платформе ИИ-агентов — слова «своя» в источнике нет.</li>
+ <li>Принадлежность Т1: формально ВТБ вышел из капитала в 2025 году (<a href="https://www.interfax.ru/business/1016194">Интерфакс</a>), бенефициары нынешних владельцев не раскрываются. «Под полным контролем ВТБ» — по нашим данным, публично не подтверждено.</li>
+ <li>Часть фактов о Ростелекоме, Яндексе и кандидатах сверена по выдаче поиска (заголовок, дата, аннотация) — перед показом вовне открыть первоисточники.</li>
+ <li>Расхождения с колодами Veai × Ростелеком: доля РТК-ЦОД — 30% (в колоде 32%), у «Нейрошлюза» другие цифры охвата, «Сфера» описана как «только помощники» — это устарело.</li>
+</ul></div></details>`;
+
+function vendorRow(v){
+ const cf=CONF[v.c]||CONF.l, p=v.g&&GRP[v.g]?'<span class="pill" style="background:'+GRP[v.g].bg+';color:'+GRP[v.g].fg+'">'+esc(GRP[v.g].t)+'</span>':'';
+ const name=v.u?'<a class="vname" translate="no" href="'+esc(v.u)+'" target="_blank" rel="noopener">'+esc(v.n)+'</a>':'<span class="vname" translate="no">'+esc(v.n)+'</span>';
+ return '<div class="vrow"><span class="dot" style="background:'+cf.c+'" aria-hidden="true"></span><div>'+name+(v.co?' <span class="vco">· '+esc(v.co)+'</span>':'')+p+'<div class="vrole">'+esc(v.r)+' <span class="conf">'+cf.t+'</span></div></div></div>';
+}
+function renderMap(key,D){
+ if(!Object.keys(D.layers).length)return false;
+ let html=D.head||'';
+ html+='<div class="mlegend"><span class="ch"><span class="dot" style="background:'+CONF.h.c+'"></span>'+CONF.h.t+'</span><span class="ch"><span class="dot" style="background:'+CONF.m.c+'"></span>'+CONF.m.t+'</span><span class="ch"><span class="dot" style="background:'+CONF.l.c+'"></span>'+CONF.l.t+'</span><span class="ch">название — ссылка на подтверждение</span></div>';
+ ORDER.forEach(g=>{
+  const c=G[g].c;
+  html+='<div class="super"><h2 class="super-tab" style="background:'+c+'">'+esc(G[g].n)+' <span class="super-en">'+esc(G[g].en)+'</span></h2><div class="super-box" style="border-color:'+c+'"><div class="mods">';
+  L.filter(l=>l.g===g).forEach(l=>{
+   const vs=D.layers[l.id]||[];
+   html+='<article class="modbox" id="'+key+'-'+l.id+'"><div class="mod-h"><span class="mod-code" style="background:'+c+'">'+codeLabel(l)+'</span><h3 class="mod-nm">'+esc(l.n)+'</h3><span class="mod-ct">'+(vs.length?vs.length+' позиций':'нет данных')+'</span></div>';
+   if(D.notes[l.id])html+='<div class="note-row">'+D.notes[l.id]+'</div>';
+   html+='<div class="vlist">'+(vs.length?vs.map(vendorRow).join(''):'<div class="note-row">Нет подтверждённых on-prem позиций — см. заметку.</div>')+'</div></article>';
+  });
+  html+='</div></div></div>';
+ });
+ html+=D.tail||'';
+ document.getElementById(key+'-body').innerHTML=html;
+ const st=document.querySelector('[data-pending="'+key+'"]');if(st)st.remove();
+ return true;
+}
+function renderVTB(){
+ if(!VTB.rows.length)return false;
+ const S={ok:'✓ закрыто',part:'◐ частично',gap:'✖ дыра'};
+ let html=VTB.head||'';
+ html+='<div class="mtx-wrap"><table class="mtx"><thead><tr><th scope="col">Слой</th><th scope="col">Ростелеком</th><th scope="col">Veai</th><th scope="col">Яндекс</th><th scope="col">Кандидаты в состав</th><th scope="col">Итог</th></tr></thead><tbody>';
+ VTB.rows.forEach(r=>{const l=byId(r.id);
+  html+='<tr><td class="aname">'+codeLabel(l)+' · '+esc(l.n)+'</td><td>'+(r.rt||'—')+'</td><td>'+(r.veai||'—')+'</td><td>'+(r.yx||'—')+'</td><td>'+(r.cand||'—')+'</td><td><span class="stc '+r.st+'">'+S[r.st]+'</span>'+(r.note?'<span class="who">'+r.note+'</span>':'')+'</td></tr>';});
+ html+='</tbody></table></div>'+(VTB.tail||'');
+ document.getElementById('vtb-body').innerHTML=html;
+ const st=document.querySelector('[data-pending="vtb"]');if(st)st.remove();
+ return true;
+}
+
+/* tooltip: hover, keyboard focus, tap */
+const tip=document.getElementById('tip');let pinned=null;
+function showTip(el){
+ tip.innerHTML='<div class="t-name">'+esc(el.dataset.n)+'</div><div>'+esc(el.dataset.d)+'</div>';
+ const r=el.getBoundingClientRect(),w=Math.min(340,window.innerWidth-24);
+ const x=Math.min(Math.max(12,r.left),window.innerWidth-w-12);let y=r.bottom+8;
+ tip.style.maxWidth=w+'px';tip.style.left=x+'px';tip.style.top=y+'px';
+ tip.classList.add('show');tip.setAttribute('aria-hidden','false');
+ const th=tip.offsetHeight;if(y+th>window.innerHeight-8){tip.style.top=Math.max(8,r.top-th-8)+'px';}
+}
+function hideTip(){tip.classList.remove('show');tip.setAttribute('aria-hidden','true');pinned=null;}
+document.addEventListener('mouseover',e=>{const t=e.target.closest('.tile');if(t)showTip(t);});
+document.addEventListener('mouseout',e=>{const t=e.target.closest('.tile');if(t&&t!==pinned)hideTip();});
+document.addEventListener('focusin',e=>{const t=e.target.closest('.tile');if(t)showTip(t);});
+document.addEventListener('focusout',e=>{if(e.target.closest('.tile'))hideTip();});
+document.addEventListener('click',e=>{const t=e.target.closest('.tile');if(t){if(pinned===t){hideTip();}else{showTip(t);pinned=t;}}else if(pinned){hideTip();}});
+window.addEventListener('scroll',()=>{if(tip.classList.contains('show'))hideTip();},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideTip();});
+
+/* tabs with hash */
+const VIEWS=['stack','us','ru','vtb'];
+function openView(v,push){
+ if(!VIEWS.includes(v))v='stack';
+ document.querySelectorAll('.tab').forEach(t=>{const on=t.dataset.v===v;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;});
+ document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='view-'+v));
+ if(push)history.replaceState(null,'','#'+v);
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{openView(t.dataset.v,true);window.scrollTo({top:0});}));
+document.querySelector('.tabs').addEventListener('keydown',e=>{
+ const tabs=[...document.querySelectorAll('.tab')],i=tabs.findIndex(t=>t.classList.contains('on'));
+ const j={ArrowRight:(i+1)%tabs.length,ArrowLeft:(i+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[e.key];
+ if(j===undefined)return;
+ e.preventDefault();const n=tabs[j];n.focus();openView(n.dataset.v,true);
+});
+function fromHash(){
+ const h=decodeURIComponent(location.hash.slice(1));if(!h){openView('stack');return;}
+ if(VIEWS.includes(h)){openView(h);return;}
+ const el=document.getElementById(h);
+ if(el){const sec=el.closest('.view');if(sec)openView(sec.id.replace('view-',''));if(el.tagName==='DETAILS')el.open=true;setTimeout(()=>el.scrollIntoView({block:'start'}),0);}
+}
+renderStack();renderMap('us',US);renderMap('ru',RU);renderVTB();fromHash();window.addEventListener('hashchange',fromHash);
+</script>
+</body></html>
