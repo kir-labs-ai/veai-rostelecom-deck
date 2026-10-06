@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#f3f4f6">
+<link rel="icon" href="data:,">
+<title>Конструктор ИИ-трансформации · версия 2 · The 2026 On-Prem AI Landscape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=20261001">
+<link rel="stylesheet" href="v2.css?v=20261001">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="top"><div class="wrap">
+ <div class="row">
+  <div class="tabs" role="tablist" aria-label="Режим конструктора">
+   <button type="button" class="tab on" role="tab" id="tab-projects" data-v="projects" aria-controls="view-projects" aria-selected="true">Проекты</button>
+   <button type="button" class="tab" role="tab" id="tab-table" data-v="table" aria-controls="view-table" aria-selected="false" tabindex="-1">Таблица</button>
+   <button type="button" class="tab" role="tab" id="tab-people" data-v="people" aria-controls="view-people" aria-selected="false" tabindex="-1">Люди</button>
+   <button type="button" class="tab" role="tab" id="tab-stack" data-v="stack" aria-controls="view-stack" aria-selected="false" tabindex="-1">Стек</button>
+  </div>
+  <h1>Конструктор ИИ-трансформации <span class="h1-sub">версия 2 · срез <span id="v2date">01.10.2026</span> · <a class="prev" href="../builder/">предыдущая версия</a></span></h1>
+ </div>
+</div></header>
+
+<main id="main" class="wrap">
+ <div class="intro">
+  <span class="draft-banner">ПРОТОТИП · черновик для внутреннего обсуждения, не для передачи за пределы компании · проекты — гипотеза команды по открытым источникам, заказчик их не подтверждал</span>
+  <p class="isub">Стек — на данных карты <a href="../" translate="no">The 2026 On-Prem AI Landscape</a>, снимок <span id="snap">…</span> · проекты ВТБ — по открытым источникам на 30.09–01.10.2026 · отрасль КИИ — по колоде «Стратегия ИИ-зации разработки КИИ», 29.09.2026.</p>
+  <div class="bar" id="bar"></div>
+ </div>
+ <div id="loading" class="pending" role="status">Загружаю данные карты…</div>
+ <div id="err" class="pending err" role="alert" hidden></div>
+ <section id="view-projects" class="view on" role="tabpanel" aria-labelledby="tab-projects"></section>
+ <section id="view-table" class="view" role="tabpanel" aria-labelledby="tab-table"></section>
+ <section id="view-people" class="view" role="tabpanel" aria-labelledby="tab-people"></section>
+ <section id="view-stack" class="view" role="tabpanel" aria-labelledby="tab-stack"></section>
+ <section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-stack"></section>
+
+ <details class="more" id="how"><summary>Как считается итог <span class="sm">готовность проекта, слои под проект, стек, люди, что пока не учитывается</span></summary><div class="body"><ul>
+  <li><b>Ради чего.</b> Три показателя — правильно, дёшево, быстро — и контроль. Где их меряют: правильно — С3 «Оценка и бенчмарки» и С4 «Наблюдаемость»; дёшево — учёт токенов и квоты шлюза на этаже 5 и учёт расходов в С4; быстро — трекер и CI на этаже 8 и метрики эффекта в С3; контроль — журнал и права в С1, С2 и на этаже 5. Цель в цифрах задаёт заказчик; до пилота это гипотеза.</li>
+  <li><b>Проекты.</b> Банк — 14 линий проектов ВТБ по открытым источникам на 30.09–01.10.2026: семь кодовых и семь — ИИ в процессах и инфраструктура. У каждого — источники и уверенность: ✓ первоисточник сверен · ◐ выдача поиска или пересказ · ? косвенный сигнал. Отрасль КИИ — три маяка и три программы из колоды «Стратегия ИИ-зации разработки КИИ» (срез 29.09.2026); это предложение, а не план субъектов КИИ. «Вход для Veai» — гипотеза команды о приоритете входа.</li>
+  <li><b>Готовность проекта</b> — худшее из шагов подготовки по профилю: ✖ сначала основа — без неё результат агента нечем проверить или ограничить (нет тестов, эталона для сверки, проверяемых свойств, прав и лимитов) · ◐ сначала подготовка — работа до пилота · ? нет данных — вопрос к заказчику · ✓ можно в пилот. Значение профиля задано, только если у него есть основание в источнике, — оно показано рядом как гипотеза; остальное — «нет данных». Профиль правят в панели проекта, изменения хранятся в ссылке.</li>
+  <li><b>Слои под проект</b> — по шагам карты «С чего начинать сборку». Разработке нужны этажи 1–5, 7, 8, 10–12 и С1–С3; сопровождению — ещё С4; переводу — ещё С4 и С5. Агентам в процессах — этажи 1–9, 11, 12 и С1–С4 (без харнеса, этажа 10). Управлению агентами — этажи 1–5, 9, 11 и С1–С5. Инфраструктуре ИИ — этажи 1–5, С2 и С4. Итог каждого слоя считается правилами версии 1 для текущей сборки стека; пробелы «агентов в процессах» не влияют на проекты разработки, а условие «стык со „Сферой“» — на проекты процессов: оно касается инструментов разработки.</li>
+  <li><b>Стек.</b> Итог слоя — худшее из уверенности выбранных позиций, заявок без позиции в каталоге (не выше ◐) и замечаний правил; слой без позиций, нарушенное требование или известная дыра — ✖. Правила и пресеты — из версии 1, итоги по слоям с ней совпадают. Для масштаба «Отрасль · КИИ» консорциум дополнен ЦОД Ростелекома (этаж 1) и моделями Яндекса (этаж 4): у типового субъекта КИИ своих нет.</li>
+  <li><b>Люди.</b> Роли и фазы — модель команды; опорные цифры — у каждой источник и дата. Сокращение штата конструктор не считает: публичных подтверждений денежной экономии от агентов в разработке пока нет.</li>
+  <li><b>Пока не учитывается:</b> цены, сроки и бюджеты — источников нет, цифры вносит заказчик; сравнение харнесов разных игроков по частям — таких данных нет; проекты ВТБ, которых нет в открытых источниках.</li>
+  <li><b>Данные.</b> Каталог, слои и вкладка 4 читаются с карты при каждом открытии; правила и пресеты сверены с картой на 28.09.2026 — если карта обновится, конструктор предупредит. Сборка и профили проектов хранятся только в адресе ссылки — на сервер ничего не отправляется.</li>
+ </ul></div></details>
+</main>
+
+<footer>Прототип конструктора ИИ-трансформации, версия 2 · данные стека — карта The 2026 On-Prem AI Landscape · черновик для внутреннего обсуждения, не для передачи за пределы компании<br>Адрес страницы: <a href="https://kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/builder-v2/">kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/builder-v2/</a> · <a href="../builder/">предыдущая версия конструктора</a></footer>
+
+<dialog id="dlg-pp" aria-labelledby="pp-title">
+ <div class="dlg-h"><h2 id="pp-title">Паспорт</h2><button type="button" class="btn pri" data-act="print">Печать или PDF</button><button type="button" class="btn" data-act="close">Закрыть</button></div>
+ <div class="dlg-b" id="pp-body"></div>
+</dialog>
+<dialog id="dlg-st" aria-labelledby="st-title">
+ <div class="dlg-h"><h2 id="st-title">Если уйдёт…</h2><button type="button" class="btn" data-act="close">Закрыть</button></div>
+ <div class="dlg-b" id="st-body"></div>
+</dialog>
+<section id="print-pp" aria-hidden="true"></section>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js?v=20261001"></script>
+<script src="engine.js?v=20261001"></script>
+<script src="stack.js?v=20261001"></script>
+<script src="app.js?v=20261001"></script>
+</body></html>
