@@ -17,6 +17,7 @@
 .step.tool::before{background:var(--green)}
 .step:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;background:var(--line)}
 .step > *{grid-column:2}
+.step h3 .for{font-weight:500;color:var(--mut2)}
 .step-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:6px}
 .step h3{margin:0;font-size:clamp(21px,2.6vw,26px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);font-weight:700}
 .step .why{margin:8px 0 6px;font-size:17px;color:var(--ink);max-width:62ch}
@@ -38,14 +39,6 @@
 </style>
 </head>
 <body>
-<nav class="variants" aria-label="Варианты оформления">
-  <div class="wrap"><span>ВАРИАНТ ОФОРМЛЕНИЯ:</span>
-    <a href="./" aria-current="page">А · Маршрут</a>
-    <a href="cards.html">Б · Карточки</a>
-    <a href="table.html">В · Таблица</a>
-  </div>
-</nav>
-
 <header class="hero">
   <div class="wrap">
     <p class="kicker">Veai × ВТБ · материалы к обсуждению</p>
@@ -66,7 +59,7 @@
     <ol class="route">
 
       <li class="step">
-        <div class="step-head"><h3>ИИ-агенты для КИИ</h3><span class="tag deck">Презентация</span></div>
+        <div class="step-head"><h3>ИИ-агенты для КИИ <span class="for">(для РТК)</span></h3><span class="tag deck">Презентация</span></div>
         <p class="why">Зачем агенты, что они меняют и где место Veai. Контекст для всего остального.</p>
         <p class="facts">31 слайд · около 10 минут · срез 02.10.2026</p>
         <p class="read">Три проблемы субъектов КИИ, которые не решить прежним способом, ориентиры эффекта, доказанное ядро и цикл ADLC, кейс ВТБ и размер рынка. <b>Начните здесь</b>, если тема новая.</p>

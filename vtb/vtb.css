@@ -17,13 +17,6 @@ a:hover{color:var(--blue-d);text-decoration:underline;text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
 
-/* переключатель вариантов — временный, на время выбора */
-.variants{background:var(--ink);color:#cfd5db;font:12px/1 var(--mono)}
-.variants .wrap{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
-.variants span{margin-right:8px;letter-spacing:.04em}
-.variants a{color:#cfd5db;padding:6px 10px;border-radius:999px;border:1px solid #3a3f46}
-.variants a:hover{text-decoration:none;border-color:#8a9199;color:#fff}
-.variants a[aria-current]{background:#fff;color:var(--ink);border-color:#fff}
 
 /* шапка */
 .hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
@@ -66,7 +59,6 @@ footer{padding:32px 0 56px;font:12px/1.6 var(--mono);color:var(--mut2)}
   section.block{padding:36px 0}
 }
 @media print{
-  .variants{display:none}
   .btn{border:0;padding:0;color:var(--blue)}
   section.block{break-inside:avoid}
 }
