@@ -28,7 +28,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 /* шапка */
 .hero{padding:64px 0 40px;border-bottom:1px solid var(--line)}
 .kicker{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin:0 0 18px}
-h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);font-weight:800;margin:0 0 18px;max-width:16ch}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.025em;color:var(--ink);font-weight:800;margin:0 0 18px;max-width:22ch}
 .lead{font-size:clamp(17px,2vw,20px);line-height:1.5;max-width:60ch;margin:0;color:var(--body)}
 .meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font:13px/1.4 var(--mono);color:var(--mut2)}
 .meta b{color:var(--ink);font-weight:600}

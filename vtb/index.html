@@ -13,9 +13,10 @@
 .route{list-style:none;margin:0;padding:0;counter-reset:step}
 .step{position:relative;display:grid;grid-template-columns:56px 1fr;gap:0 22px;padding-bottom:40px}
 .step:last-child{padding-bottom:0}
-.step::before{counter-increment:step;content:counter(step);grid-row:1/span 3;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:700 22px/1 var(--sans);color:#fff;background:var(--blue);position:relative;z-index:1}
+.step::before{counter-increment:step;content:counter(step);grid-column:1;grid-row:1/span 9;align-self:start;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:700 22px/1 var(--sans);color:#fff;background:var(--blue);position:relative;z-index:1}
 .step.tool::before{background:var(--green)}
 .step:not(:last-child)::after{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;background:var(--line)}
+.step > *{grid-column:2}
 .step-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:6px}
 .step h3{margin:0;font-size:clamp(21px,2.6vw,26px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);font-weight:700}
 .step .why{margin:8px 0 6px;font-size:17px;color:var(--ink);max-width:62ch}
