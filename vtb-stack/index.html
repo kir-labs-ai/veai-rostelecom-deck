@@ -155,6 +155,13 @@
   .tiles{display:none}details.more .body{display:block}
   body{background:#fff}.super-box,.modbox,.verdict,.howto{break-inside:avoid}
  }
+ /* вкладка 5 «Китай» (07.10.2026) */
+ .nw{display:inline-block;font-size:9.5px;font-weight:700;color:#3730a3;background:#e0e7ff;border-radius:10px;padding:1px 7px;margin-left:6px;white-space:nowrap;vertical-align:1px}
+ .fl{display:inline-block;font-size:9.5px;font-weight:700;border-radius:10px;padding:0 6px;margin-left:6px;white-space:nowrap;vertical-align:1px;border:1px solid}
+ .fl.o{color:#334155;border-color:#94a3b8;background:#fff}
+ .fl.e{color:#9a3412;border-color:#fdba74;background:#fff7ed}
+ .fl.r{color:#1e3a8a;border-color:#93c5fd;background:#eff6ff}
+ details.more .body table.mtx{min-width:760px}details.more .body .mtx-wrap{margin:6px 0 4px}
 </style></head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -164,9 +171,10 @@
   <button class="tab" role="tab" id="tab-us" aria-controls="view-us" aria-selected="false" data-v="us" tabindex="-1">2 · США: on-prem игроки<span class="st" data-pending="us">в работе</span></button>
   <button class="tab" role="tab" id="tab-ru" aria-controls="view-ru" aria-selected="false" data-v="ru" tabindex="-1">3 · Россия<span class="st" data-pending="ru">в работе</span></button>
   <button class="tab" role="tab" id="tab-vtb" aria-controls="view-vtb" aria-selected="false" data-v="vtb" tabindex="-1">4 · ВТБ под ключ<span class="st" data-pending="vtb">в работе</span></button>
+  <button class="tab" role="tab" id="tab-cn" aria-controls="view-cn" aria-selected="false" data-v="cn" tabindex="-1">5 · Китай<span class="nw">новое 07.10</span><span class="st" data-pending="cn">в работе</span></button>
  </div>
  <h1>The 2026 On-Prem AI Landscape<span class="h1-sub">стек ИИ-агентов банка в закрытом контуре</span></h1></div>
- <div class="subline">Банк масштаба <b>ВТБ / Bank of America</b> · всё внутри корпоративного контура, <b>без облаков и внешних сервисов</b> · от железа до агентов · <b>12 этажей + 5 сквозных слоёв</b> · снимок 28.09.2026 · черновик v1</div>
+ <div class="subline">Банк масштаба <b>ВТБ / Bank of America</b> · всё внутри корпоративного контура, <b>без облаков и внешних сервисов</b> · от железа до агентов · <b>12 этажей + 5 сквозных слоёв</b> · снимок 28.09.2026, вкладка «Китай» — 07.10.2026 · черновик v1</div>
  <div class="legend"><span class="ttl">Контуры карты</span>
   <span class="lg"><span class="sq" style="background:#0369a1"></span>Фундамент: железо, вычисления, инференс</span>
   <span class="lg"><span class="sq" style="background:#6d28d9"></span>Модели и доступ к ним</span>
@@ -207,7 +215,7 @@
  <div class="howto">
   <div class="howto-h">Как читать карту</div>
   <div class="howto-grid">
-   <div class="ht"><div class="ht-n">Для кого и зачем</div><div class="ht-d"><b>Для руководителя</b>, который собирает предложение банку уровня ВТБ. Вопрос карты: <b>что нужно, чтобы внедрить агентов полностью внутри контура</b>, и кто это может закрыть. Варианты 2 и 3 кладут на те же слои игроков США и России, вариант 4 — решение для ВТБ из независимых игроков.</div></div>
+   <div class="ht"><div class="ht-n">Для кого и зачем</div><div class="ht-d"><b>Для руководителя</b>, который собирает предложение банку уровня ВТБ. Вопрос карты: <b>что нужно, чтобы внедрить агентов полностью внутри контура</b>, и кто это может закрыть. Варианты 2 и 3 кладут на те же слои игроков США и России, вариант 4 — решение для ВТБ из независимых игроков, вариант 5 — те же слои для рынка Китая.</div></div>
    <div class="ht"><div class="ht-n">Как устроена карточка слоя</div><div class="ht-d">Название и одна фраза — <b>что делает слой</b>. Плитки — <b>из чего он состоит</b>: наведите курсор или нажмите, чтобы увидеть описание. Внизу — <b>требование банка</b>: что должно быть выполнено, чтобы слой считался закрытым внутри контура. Слои объединяют 12 модулей <a href="https://gistpreview.github.io/?1dd80dcf48441bc6a52fbc29d25a516c">технологической карты AI-OS Dev</a> и фундамент от железа.</div></div>
    <div class="ht"><div class="ht-n">Обозначения</div><dl class="gl">
     <dt>LLM</dt><dd>большая языковая модель</dd>
@@ -258,9 +266,13 @@
  <div id="vtb-body"><div class="pending"><div class="draft-banner">В РАБОТЕ · черновик-гипотеза после вариантов 2 и 3</div><h2>Вариант 4 · ВТБ: решение «под ключ» из независимых игроков</h2><p>Кто закрывает каждый слой: Ростелеком, Veai, Яндекс и кандидаты в состав решения. Где стыки и где остаются дыры. Исходная посылка — со слов Михаила Кудинова: ВТБ строит всё внутри контура, но агентную разработку и внедрение агентов будет делать на внешних технологиях, развёрнутых внутри.</p></div></div>
 </section>
 
+<section class="view" id="view-cn" role="tabpanel" aria-labelledby="tab-cn">
+ <div id="cn-body"><div class="pending"><div class="draft-banner">В РАБОТЕ · исследование 07.10.2026</div><h2>Вариант 5 · те же 17 слоёв — игроки рынка Китая</h2><p>Китайские продукты, которые ставятся в контур заказчика, с подтверждением, пометками «открытый код», «Entity List США» и «есть в РФ». Отдельно — как банки Китая уже собрали стек внутри контура и что из этого доступно банку в России.</p></div></div>
+</section>
+
 </main>
 <div id="tip" role="tooltip" aria-hidden="true"></div>
-<footer class="wrap">Источник задачи: созвон с Михаилом Кудиновым 28.09.2026 · черновик для внутреннего обсуждения, не для передачи за пределы компании · вариант 1 не называет вендоров сознательно — компании появляются во вкладках 2–4<br>Адрес страницы: <a href="https://kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/">kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/</a></footer>
+<footer class="wrap">Источник задачи: созвон с Михаилом Кудиновым 28.09.2026 · черновик для внутреннего обсуждения, не для передачи за пределы компании · вариант 1 не называет вендоров сознательно — компании появляются во вкладках 2–5<br>Адрес страницы: <a href="https://kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/">kir-labs-ai.github.io/veai-rostelecom-deck/vtb-stack/</a></footer>
 
 <script>
 const G={
@@ -736,10 +748,10 @@ RU.tail=`<details class="more" id="ru-regs"><summary>Регуляторика Р
 </ul></div></details>
 <p class="sub" style="margin-top:10px">* ВТБ — продукты Т1. По нашим данным, Т1 полностью под контролем ВТБ; публично банк вышел из капитала Т1 в 2025 году, бенефициары нынешних владельцев не раскрываются (<a href="https://www.interfax.ru/business/1016194">Интерфакс</a>).</p>`;
 const VTB={rows:[
- {id:'f1',rt:'РТК-ЦОД: 26 ЦОД уровня Tier III, около 30% рынка. Целевые ЦОДы ВТБ созданы совместно с Ростелекомом (<a href="https://www.comnews.ru/digital-economy/content/222747/2022-10-24/2022-w43/vtb-obespechit-perekhod-tekhnologicheskikh-sistem-celevye-cody">2022</a>)',cand:'YADRO — сервер на 8 GPU в реестре Минпромторга (<a href="https://www.cnews.ru/news/line/2026-09-17_yadro_rasshirila_vozmozhnosti">09.2026</a>). Сам ВТБ — кластер на китайских GPU с 03.2026',st:'ok',note:'ВТБ строит сам; риск — китайские GPU'},
+ {id:'f1',rt:'РТК-ЦОД: 26 ЦОД уровня Tier III, около 30% рынка. Целевые ЦОДы ВТБ созданы совместно с Ростелекомом (<a href="https://www.comnews.ru/digital-economy/content/222747/2022-10-24/2022-w43/vtb-obespechit-perekhod-tekhnologicheskikh-sistem-celevye-cody">2022</a>)',cand:'YADRO — сервер на 8 GPU в реестре Минпромторга (<a href="https://www.cnews.ru/news/line/2026-09-17_yadro_rasshirila_vozmozhnosti">09.2026</a>). Сам ВТБ — кластер на китайских GPU с 03.2026 · какие ускорители есть и чем рискованны — <a href="#cn-f1">вкладка «Китай»</a>',st:'ok',note:'ВТБ строит сам; риск — китайские GPU'},
  {id:'f2',rt:'«Базис» (50,3% у РТК-ЦОД): Basis Workplace уже работает на 65 тыс. рабочих мест ВТБ (<a href="https://globalcio.ru/projects/45441/">2024</a>); «Облако КИИ» на «Базисе»',yx:'Stackland — платформа для закрытого контура на железе заказчика (<a href="https://www.comnews.ru/content/244422/2026-03-26/2026-w13/1010/yandex-b2b-tech-zapustila-platformu-stackland-dlya-zakrytogo-kontura-kompaniy">03.2026</a>)',cand:'Группа Астра (Astra Linux); у ВТБ своё облако VTB.Cloud',st:'ok',note:'Ростелеком уже внутри ВТБ'},
  {id:'f3',rt:'«Турбо Облако»: платформа инференса на H200 — только облако; поставка в контур не подтверждена',yx:'ПАК с Yandex AI Studio для контура (<a href="https://yandex.ru/company/news/28-05-2026-02">05.2026</a>); ПАК-AI от К2 НейроТех с моделями Alice AI (<a href="https://www.anti-malware.ru/news/2026-05-28-111332/50203">05.2026</a>)',cand:'ВТБ сам: LLM на собственных серверах',st:'ok',note:'закрывает Яндекс; поставка Ростелекома в контур не подтверждена'},
- {id:'m4',rt:'своих моделей нет',veai:'модель по выбору заказчика — модели не производим',yx:'YandexGPT уже работает в ВТБ; открытые веса YandexGPT-5-Lite-8B и AliceAI-Foundation-80B (<a href="https://huggingface.co/yandex/AliceAI-Foundation-80B-A3B-Base">09.2026</a>)',cand:'Qwen (открытые веса) — уже в ВТБ',st:'ok'},
+ {id:'m4',rt:'своих моделей нет',veai:'модель по выбору заказчика — модели не производим',yx:'YandexGPT уже работает в ВТБ; открытые веса YandexGPT-5-Lite-8B и AliceAI-Foundation-80B (<a href="https://huggingface.co/yandex/AliceAI-Foundation-80B-A3B-Base">09.2026</a>)',cand:'Qwen (открытые веса) — уже в ВТБ · китайские модели и их лицензии — <a href="#cn-m4">вкладка «Китай»</a>',st:'ok'},
  {id:'m5',rt:'«Нейрошлюз» — внутренний инструмент Ростелекома; внешние продажи — в планах (<a href="https://www.cnews.ru/news/line/2026-06-19_rostelekom_predstavil">06.2026</a>)',veai:'<b>Veai Platform</b>: единый шлюз к моделям — квоты, журнал аудита, фильтр чувствительных данных; on-premise публично заявлен (<a href="https://veai.ru/">veai.ru</a>), условия уточняются',cand:'Neoflex Neon — пересекается с Veai',st:'ok',note:'закрывают Veai (условия on-prem уточняются) или Neoflex Neon'},
  {id:'k6',rt:'«Солар»: Solar Dozor (DLP) и контроль запросов к ИИ-сервисам',veai:'фильтр чувствительных данных в шлюзе',yx:'Яндекс 360 в контуре заказчика (<a href="https://www.comnews.ru/content/244492/2026-03-30/2026-w14/1010/yandex-b2b-tech-otkryla-dostup-k-disku-i-dokumentam-modeli-premises">03.2026</a>); YDB — открытая СУБД',cand:'Гарда Data Masking — обезличивание баз; Arenadata Catalog — каталог и происхождение данных',st:'part',note:'синтетика для ИИ — только модуль «Сферы» (Т1)'},
  {id:'k7',veai:'контекст по кодовой базе (поиск по коду)',yx:'YDB — открытая СУБД в контуре',cand:'Arenadata Advanced RAG — RAG-платформа, ставится без интернета; Neoflex Neon — RAG и MCP',st:'ok',note:'закрывают Veai (код) и кандидаты (документы)'},
@@ -793,10 +805,254 @@ VTB.tail=`<div class="secblk"><h2>Что решить Михаилу</h2><div cl
  <li>Расхождения с колодами Veai × Ростелеком: доля РТК-ЦОД — 30% (в колоде 32%), у «Нейрошлюза» другие цифры охвата, «Сфера» описана как «только помощники» — это устарело.</li>
 </ul></div></details>`;
 
-function vendorRow(v){
- const cf=CONF[v.c]||CONF.l, p=v.g&&GRP[v.g]?'<span class="pill" style="background:'+GRP[v.g].bg+';color:'+GRP[v.g].fg+'">'+esc(GRP[v.g].t)+'</span>':'';
+/* вкладка 5 «Китай» (версия 07.10.2026). Позиция: C(название, компания, роль, ссылка, уверенность, группа, пометки) */
+const C=(n,co,r,u,c,g,x)=>({n,co,r,u,c,g,x});
+const CN={grp:{
+ hw:{t:'Huawei',bg:'#fee2e2',fg:'#991b1b'},
+ ali:{t:'Alibaba',bg:'#ffedd5',fg:'#9a3412'},
+ tc:{t:'Tencent',bg:'#dbeafe',fg:'#1e40af'},
+ bd:{t:'Baidu',bg:'#e0e7ff',fg:'#3730a3'},
+ bt:{t:'ByteDance',bg:'#ccfbf1',fg:'#115e59'},
+ ant:{t:'Ant Group',bg:'#fef9c3',fg:'#854d0e'},
+ tel:{t:'госоператор связи',bg:'#f3e8ff',fg:'#6b21a8'}
+},notes:{},layers:{
+ f1:[C('Ascend 910B/910C и 950 · суперузлы CloudMatrix 384 и Atlas 950 SuperPoD','Huawei','ускорители и суперузлы — замена NVIDIA от карты до кластера; в РФ — только через реселлеров, без канала вендора','https://www.huawei.com/en/news/2026/3/mwc-superpod-computing','h','hw','er'),
+  C('Siyuan 590 / 690','Cambricon','ускорители; главный клиент — ByteDance','https://www.caixinglobal.com/2026-08-10/chinese-ai-chipmaker-cambricons-breakneck-growth-starts-to-slow-102472846.html','m',null,'e'),
+  C('DCU','Hygon','ускорители с программным стеком, близким к CUDA','https://m.cls.cn/detail/2382390','h',null,'e'),
+  C('P800 · M100','Kunlunxin (Baidu)','ускорители Baidu; M100 — в перечне «安全可靠» для госзакупок','https://www.itsec.gov.cn/aqkkcp/cpgg/202609/t20260920_275291.html','h','bd',''),
+  C('C500 · MXC600','MetaX','ускорители, совместимые с CUDA; C500 поддерживают серверы YADRO, его рассматривал Альфа-Банк','https://www.cnews.ru/news/top/2025-09-15_rossijskie_banki_poprobovali','m',null,'r'),
+  C('S4000 · BR166','Moore Threads · Biren','ускорители второго эшелона','https://m.cls.cn/detail/2382390','m',null,'e'),
+  C('ИИ-серверы Inspur, xFusion, H3C, Lenovo, Sugon','разные компании','узлы под отечественные ускорители; Inspur и xFusion с 27.05.2026 исключены из параллельного импорта в РФ','https://my.idc.com/getdoc.jsp?containerId=prCHC53858025','m',null,'e'),
+  C('OceanStor A800','Huawei','хранилище для ИИ: веса моделей, данные, память агентов','https://e.huawei.com/en/products/storage/ai-storage/oceanstor-a800','h','hw','e'),
+  C('大模型一体机 — комплексы «модель внутри»','больше 100 вендоров','железо, ПО и модель одной поставкой; бум 2025 года на волне DeepSeek','https://my.idc.com/getdoc.jsp?containerId=prCHC53414025','m',null,'')],
+ f2:[C('Huawei Cloud Stack 8.6 / 8.7','Huawei','частное облако с пулами ускорителей Ascend и CloudMatrix 384','https://www.huaweicloud.com/news/2025/20250918195509846.html','h','hw','e'),
+  C('Apsara Stack · 百炼 в частном облаке','Alibaba Cloud','частное облако и платформа моделей внутри контура заказчика','https://ue.aliyun.com/solution/dedicated-model-studio','m','ali',''),
+  C('Volcano','CNCF (создан Huawei)','планировщик Kubernetes: групповой запуск задач, топология, виртуальные Ascend','https://volcano.sh/blog/volcano-1.15.0-release/','h',null,'o'),
+  C('HAMi','CNCF (Dynamia, 4Paradigm, DaoCloud)','дробление и пулы ускорителей девяти и больше китайских вендоров','https://www.cncf.io/blog/2026/07/15/hami-becomes-a-cncf-incubating-project/','h',null,'o'),
+  C('KubeSphere Enterprise','QingCloud','Kubernetes-платформа; открытую версию закрыли за один день 31.07.2025','https://github.com/kubesphere/kubesphere/issues/6550','h',null,''),
+  C('openEuler','OpenAtom (создан Huawei)','серверная ОС под Kunpeng и Ascend; на ней построен российский OpenScaler','https://www.openeuler.org/','h',null,'or')],
+ f3:[C('MindIE','Huawei','штатный движок инференса для Ascend; код открыт в 12.2025','https://github.com/Ascend/MindIE-LLM','h','hw','oe'),
+  C('vLLM-Ascend','проект vLLM, основной вклад — Huawei','vLLM на Ascend 910B/910C и 950: DeepSeek V4, Kimi K3, MiniMax M3','https://github.com/vllm-project/vllm-ascend/releases','h',null,'o'),
+  C('LMDeploy','Shanghai AI Lab','движок инференса и сжатия весов; поддерживает Atlas 800 A2/A3','https://lmdeploy.readthedocs.io/en/latest/get_started/ascend/get_started.html','h',null,'o'),
+  C('KTransformers','Tsinghua MADSys и Approaching.AI','большие модели MoE на одном ускорителе с памятью процессора','https://www.hiascend.com/activities/dynamic-news/583','m',null,'o'),
+  C('Xinference','Xorbits','единый API к моделям; версия Enterprise — на Ascend, Hygon, Cambricon, MetaX','https://marketplace.huaweicloud.com/contents/3f1dbda2-483b-407f-8533-92f764a49886','m',null,'o'),
+  C('Mooncake','Moonshot AI и Tsinghua','распределённый кэш контекста для больших кластеров инференса','https://github.com/kvcache-ai/Mooncake','h',null,'o')],
+ m4:[C('DeepSeek-V4.1-Flash · V4-Pro','DeepSeek','флагман открытых весов, сильный в коде; лицензия MIT; веса V4.1-Flash — с 10.09.2026','https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash','h',null,'or'),
+  C('Qwen3.8 · Qwen3-Coder','Alibaba','самые используемые в РФ: на Qwen работают ВТБ и T-Pro 2.0 Т-Банка; Qwen3.8-27B — Apache 2.0','https://huggingface.co/Qwen/Qwen3.8-27B','h','ali','or'),
+  C('GLM-5.3','Z.AI (Zhipu)','агентное программирование; своя лицензия, близкая к MIT; MWS Cloud развернула GLM-5.3 у себя','https://huggingface.co/zai-org/GLM-5.3','h',null,'oer'),
+  C('Kimi K3','Moonshot AI','длинные задачи по коду; своя лицензия: внутреннее использование свободно, крупным провайдерам моделей нужен договор','https://huggingface.co/moonshotai/Kimi-K3','h',null,'or'),
+  C('MiniMax M3','MiniMax','модель для агентов и кода; своя лицензия: бесплатно — только некоммерческое использование, банку нужно письменное разрешение MiniMax','https://huggingface.co/MiniMaxAI/MiniMax-M3','h',null,'o'),
+  C('ERNIE 4.5','Baidu','открыто только прошлое поколение (Apache 2.0); ERNIE 5 — только в облаке','https://huggingface.co/baidu/ERNIE-4.5-300B-A47B-PT','h','bd','o'),
+  C('Hy4-preview','Tencent','универсальная модель с открытыми весами; основа кодового ассистента CodeBuddy','https://www.mindstudio.ai/blog/tencent-hy4-preview-open-weight-model','m','tc','o'),
+  C('Seed-OSS-36B','ByteDance','последний открытый релиз — 08.2025; новые модели Seed — только в облаке','https://huggingface.co/ByteDance-Seed/Seed-OSS-36B-Instruct','h','bt','o'),
+  C('Spark X2.5','iFlytek','обучена на Ascend; флагман коммерческий, его поставка в контур не подтверждена; малые модели открыты','https://kw.beijing.gov.cn/xwdt/kcyx/xwdtyqqy/202609/t20260902_4847082.html','m',null,'e'),
+  C('BGE-M3 · BGE-Code','BAAI','эмбеддинги для поиска по документам и коду; на BGE-M3 построена русская модель VK','https://huggingface.co/BAAI/bge-m3','h',null,'oer'),
+  C('Qwen3-Embedding · Reranker','Alibaba','эмбеддинги и реранкеры, в том числе для поиска по коду','https://huggingface.co/Qwen/Qwen3-Embedding-8B','h','ali','o')],
+ m5:[C('Higress','Alibaba (CNCF Sandbox)','ИИ- и MCP-шлюз; на нём построен шлюз частного облака Alibaba','https://www.cncf.io/blog/2026/03/25/higress-joins-cncf-delivering-an-enterprise-grade-ai-gateway-and-a-seamless-path-from-nginx-ingress/','h','ali','o'),
+  C('Apache APISIX · API7 Enterprise','Apache Software Foundation · API7.ai','маршрутизация между моделями, запасная модель, кэш; основной API-шлюз «Северстали»','https://apisix.apache.org/blog/2026/09/28/release-apache-apisix-3.19.0/','h',null,'or'),
+  C('new-api · one-api','открытые проекты','ключи, квоты и учёт запросов к моделям; new-api — AGPL-3.0','https://github.com/QuantumNous/new-api','h',null,'o'),
+  C('ModelArts в Huawei Cloud Stack','Huawei','разработка и выдача моделей по API внутри частного облака','https://doc.hcs.huawei.com/zh-cn/modelarts/doc/download/pdf/modelarts-productdesc.pdf','h','hw','e'),
+  C('Qianfan, частная установка','Baidu','платформа моделей в контуре и в комплексах «модель внутри»; ERNIE 5 в контуре не подтверждена','https://cloud.baidu.com/article/3369538','l','bd','')],
+ k6:[C('Transwarp Data Studio · каталог','Transwarp','каталог, метаданные и происхождение данных до уровня поля','https://www.transwarp.cn/product/tds/','h',null,''),
+  C('DataArts Studio в Huawei Cloud Stack','Huawei','каталог, качество и происхождение данных в частном облаке','https://doc.hcs.huawei.com/zh-cn/dataartsstudio/doc/download/pdf/dataartsstudio-productdesc.pdf','h','hw','e'),
+  C('DataWorks в частном облаке','Alibaba','карта и происхождение данных в Apsara Stack','https://help.aliyun.com/apsara/enterprise/v_3_18_0/dide/enterprise-ascm-user-guide/blood-relationship.html','h','ali',''),
+  C('AiMask','DAS-Security','статическое маскирование, водяные знаки на выгрузках','https://www.dbappsecurity.com.cn/product/cloud2803.html','h',null,''),
+  C('Маскирование и DLP','QAX','маскирование персональных данных и защита от утечек','https://www.qianxin.com/product/detail/pid/422','h',null,''),
+  C('TopDLP','Topsec','DLP для сети, рабочих мест и почты','https://www.topsec.com.cn/products/Network-DLP','h',null,''),
+  C('Защита от утечек','Sangfor','многоуровневая защита данных от утечек; в РФ у Sangfor есть межсетевые экраны в облаке билайн, DLP — не подтверждена','https://www.sangfor.com.cn/sangfor-security/office-network-data-prevention','h',null,'')],
+ k7:[C('Milvus','Zilliz (штаб-квартира в США, основана в Шанхае)','векторная БД; есть в маркетплейсе VK Cloud','https://github.com/milvus-io/milvus','h',null,'or'),
+  C('Hippo','Transwarp','распределённая векторная БД; есть бесплатная версия','https://www.transwarp.cn/subproduct/hippo','h',null,''),
+  C('OceanBase','OceanBase (Ant Group)','распределённая СУБД с векторным поиском; на её коде построена СУБД СберТеха «О.К.Е.А.Н.»','https://github.com/oceanbase/oceanbase','h','ant','or'),
+  C('RAGFlow','InfiniFlow','поиск по знаниям с разбором сложных документов; готовый образ в Selectel','https://github.com/infiniflow/ragflow','h',null,'or'),
+  C('MaxKB','FIT2CLOUD','база знаний и агенты; GPL-3.0, есть платная версия','https://github.com/1Panel-dev/MaxKB','h',null,'o'),
+  C('FastGPT','Labring','поиск по знаниям и визуальные сценарии; своя лицензия запрещает SaaS для многих клиентов','https://github.com/labring/FastGPT','h',null,'o'),
+  C('QAnything','NetEase Youdao','поиск по знаниям полностью без сети; AGPL-3.0','https://github.com/netease-youdao/QAnything','h',null,'o')],
+ k8:[C('Gitee, профессиональная и флагманская версии','OSChina','Git и DevOps в контуре, совместим с 信创','https://gitee.com/professional','h',null,''),
+  C('JiHu GitLab','JiHu (лицензиат GitLab)','GitLab для КНР; лицензия — только на КНР, Гонконг и Макао, в РФ не продаётся','https://docs.gitlab.cn/docs/jh/subscriptions/self_managed/','h',null,''),
+  C('ZenTao','Easysoft','трекер задач, тестов и релизов; в РФ — партнёр GlowByte, есть русский интерфейс','https://www.zentao.net/zentao-os.html','h',null,'or'),
+  C('ONES','ONES','трекер и управление разработкой в контуре','https://ones.cn/solutions/capability/deployment','h',null,''),
+  C('Apache RocketMQ','Apache Software Foundation (вышел из Alibaba)','брокер сообщений и событий','https://github.com/apache/rocketmq','h',null,'o'),
+  C('TongLINK/Q','Tongtech','банковская очередь сообщений; версия Q-D совместима с Kafka','https://www.tongtech.com/newsDetail/102375.html','m',null,'')],
+ a9:[C('Dify','LangGenius (США; основатели — выходцы из Tencent)','агенты, поиск по знаниям и сценарии без программирования; образ в Selectel; своя лицензия на основе Apache 2.0 с условиями','https://github.com/langgenius/dify','h',null,'or'),
+  C('Coze Studio · Coze Loop','ByteDance','конструктор агентов и их отладка и оценка; Apache 2.0, код открыт в 07.2025','https://github.com/coze-dev/coze-studio','h','bt','o'),
+  C('Bailian в частном облаке · AgentScope','Alibaba','платформа агентов в частном облаке и ПАК; фреймворк AgentScope — Apache 2.0, его QwenPaw есть в Selectel','https://www.aliyun.com/solution/tech-solution/bailian-aistack/','h','ali','or'),
+  C('Agent Development Platform (ADP)','Tencent','агенты, мультиагенты и протокол A2A; работает без сети, совместима с 信创','https://adp.tencent.com/','h','tc',''),
+  C('Qianfan AppBuilder, частная установка','Baidu','агенты, поиск по знаниям, сценарии','https://cloud.baidu.com/product-s/qianfan_appbuilder','m','bd',''),
+  C('Astron Agent (星辰)','iFlytek','агенты и RPA; Apache 2.0 с 09.2025','https://github.com/iflytek/astron-agent','h',null,'oe'),
+  C('Versatile · AgentArts','Huawei','агентная платформа на моделях Pangu и DeepSeek; установка в Huawei Cloud Stack не подтверждена','https://doc.hcs.huawei.com/zh-cn/modelarts/doc/download/pdf/modelarts-productdesc.pdf','l','hw','e')],
+ a10:[C('Comate (文心快码), частная установка','Baidu','ассистент и агент разработки: модель и сервисы в контуре заказчика','https://cloud.baidu.com/doc/COMATE/s/Dlnvqzquu','h','bd',''),
+  C('CodeGeeX','Zhipu (Z.ai)','плагин для IDE; частная установка, ПАК, 信创; открытые веса CodeGeeX4','https://codegeex.cn/','h',null,'oe'),
+  C('iFlyCode','iFlytek','ассистент разработки; ПАК на Ascend, обновления без интернета; им пользуется BoCom','https://www.xfyun.cn/solutions/iflycode','h',null,'e'),
+  C('aiXcoder','aiXcoder','ассистент с дообучением на коде банка; работает во внутренней сети госбанка КНР','https://finance.sina.com.cn/tech/roll/2025-07-11/doc-inffawii2744794.shtml','m',null,''),
+  C('Raccoon','SenseTime','ассистент кода; частная установка заявлена, работа без сети явно не описана','https://www.sensetime.com/cn/product-detail?categoryId=51134384','m',null,'e'),
+  C('Qwen Code','Alibaba','CLI-агент для любых OpenAI-совместимых моделей, в том числе локальных; Apache 2.0; им пользуются разработчики в РФ','https://github.com/QwenLM/qwen-code','h','ali','or')],
+ a11:[C('LobeHub (LobeChat)','LobeHub','веб-чат с агентами и поиском по знаниям; готовый образ в Selectel; своя лицензия на основе Apache 2.0','https://github.com/lobehub/lobehub','h',null,'or'),
+  C('Cherry Studio','CherryHQ','настольный клиент к моделям; AGPL-3.0, версия Enterprise — с частной установкой','https://github.com/CherryHQ/cherry-studio','h',null,'o'),
+  C('Feishu, локальная установка','ByteDance','мессенджер, документы и видеосвязь; установлен в банке Minsheng','https://www.feishu.cn/customers/minsheng','h','bt',''),
+  C('Lanxin','Lanxin (группа China Electronics)','защищённый мессенджер с китайской криптографией; клиент — Народный банк Китая','https://www.lanxin.cn/','h',null,''),
+  C('政务微信 — WeCom для частной установки','Tencent','корпоративный мессенджер на серверах заказчика; часть функций обращается к Tencent','https://work.weixin.qq.com/nl/act/p/9aaaa5bed52943cd','h','tc',''),
+  C('FineBI · FineReport','FanRuan','BI и отчётность; в РФ — Уралсиб и СберСтрахование','https://uralsib.ru/blog/bank-uralsib-zavershil-perekhod-na-platformu-dlya-biznes-analitiki-fine-bi','h',null,'r')],
+ a12:[C('Agentar','Ant Digital','300+ финансовых агентов: риск, инвестиции, страхование; по IDC — №1 среди не облачных вендоров в частных установках','https://www.pingwest.com/a/315678','m','ant',''),
+  C('LightGPT · WarrenQ','Hundsun','агенты для брокеров и управляющих активами; ПАК на Ascend','http://www.zqrb.cn/gscy/qiyexinxi/2025-03-21/A1742558746037.html','m',null,''),
+  C('星睿智调','Yusys','проверка заёмщиков, кредитное решение, база знаний; частная установка','https://www.ncsti.gov.cn/kjdt/yqdy/yqdt/202606/t20260609_249253.html','m',null,''),
+  C('源启: платформа агентов · GienCoder','中电金信 (группа CEC)','финансовые агенты; GienCoder — для разработки нового ядра банка; совместим с китайскими чипами','https://www.cebnet.com.cn/20241210/102977545.html','m',null,''),
+  C('SkillBase — фабрика финансовых агентов','Digital China Information','агентная платформа банка: маркетинг, ядро; DeepSeek в частном контуре банка','https://www.dcits.com/show-269-6665-1.html','m',null,''),
+  C('AutoBA · TCR','Sunline','анализ требований и кода банковского ядра на Ascend и DeepSeek; частная установка явно не указана','https://www.sunline.cn/show-1808.html','l',null,''),
+  C('实在Agent (TARS и RPA)','Shizai','RPA и агент для систем без API; кейс госбанка развития','https://www.ai-indeed.com/encyclopedia/27595.html','m',null,'')],
+ x1:[C('Платформа создания и эксплуатации агентов','360','жизненный цикл агентов, разделение ролей, человек в ключевых решениях; частная установка, совместима с 信创','https://www.news.cn/tech/20251028/bb837fe245af47f99f8efa1337fcd293/c.html','m',null,'e'),
+  C('A.I.G (AI-Infra-Guard)','Tencent','допуск агента к работе: аудит MCP-серверов и навыков, проверки на взлом через промпт','https://github.com/Tencent/AI-Infra-Guard','h','tc','o'),
+  C('Решение для безопасности самих агентов','NSFOCUS','идентичность и права агента, контроль намерений, аудит; форма поставки не указана','https://www.nsfocus.com.cn/html/2026/668_0605/291.html','l',null,''),
+  C('蚁天鉴 2.0','Ant Group','тестирование и защита моделей; продаётся с 07.2024, установка в контур не подтверждена','https://tech.cnr.cn/techph/20240705/t20240705_526779775.shtml','l','ant','')],
+ x2:[C('大模型卫士','QAX','шлюз и ограждение для LLM и агентов, аудит промптов; программой или ПАК','https://www.qianxin.com/product/detail/pid/522','h',null,''),
+  C('Ограждение LLM · 安全GPT','Sangfor','ограждение LLM и ИБ-модель для центра мониторинга; офис в Москве, облачный сервис вместе с билайн','https://www.sangfor.com.cn/AIfirst/AIguardrails','h',null,'r'),
+  C('AI-SCAN · AI-UTM','NSFOCUS','сканер моделей и MCP; межсетевой экран для LLM; ПАК или виртуальная поставка','https://www.nsfocus.com.cn/html/2026/651_0202/283.html','h',null,''),
+  C('大模型卫士防护系统','360','ограждение и оценка контента LLM; шлюз-прокси в контуре','https://360.net/product-center/ai-security/protection','h',null,'e'),
+  C('恒脑','DAS-Security','агенты ИБ для центра мониторинга, ПАК с DeepSeek','https://www.dbappsecurity.com.cn/content/details4756_29973.html','m',null,''),
+  C('Защитный контур для LLM','NetEase Yidun','проверка ввода и вывода моделей; частная установка за 1–3 месяца','https://dun.163.com/news/p/5b117d20eaf34d019a600950be9eca03','h',null,'')],
+ x3:[C('OpenCompass','Shanghai AI Lab','платформа прогона бенчмарков на локальных моделях','https://github.com/open-compass/opencompass','h',null,'o'),
+  C('C-Eval · CMMLU','академические проекты','знания на китайском языке; данные — только для некоммерческого использования','https://github.com/hkust-nlp/ceval','h',null,'o'),
+  C('Multi-SWE-bench','ByteDance Seed','задачи разработки на 7 языках, включая Java; запуск в Docker','https://github.com/multi-swe-bench/multi-swe-bench','h','bt','o'),
+  C('FlagEval','BAAI','оценка моделей, в том числе мультимодальных','https://github.com/flageval-baai/FlagEvalMM','m',null,'oe')],
+ x4:[C('Bonree ONE · наблюдаемость ИИ','Bonree','мониторинг приложений и ИИ; клиенты — CCB, Everbright, Huaxia','https://www.bonree.com/','m',null,''),
+  C('Наблюдаемость LLM и агентов','Guance','токены, вызовы инструментов, стоимость агентов; частная версия, установка без сети','https://docs.guance.com/deployment/deployment-description/','h',null,''),
+  C('DeepFlow','Yunshan Networks','трассировка на eBPF без правки кода, профилирование GPU','https://github.com/deepflowio/deepflow','h',null,'o'),
+  C('Apache SkyWalking 10.4','Apache Software Foundation (проект из КНР)','мониторинг приложений; с 04.2026 — слой GenAI: токены, задержка, сессии агентов','https://github.com/apache/skywalking/blob/master/docs/en/changes/changes-10.4.0.md','h',null,'o'),
+  C('Coze Loop','ByteDance','промпты, оценка и трассы агентов; Docker и Helm','https://github.com/coze-dev/coze-loop','h','bt','o'),
+  C('LoongSuite','Alibaba','агент OpenTelemetry для трассировки GenAI','https://github.com/alibaba/loongsuite-python-agent','h','ali','o')],
+ x5:[C('源启 · финансовая модель 源启','中电金信 (группа CEC)','№1 по банковским ИТ в КНР — доля 7,79% по CCID, 600+ финансовых организаций; частная установка','https://www.gientech.com/detail/1362.html','h',null,''),
+  C('ChinaSoft International','ChinaSoft','интегратор: поставил SPDB 176 серверов Kunpeng и Ascend; агенты на openJiuwen и Qwen','https://www.mpaypass.com.cn/news/202506/17113518.html','h',null,''),
+  C('天翼云 息壤 · TeleChat3','China Telecom','ПАК с DeepSeek-V4 для финансов, развёртывание в частный контур; TeleChat — открытые веса','https://m.jiemian.com/article/14340279.html','m','tel','o'),
+  C('九天 · 中移金科','China Mobile','модели и ПАК; модель риск-контроля в кредитовании банков','https://www.163.com/dy/article/KSLKEBR60514R9OJ.html','m','tel',''),
+  C('元景 · 元景万悟','China Unicom','платформа агентов с открытым кодом; ПАК с DeepSeek-V4','http://iot.china.com.cn/content/2026-04/27/content_43413138.shtml','m','tel','o'),
+  C('神州鲲泰 · 神州信息','Digital China','ИИ-серверы для госбанка на 371 млн юаней; банковское ПО; локальная установка','https://finance.sina.com.cn/jjxw/2026-07-03/doc-inifpusu3577504.shtml','m',null,'')]
+}};
+CN.notes={
+ f1:'<b>Экспортный режим на 07.10.2026.</b> США: H200 и MI325X продаются в Китай по разрешению на каждую сделку (<a href="https://www.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china">BIS, 13.01.2026</a> ✓), Blackwell запрещён. Китай: в ЦОД с государственным финансированием — только отечественные чипы (<a href="https://finance.yahoo.com/news/exclusive-china-bans-foreign-ai-080808297.html">Reuters, 05.11.2025</a>); в перечень «安全可靠» для госзакупок вошли Ascend 950 и Kunlunxin M100 (<a href="https://www.itsec.gov.cn/aqkkcp/cpgg/202609/t20260920_275291.html">20.09.2026</a> ✓). Узкое место Ascend — память HBM: в очереди за ним ByteDance, DeepSeek и госЦОД КНР.',
+ f2:'Не проверены из-за лимита поиска: Tencent TCE, Baidu ABC Stack, частная установка Volcano Engine, DaoCloud, Alauda.',
+ m4:'<b>Лицензии сверены по карточкам моделей 07.10.2026 ✓:</b> DeepSeek — MIT; Qwen3.8-27B, ERNIE 4.5, Seed-OSS и Qwen3-Embedding — Apache 2.0; у GLM-5.3 и Kimi K3 — собственные лицензии с условиями для крупных провайдеров моделей как сервиса; внутренний контур банка эти условия обычно не задевают — нужна юридическая проверка. MiniMax M3 бесплатна только для некоммерческого использования: при коммерческом — пометка «Built with MiniMax M3», а при выручке больше $20 млн в год — письменное разрешение MiniMax; военное применение запрещено. Российские модели уже стоят на китайских: T-Pro 2.0 — на Qwen3-32B, YandexGPT 5 Pro — старт с весов Qwen2.5-32B.',
+ m5:'Higress, APISIX и new-api — открытый код: ставятся в контур без участия вендора.',
+ k6:'Зрелого продукта синтетических данных для установки в контур не нашли: банки КНР вместо этого используют вычисления с сохранением приватности (privacy computing). Также: 美创 — маскирование, кейс Jiangsu Bank.',
+ k7:'Отдельного продукта индексации кода для контура нет — функция встроена в ассистенты разработки; есть открытый CodeFuse-Query от Ant (Apache 2.0). Tencent VectorDB — только облако. TiDB — открытый код, PingCAP основана в Пекине, штаб-квартира в США.',
+ k8:'Tencent CODING снят с продажи 30.09.2025 и отключится 30.09.2028; Alibaba Yunxiao в контур — только через отдел продаж; BlueKing (Tencent) — открытый код под MIT. API-шлюзы APISIX и Higress — на этаже 5.',
+ a9:'Также: JD JoyAgent-JDGenie (Apache 2.0). Финансовые агенты Ant Agentar — на этаже 12. Tencent с 01.2025, Alibaba и Baidu с 06.2026 — в перечне Пентагона 1260H («китайские военные компании»): это не санкции, но сигнал риска для участников с бизнесом в США.',
+ a10:'<b>Без интернета с моделями в контуре</b> подтверждены Comate, aiXcoder, iFlyCode и CodeGeeX в локальном режиме, а также Qwen Code с локальной моделью. CodeArts Snap (Huawei) ставится, по данным исследования, через Huawei Cloud Stack — документа нет. <b>Не подходят для контура:</b> Qoder CN (бывший Tongyi Lingma, переименован 20.05.2026) — старшая версия работает только в выделенном VPC в облаке Alibaba (<a href="https://help.aliyun.com/zh/lingma/product-overview/billing-description">тарифы</a> ✓); Tencent CodeBuddy — VPC в Tencent Cloud; ByteDance Trae — только публичное облако. iFlow CLI закрыт 17.04.2026, Kimi CLI архивирован в 09.2026.',
+ a11:'DingTalk для частной установки — гибрид: ядро в облаке, данные у заказчика; полностью локальная версия не подтверждена. Huawei WeLink — в контур ставится только шлюз. NextChat — MIT, DataEase — GPL-3.0 с условиями.',
+ a12:'Агента миграции COBOL и AS400 для установки в контур с банковским кейсом не нашли: агент Huawei CodeArts — облачная бета (02.2026), в документации Huawei Cloud Stack описан перенос AS400 RPG на Java; CLPS объявила перенос COBOL на Java с помощью ИИ (03.2026), установка в контур не подтверждена. Также: Laiye — RPA и агенты, частная установка.',
+ x1:'<b>Рамку задают регуляторы, а не вендоры.</b> Документ об агентах (CAC, NDRC, MIIT, <a href="https://www.cac.gov.cn/2026-05/08/c_1779979789523320.htm">08.05.2026</a> ✓): три режима — решает только пользователь, решение требует его авторизации, решает сам агент; агент не выходит за пределы авторизации; в чувствительных отраслях — регистрация, тестирование и отзыв. Для банков — NFRA 金发〔2026〕8号, см. <a href="#cn-regs">регуляторику</a>. TC260 выпустил рамку управления безопасностью ИИ 3.0 с приложением о рисках агентов (<a href="https://www.cac.gov.cn/2026-09/14/c_1791137092283345.htm">14.09.2026</a>). Отдельного класса продуктов нет — функции живут в модулях ИБ и агентных платформ.',
+ x2:'Также: Topsec (шлюз TopLMG), Shumei, 云起无垠 (открытая модель SecGPT). Исключён 永信至诚 (Integrity Technology Group) — он в санкционном списке OFAC SDN. Ограждения откалиброваны под классификацию рисков TC260, а не под российское право; интерфейсы и документация — на китайском.',
+ x3:'Независимую оценку агентов в КНР даёт услуга CAICT «可信AI» — 8 измерений, оценено 50+ организаций; SuperCLUE — закрытый рейтинг. В контур они не ставятся.',
+ x4:'CloudWise — данные не подтверждены. Tingyun — кейс Industrial Bank, частная установка не подтверждена.',
+ x5:'По обзору 52 закупок «финансовых агентов» в I полугодии 2026 года лидируют Alibaba Cloud, Volcano Engine и iFlytek (<a href="https://finance.sina.com.cn/money/bank/gsdt/2026-07-02/doc-inifmmmw4121006.shtml">零壹财经, 02.07.2026</a>). Банки сами разворачивают открытые веса, а операторы связи и интеграторы поставляют железо и ПАК. Аналог роли Ростелекома — три госоператора связи КНР.'
+};
+CN.verdict='';
+CN.banks=`<div class="secblk" id="cn-banks"><h2>Как это уже сделали банки Китая</h2>
+<p class="sub">Крупнейшие банки КНР собрали ИИ-стек внутри контура на отечественных компонентах: свои кластеры, набор открытых моделей, единая платформа на весь банк и агенты. Это ближайший образец для тезиса «ВТБ строит всё внутри».</p>
+<div class="mtx-wrap"><table class="mtx"><thead><tr><th scope="col">Банк</th><th scope="col">Модели</th><th scope="col">Железо</th><th scope="col">Масштаб</th><th scope="col">ИИ в разработке</th><th scope="col">Источник</th></tr></thead><tbody>
+ <tr><td class="aname">ICBC (工行)</td><td>Своя «工银智涌» и сторонние модели; DeepSeek в контуре с 02.2025</td><td>Пул «в основном отечественный»; первая модель (2023) — на Huawei Ascend</td><td>600+ сценариев, два «суперагента» — для клиентов и для сотрудников ✓</td><td>Ассистент генерирует 32%+ кода в центре разработки ПО (2024)</td><td><a href="https://www.21jingji.com/article/20260921/herald/e72c86b51a65cfc61f886cbf48153c73.html">21jingji</a> · 21.09.2026; <a href="https://www.huawei.com/cn/news/2023/3/ascend-ai-finance-icbc">Huawei</a> · 03.2023; <a href="https://blog.csdn.net/csdnnews/article/details/142408401">CSDN</a> · 09.2024</td></tr>
+ <tr><td class="aname">CCB (建行)</td><td>Своя финансовая модель на открытой основе; DeepSeek-R1 в эксплуатации</td><td>Не раскрыто</td><td>600+ сценариев; ассистент «帮得» — 40 тыс.+ активных пользователей в месяц ✓</td><td>Доля не раскрыта</td><td><a href="https://www.21jingji.com/article/20260921/herald/e72c86b51a65cfc61f886cbf48153c73.html">21jingji</a> · 21.09.2026</td></tr>
+ <tr><td class="aname">ABC (农行)</td><td>DeepSeek и Qwen в собственном контуре ✓</td><td>Не раскрыто</td><td>Собственный агентный фреймворк ABC-Claw ✓</td><td>Не раскрыто</td><td><a href="https://www.21jingji.com/article/20260921/herald/e72c86b51a65cfc61f886cbf48153c73.html">21jingji</a> · 21.09.2026</td></tr>
+ <tr><td class="aname">BOC (中行)</td><td>10+ моделей, в том числе DeepSeek и Qwen3</td><td>51 тыс. облачных серверов; соглашение с Huawei (08.2025)</td><td>Платформа BOCAI; 32 тыс.+ пользователей, 2200+ ассистентов (I полугодие 2026)</td><td>Кодовый ассистент — 10 тыс.+ пользователей, принимается больше 30% подсказок (2025)</td><td><a href="https://www.mpaypass.com.cn/news/202604/16121417.html">mpaypass</a> · 16.04.2026; <a href="https://news.qq.com/rain/a/20260829A07WFG00">QQ</a> · 29.08.2026</td></tr>
+ <tr><td class="aname">BoCom (交行)</td><td>Набор своих финансовых моделей</td><td>Разнородный кластер на тысячу ускорителей, «в основном отечественные» серверы</td><td>2500+ ИИ-агентов (2025)</td><td>Ассистент iFlyCode (iFlytek) — 2000+ разработчиков, принимается больше 30% подсказок (2024)</td><td><a href="https://news.qq.com/rain/a/20260329A0501700">QQ</a> · 29.03.2026; <a href="https://www.shaqiu.cn/article/ZBnaY0oXVzp7">沙丘智库</a> · 09.10.2024</td></tr>
+ <tr><td class="aname">PSBC (邮储)</td><td>Своя «邮智» и DeepSeek-V3/R1 с 02.2025</td><td>«Полностью отечественный» кластер на суперузлах</td><td>370+ сценариев ✓; ввод новой модели в работу — за 1 день вместо 2 недель ✓</td><td>5000+ разработчиков, 1,1 млн+ строк кода от ассистента, принимается около 20% (2024) ✓</td><td><a href="https://www.21jingji.com/article/20260921/herald/e72c86b51a65cfc61f886cbf48153c73.html">21jingji</a> · 21.09.2026; <a href="https://m.21jingji.com/article/20260704/herald/6a57722d8129e4f14ce5295ff7aa57b8.html">21jingji</a> · 04.07.2026; <a href="https://finance.ifeng.com/c/8i69XUz57Po">钛媒体, годовой отчёт PSBC</a> · 28.03.2025</td></tr>
+ <tr><td class="aname">CMB (招行)</td><td>Свои и отечественные модели</td><td>Не раскрыто</td><td>33 млрд токенов в день; отдача — 100 юаней на 20 вложенных; в 2025 году ИИ заменил 15,56 млн часов работы людей ✓</td><td>На программирование — только 5% ИИ-мощностей: «в бизнесе — активно, в разработке — осторожно» ✓</td><td><a href="https://m.21jingji.com/article/20260704/herald/6a57722d8129e4f14ce5295ff7aa57b8.html">21jingji</a> · 04.07.2026</td></tr>
+ <tr><td class="aname">SPDB (浦发)</td><td>DeepSeek-R1 671B на Ascend с 02.2025 ✓</td><td>176 серверов Kunpeng и Ascend, 76 коммутаторов Huawei — больше 330 млн юаней; интегратор — ChinaSoft International ✓</td><td>Наращивание мощности под большие модели в двух ЦОД</td><td>Не раскрыто</td><td><a href="https://www.mpaypass.com.cn/news/202506/17113518.html">mpaypass</a> · 17.06.2025</td></tr>
+ <tr><td class="aname">Ping An (группа 平安)</td><td>Не раскрыты</td><td>Не раскрыто</td><td>300+ млрд токенов в день ✓</td><td>Доля генерации кода ИИ выросла с 30% до 80% — данные группы, не банка ✓</td><td><a href="https://21jingji.com/article/20260930/herald/09573f03508c027ff9762ef1cc86a1e6.html">21jingji</a> · 30.09.2026</td></tr>
+</tbody></table></div>
+<p class="sub" style="margin-top:8px">✓ — проверено по первоисточнику 07.10.2026; остальное — из исследования со ссылками. Доли кода считаются по-разному: сгенерированный код (ICBC, Ping An) и принятые подсказки (BOC, BoCom, PSBC). С 5–7% кода ВТБ «без переделки» эти цифры сравнивать нельзя — это другая метрика.</p>
+<div class="road-grid" style="margin-top:14px">
+ <div class="road" style="--rc:#6d28d9"><h3>Модели — несколько и без привязки</h3><p>Банки держат по нескольку моделей — DeepSeek, Qwen, GLM и свои отраслевые, у BOC — больше десяти — и вводят новую за дни: у PSBC — за 1 день. Мерить стоит именно это — <b>время ввода новой модели в контур</b>.</p></div>
+ <div class="road" style="--rc:#0369a1"><h3>Железо — от нескольких вендоров</h3><p>Кластеры разнородные: Ascend, Cambricon, Hygon. Бюджет закладывается и на перенос ПО между ускорителями — ВТБ свой кластер тоже строит на китайских ускорителях.</p></div>
+ <div class="road" style="--rc:#15803d"><h3>ИИ в разработке — считать отдачу</h3><p>CMB отдаёт на программирование 5% ИИ-мощностей и прямо говорит: «в бизнесе — активно, в разработке — осторожно». Это совпадает с «бережливым ИИ» ВТБ: проект должен окупаться.</p></div>
+ <div class="road" style="--rc:#be123c"><h3>Управление — готовая рамка регулятора</h3><p>Документ NFRA 金发〔2026〕8号 уже задаёт правила для ИИ в банке: комитет по рискам, человек в высокорисковых решениях, аварийное отключение — см. <a href="#cn-regs">регуляторику</a>. Образец для правил ВТБ.</p></div>
+</div></div>`;
+CN.verdict=`<div class="verdict"><div>
+ <div class="v-kicker">Вариант 5 · те же 17 слоёв — игроки рынка Китая</div>
+ <p class="v-main">Банки Китая уже собрали ИИ-стек внутри контура на отечественных компонентах — это ближайший образец для ВТБ. <em>Банку в России из этого стека доступны открытые модели и открытый код, а железо и коммерческие продукты — с санкционным риском</em>.</p>
+ <p class="v-sub">Проверено 07.10.2026 по сайтам и документации вендоров, Hugging Face, GitHub, документам регуляторов КНР и СМИ: 109 позиций, у каждой — ссылка. Только облачные продукты исключены или вынесены в заметки. Залитая метка — группа, контурная — пометка.</p>
+ <div class="mlegend">${Object.values(CN.grp).map(g=>'<span class="ch"><span class="pill" style="margin:0;background:'+g.bg+';color:'+g.fg+'">'+g.t+'</span></span>').join('')}<span class="ch"><span class="fl o" style="margin:0">открытый код</span></span><span class="ch"><span class="fl e" style="margin:0">Entity List США</span> экспортный чёрный список США</span><span class="ch"><span class="fl r" style="margin:0">есть в РФ</span> продажи или использование в России</span></div>
+</div><ol class="rules" aria-label="Три вывода">
+ <li><span class="n" aria-hidden="true">1</span><b>Образец для ВТБ.</b> Крупнейшие банки КНР работают на своих кластерах, держат по нескольку моделей — у BOC больше десяти — и тысячи агентов, а регулятор уже прописал правила для ИИ в банке: комитет по рискам, человек в высокорисковых решениях, аварийное отключение (NFRA, 18.06.2026). У ВТБ публично видны кластер, модели и своя платформа агентов, агентная разработка — в пилоте у Т1; правил управления агентами публично не видно.</li>
+ <li><span class="n" aria-hidden="true">2</span><b>В России доступно открытое.</b> Модели DeepSeek (MIT) и Qwen3.8-27B (Apache 2.0), платформы Dify и RAGFlow ставятся в контур без вендора и уже работают в России: на Qwen — 21,2% токенов Yandex AI Studio, Dify и RAGFlow — готовые образы Selectel, СУБД СберТеха построена на OceanBase.</li>
+ <li><span class="n" aria-hidden="true">3</span><b>Железо и коммерческие продукты — риск.</b> Huawei, по данным «Коммерсанта», закрыла корпоративный бизнес в РФ с 2023 года, Inspur и xFusion исключены из параллельного импорта, продаж коммерческих китайских платформ в РФ почти не нашли. BIS считает рискованным использование Ascend и других китайских ускорителей этого класса в любой стране — это важно для участников с бизнесом в США.</li>
+</ol></div>`;
+CN.terms=`<details class="more" id="cn-terms"><summary>Обозначения <span class="sm">NFRA, CAC, TC260, 信创, BIS, OFAC, HBM, CANN, VPC, MoE</span></summary><div class="body"><dl class="gl">
+ <dt>NFRA</dt><dd>Национальная администрация финансового регулирования КНР — надзор за банками и страхованием</dd>
+ <dt>CAC</dt><dd>Управление по вопросам киберпространства КНР — регистрирует сервисы и модели генеративного ИИ</dd>
+ <dt>TC260</dt><dd>технический комитет КНР по стандартам информационной безопасности</dd>
+ <dt>信创</dt><dd>программа импортозамещения ИТ в КНР: отечественные чипы, ОС, базы данных</dd>
+ <dt>BIS</dt><dd>Бюро промышленности и безопасности Минторга США — экспортный контроль, ведёт Entity List</dd>
+ <dt>OFAC</dt><dd>управление Минфина США по санкциям — ведёт список SDN</dd>
+ <dt>HBM</dt><dd>быстрая память для ускорителей; её нехватка ограничивает выпуск Ascend</dd>
+ <dt>CANN</dt><dd>программный стек Huawei для Ascend — аналог CUDA у NVIDIA</dd>
+ <dt>VPC</dt><dd>выделенная сеть внутри облака вендора — это не установка в ЦОД заказчика</dd>
+ <dt>MoE</dt><dd>архитектура модели «смесь экспертов»: при каждом запросе работает только часть параметров</dd>
+</dl></div></details>`;
+CN.head=CN.verdict+CN.terms+CN.banks;
+CN.tail=`<details class="more" id="cn-ru"><summary>Китай и Россия: что реально доступно банку в РФ <span class="sm">открытые веса и код уже работают в российской инфраструктуре; железо — через реселлеров; центр ВТБ и Т1 в Китае создаётся · 13 фактов</span></summary><div class="body">
+<div class="mtx-wrap"><table class="mtx facts"><thead><tr><th scope="col">Факт</th><th scope="col">Источник</th></tr></thead><tbody>
+ <tr><td>Huawei закрыла в России корпоративный бизнес (Enterprise Business Group) с 01.01.2023 из-за риска вторичных санкций; остались центры разработки и потребительская электроника — по данным «Коммерсанта» ✓</td><td><a href="https://www.interfax.ru/business/877550">Интерфакс</a> · 19.12.2022</td></tr>
+ <tr><td>Приказ Минпромторга № 4769 от 26.09.2025, в силе с 27.05.2026: Inspur и xFusion исключены из параллельного импорта серверов и СХД; Huawei и Lenovo — нет ✓</td><td><a href="https://vc.ru/legal/2960668-zakrytie-parallelnogo-importa-kompyuternoy-tekhniki-v-rossii">vc.ru</a> · 06.06.2026</td></tr>
+ <tr><td>Серверы Huawei Atlas 800 с Ascend продают российские реселлеры — без канала и сервиса вендора</td><td><a href="https://servermall.ru/sets/servery-dlya-ii-s-gpu-huawei-ascend/">servermall.ru</a></td></tr>
+ <tr><td>MetaX C500 — единственный китайский ускоритель в серверах YADRO; его рассматривал Альфа-Банк</td><td><a href="https://yadro.com/ru/gpu-servers/g4208p-g3/">YADRO</a>; <a href="https://www.cnews.ru/news/top/2025-09-15_rossijskie_banki_poprobovali">CNews</a> · 15.09.2025</td></tr>
+ <tr><td>ВТБ: кластер на китайских ускорителях с 03.2026, производитель не назван; центр компетенций по ИИ в Китае создаётся вместе с Т1</td><td><a href="https://www.vedomosti.ru/technology/articles/2026/04/08/1188666-vtb-pereidet-na-kitaiskie-chipi-dlya-ii">Ведомости</a> · 08.04.2026; <a href="https://ria.ru/20260408/vtb-2085882241.html">РИА Новости</a> · 08.04.2026</td></tr>
+ <tr><td>Сбер и Т-Банк тестируют китайские ускорители с 09.2025; Греф: в GigaChat китайских чипов пока нет</td><td><a href="https://www.vedomosti.ru/technology/news/2026/05/20/1198652-gref-zayavil">Ведомости</a> · 20.05.2026</td></tr>
+ <tr><td>Китайские модели — основа российского рынка: в Yandex AI Studio на Qwen приходится 21,2% токенов, на DeepSeek — 13,5%; в MWS GPT — Qwen 261,1 млрд, GLM 91,2 млрд, Kimi 81,4 млрд токенов (I полугодие 2026) ✓</td><td><a href="https://www.kommersant.ru/doc/8878331">Коммерсантъ</a> · 13.08.2026</td></tr>
+ <tr><td>Российские модели построены на китайских: T-Pro 2.0 — на Qwen3-32B, YandexGPT 5 Pro — старт с весов Qwen2.5-32B; GigaChat 3.1 Ultra построен на архитектуре DeepSeek-V3 ✓, веса, по словам Сбера, обучены самостоятельно</td><td><a href="https://habr.com/ru/companies/tbank/articles/928956/">Хабр, Т-Банк</a> · 07.2025; <a href="https://habr.com/ru/companies/yandex/articles/885218/">Хабр, Яндекс</a> · 02.2025; <a href="https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B">Hugging Face, Сбер</a> · 03.2026</td></tr>
+ <tr><td>Китайский открытый код уже в российской инфраструктуре: Dify, RAGFlow, Lobe Chat и QwenPaw — готовые образы Selectel ✓; Milvus — в маркетплейсе VK Cloud; СУБД СберТеха «О.К.Е.А.Н.» построена на OceanBase ✓</td><td><a href="https://docs.selectel.ru/en/ai-marketplace/dify/">Selectel</a>; <a href="https://www.cnews.ru/news/line/2026-05-18_rossijskij_biznes_poluchil">CNews</a> · 18.05.2026</td></tr>
+ <tr><td>Коммерческие продукты КНР с присутствием в РФ — единицы: FineBI (Уралсиб, СберСтрахование), ZenTao (партнёр GlowByte), Sangfor (межсетевые экраны в облаке билайн)</td><td><a href="https://uralsib.ru/blog/bank-uralsib-zavershil-perekhod-na-platformu-dlya-biznes-analitiki-fine-bi">Уралсиб</a>; <a href="https://glowbyteconsulting.com/glowbyte_stala_partnerom_zentao_software">GlowByte</a>; <a href="https://www.kommersant.ru/doc/5875872">Коммерсантъ</a></td></tr>
+ <tr><td>Банки КНР задерживают и отклоняют платежи из РФ после указа США EO 14114; ЕС с 09.08.2025 запретил операции с банками Heihe и Suifenhe</td><td><a href="https://kyivindependent.com/chinese-banks-stopping-transactions-with-russia-en-masse-reuters-reports/">Reuters</a> · 30.08.2024; <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202501494">EUR-Lex</a></td></tr>
+ <tr><td>BIS: использование Ascend 910B/910C/910D и других китайских ускорителей класса 3A090 рискует нарушить экспортные правила США (General Prohibition 10) ✓</td><td><a href="https://www.bis.gov/media/documents/general-prohibition-10-guidance-may-13-2025.pdf">BIS</a> · 13.05.2025</td></tr>
+ <tr><td>Запрета КНР на экспорт ИИ-ускорителей в РФ не нашли; реальный барьер — дефицит Ascend: Сбер стоит в очереди за ByteDance и Alibaba</td><td><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/russias-sberbank-wants-chinese-chips-for-its-gigachat-ai">Tom's Hardware</a> · 05.2026</td></tr>
+</tbody></table></div>
+<p><b>Вывод.</b> Реалистичный путь китайского стека в банк РФ — открытые веса и открытый код через российскую инфраструктуру и интегратора. Железо — с бюджетом на перенос ПО и через центр ВТБ и Т1 в Китае, если он заработает. Коммерческие продукты КНР — точечно, после проверки санкционного риска.</p>
+<p class="sub">✓ — проверено по первоисточнику 07.10.2026; остальное — из исследования со ссылками.</p>
+</div></details>
+<details class="more" id="cn-regs"><summary>Регуляторика Китая <span class="sm">10 документов · внутренний ИИ банка регистрировать не нужно, но NFRA и документ об агентах задают правила</span></summary><div class="body"><ul class="plain">
+ <li><b>Временные меры по генеративному ИИ</b> (с 15.08.2023), ст. 2: организации, которые разрабатывают и применяют генеративный ИИ, не предоставляя услуг публике, под действие мер не подпадают — внутренних ассистентов банка регистрировать не нужно ✓ (<a href="https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm">cac.gov.cn</a>).</li>
+ <li><b>Регистрация публичных сервисов:</b> на 31.08.2026 зарегистрировано 1112 сервисов генеративного ИИ и учтено 731 приложение на их основе ✓ (<a href="https://www.cac.gov.cn/2026-09/14/c_1791136833136332.htm">CAC, 14.09.2026</a>).</li>
+ <li><b>NFRA 金发〔2026〕8号 — об ИИ в банках и страховании</b> (18.06.2026), 32 пункта ✓:
+  <ul>
+   <li>принципы: «кто использует, тот отвечает» и технологическая самостоятельность (自主可控);</li>
+   <li>совет директоров назначает профильный комитет;</li>
+   <li>кредиты, сделки, оценка активов и управление рисками — высокий риск, запуск только с одобрения комитета по рискам;</li>
+   <li>при слабой объяснимости решает человек;</li>
+   <li>аварийная остановка и ручной резерв обязательны;</li>
+   <li>внешние модели — только прошедшие регистрацию в CAC;</li>
+   <li>имена, номера документов, телефонов и карт клиентов запрещено использовать для обучения моделей.</li>
+  </ul>
+  Источники: <a href="https://www.nfra.gov.cn/cn/view/pages/ItemDetail.html?docId=1261708&amp;itemId=915&amp;generaltype=0">nfra.gov.cn</a>, <a href="https://www.hunan.gov.cn/zqt/zcsd/202606/t20260622_34008933.html">текст</a>.</li>
+ <li><b>Документ об агентах</b> (CAC, NDRC, MIIT, 08.05.2026) ✓:
+  <ul>
+   <li>три режима решений — решает только пользователь, решение требует его авторизации, решает сам агент;</li>
+   <li>агент не выходит за пределы авторизации, за пользователем — право знать и последнее слово;</li>
+   <li>предложено изучить создание реестра агентов с цифровой идентичностью;</li>
+   <li>в чувствительных отраслях — регистрация, тестирование и отзыв.</li>
+  </ul>
+  Источник: <a href="https://www.cac.gov.cn/2026-05/08/c_1779979789523320.htm">cac.gov.cn</a>.</li>
+ <li><b>Маркировка ИИ-контента:</b> меры CAC и обязательный стандарт GB 45438-2025 — с 01.09.2025 (<a href="https://www.cac.gov.cn/2025-03/14/c_1743654685899683.htm">cac.gov.cn</a>).</li>
+ <li><b>Закон о кибербезопасности:</b> поправки от 28.10.2025 действуют с 01.01.2026 — добавлена статья об ИИ, штрафы до 10 млн юаней (<a href="http://www.npc.gov.cn/npc/c2/c30834/202510/t20251028_449048.html">npc.gov.cn</a>).</li>
+ <li><b>Данные:</b> закон о безопасности данных и закон о защите персональной информации (2021), положение о безопасности сетевых данных — с 01.01.2025; его ст. 19 касается обучающих данных генеративного ИИ (<a href="https://www.gov.cn/zhengce/content/202409/content_6977766.htm">gov.cn</a>).</li>
+ <li><b>Защита и критическая инфраструктура:</b> многоуровневая защита 等保 2.0 обязательна для всех операторов сетей; правила о критической инфраструктуре прямо называют финансы (<a href="https://www.gov.cn/zhengce/content/2021-08/17/content_5631671.htm">gov.cn</a>); проект правил кибербезопасности финансовой отрасли — 03.07.2026 (<a href="https://www.csrc.gov.cn/csrc/c101981/c7643145/content.shtml">csrc.gov.cn</a>).</li>
+ <li><b>«ИИ+»:</b> указание Госсовета 国发〔2025〕11号 (08.2025) называет финансы среди отраслей для широкого внедрения агентов (<a href="https://www.cac.gov.cn/2025-08/27/c_1758018277755538.htm">cac.gov.cn</a>).</li>
+ <li><b>信创 — импортозамещение:</b> по данным СМИ, госкомпании, включая финансовые, переходят на отечественный стек к концу 2027 года; NFRA распространил требование 自主可控 на стек ИИ.</li>
+</ul><p class="sub">✓ — проверено по первоисточнику 07.10.2026.</p></div></details>
+<details class="more" id="cn-risks"><summary>Дыры и риски <span class="sm">6 пунктов</span></summary><div class="body"><ul class="plain">
+ <li><b>Санкции и платежи.</b> ВТБ — в санкционном списке США (SDN); банки КНР задерживают и отклоняют платежи из РФ; Huawei, по данным «Коммерсанта», свернула корпоративный бизнес. Прямой контракт ВТБ с публичным вендором из КНР маловероятен.</li>
+ <li><b>Экспортный контроль США.</b> Разъяснение BIS о китайских ускорителях класса Ascend (13.05.2025) ✓; правило о дочерних компаниях фигурантов Entity List приостановлено только до ноября 2026 года. Участникам с бизнесом в США нужна юридическая проверка.</li>
+ <li><b>Дефицит и зрелость железа.</b> Выпуск Ascend ограничен памятью HBM, в очереди — ByteDance, DeepSeek и госЦОД КНР; в российских тестах китайские ускорители перегреваются и работают нестабильно.</li>
+ <li><b>Перенос ПО.</b> На Ascend вместо CUDA — CANN, vLLM-Ascend привязан к версиям CANN: закладывать бюджет на перенос и проверку моделей.</li>
+ <li><b>Открытое может закрыться, лицензии — с условиями.</b> KubeSphere закрыл открытую версию за один день (31.07.2025), iFlow CLI закрыт, Kimi CLI архивирован; у GLM-5.3, Kimi K3, MiniMax M3, Dify, LobeHub и FastGPT — свои условия; веса aiXcoder и данные C-Eval — только для некоммерческого использования.</li>
+ <li><b>Язык, сертификация, калибровка.</b> Документация и интерфейсы средств защиты — на китайском; сертифицировать китайские средства защиты в РФ трудно; ограждения настроены под классификацию рисков TC260, а не под российское право.</li>
+</ul></div></details>`;
+
+/* пометки позиций вкладки «Китай» (версия 07.10.2026): o — открытый код или веса, e — компания в Entity List США, r — есть подтверждение продаж или использования в России */
+const FLAGS={o:{t:'открытый код',cls:'o'},e:{t:'Entity List США',cls:'e'},r:{t:'есть в РФ',cls:'r'}};
+const flagPills=x=>x?[...x].filter(k=>FLAGS[k]).map(k=>'<span class="fl '+FLAGS[k].cls+'">'+FLAGS[k].t+'</span>').join(''):'';
+const plural=(n,one,few,many)=>{const a=n%100,b=n%10;return n+' '+(a>10&&a<20?many:b===1?one:b>=2&&b<=4?few:many);};   // склонение счётчиков вкладки «Китай»
+function vendorRow(v,grp){
+ const GG=grp||GRP, cf=CONF[v.c]||CONF.l, p=v.g&&GG[v.g]?'<span class="pill" style="background:'+GG[v.g].bg+';color:'+GG[v.g].fg+'">'+esc(GG[v.g].t)+'</span>':'';
  const name=v.u?'<a class="vname" translate="no" href="'+esc(v.u)+'" target="_blank" rel="noopener">'+esc(v.n)+'</a>':'<span class="vname" translate="no">'+esc(v.n)+'</span>';
- return '<div class="vrow"><span class="dot" style="background:'+cf.c+'" aria-hidden="true"></span><div>'+name+(v.co?' <span class="vco">· '+esc(v.co)+'</span>':'')+p+'<div class="vrole">'+esc(v.r)+' <span class="conf">'+cf.t+'</span></div></div></div>';
+ return '<div class="vrow"><span class="dot" style="background:'+cf.c+'" aria-hidden="true"></span><div>'+name+(v.co?' <span class="vco">· '+esc(v.co)+'</span>':'')+p+flagPills(v.x)+'<div class="vrole">'+esc(v.r)+' <span class="conf">'+cf.t+'</span></div></div></div>';
 }
 function renderMap(key,D){
  if(!Object.keys(D.layers).length)return false;
@@ -807,9 +1063,9 @@ function renderMap(key,D){
   html+='<div class="super"><h2 class="super-tab" style="background:'+c+'">'+esc(G[g].n)+' <span class="super-en">'+esc(G[g].en)+'</span></h2><div class="super-box" style="border-color:'+c+'"><div class="mods">';
   L.filter(l=>l.g===g).forEach(l=>{
    const vs=D.layers[l.id]||[];
-   html+='<article class="modbox" id="'+key+'-'+l.id+'"><div class="mod-h"><span class="mod-code" style="background:'+c+'">'+codeLabel(l)+'</span><h3 class="mod-nm">'+esc(l.n)+'</h3><span class="mod-ct">'+(vs.length?vs.length+' позиций':'нет данных')+'</span></div>';
+   html+='<article class="modbox" id="'+key+'-'+l.id+'"><div class="mod-h"><span class="mod-code" style="background:'+c+'">'+codeLabel(l)+'</span><h3 class="mod-nm">'+esc(l.n)+'</h3><span class="mod-ct">'+(vs.length?plural(vs.length,'позиция','позиции','позиций'):'нет данных')+'</span></div>';
    if(D.notes[l.id])html+='<div class="note-row">'+D.notes[l.id]+'</div>';
-   html+='<div class="vlist">'+(vs.length?vs.map(vendorRow).join(''):'<div class="note-row">Нет подтверждённых on-prem позиций — см. заметку.</div>')+'</div></article>';
+   html+='<div class="vlist">'+(vs.length?vs.map(v=>vendorRow(v,D.grp)).join(''):'<div class="note-row">Нет подтверждённых on-prem позиций — см. заметку.</div>')+'</div></article>';
   });
   html+='</div></div></div>';
  });
@@ -851,7 +1107,7 @@ window.addEventListener('scroll',()=>{if(tip.classList.contains('show'))hideTip(
 document.addEventListener('keydown',e=>{if(e.key==='Escape')hideTip();});
 
 /* tabs with hash */
-const VIEWS=['stack','us','ru','vtb'];
+const VIEWS=['stack','us','ru','vtb','cn'];
 function openView(v,push){
  if(!VIEWS.includes(v))v='stack';
  document.querySelectorAll('.tab').forEach(t=>{const on=t.dataset.v===v;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;});
@@ -871,6 +1127,6 @@ function fromHash(){
  const el=document.getElementById(h);
  if(el){const sec=el.closest('.view');if(sec)openView(sec.id.replace('view-',''));if(el.tagName==='DETAILS')el.open=true;setTimeout(()=>el.scrollIntoView({block:'start'}),0);}
 }
-renderStack();renderMap('us',US);renderMap('ru',RU);renderVTB();fromHash();window.addEventListener('hashchange',fromHash);
+renderStack();renderMap('us',US);renderMap('ru',RU);renderVTB();renderMap('cn',CN);fromHash();window.addEventListener('hashchange',fromHash);
 </script>
 </body></html>
